@@ -10,7 +10,7 @@ module.exports = app => {
       allowNull: false,
       references: {
         model: 'user',
-        key: 'id'
+        key: 'id',
       },
     },
     rid: {
@@ -18,7 +18,7 @@ module.exports = app => {
       allowNull: false,
       references: {
         model: 'role',
-        key: 'id'
+        key: 'id',
       },
     },
     created_at: DATE,
@@ -28,9 +28,9 @@ module.exports = app => {
   });
 
   UserRole.associate = function() {
-    app.model.UserRole.hasOne(app.model.User,{foreignKey:"id",targetKey:"uid"})
-    app.model.UserRole.belongsTo(app.model.Role,{ foreignKey:"rid",targetKey:"id"})
-  }
-  
+    app.model.UserRole.hasOne(app.model.User, { foreignKey: 'id', targetKey: 'uid' });
+    app.model.UserRole.belongsTo(app.model.Role, { foreignKey: 'rid', targetKey: 'id' });
+  };
+
   return UserRole;
 };

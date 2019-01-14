@@ -14,9 +14,9 @@ module.exports = app => {
   });
 
   Role.associate = function() {
-    app.model.Role.hasOne(app.model.UserRole,{foreignKey:'id',targetKey:'rid'})
-    app.model.Role.belongsTo(app.model.RoleAccess,{foreignKey:'id',targetKey:'rid'})
-  }
+    app.model.Role.hasOne(app.model.UserRole, { foreignKey: 'id', targetKey: 'rid' });
+    app.model.Role.belongsTo(app.model.RoleAccess, { foreignKey: 'id', targetKey: 'rid' });
+  };
 
   return Role;
 };

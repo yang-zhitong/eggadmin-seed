@@ -11,6 +11,7 @@ class RoleController extends BaseController {
       result,
     });
   }
+
   // 新加角色
   async add() {
     await this.ctx.render('/admin/role/add');

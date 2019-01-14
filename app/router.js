@@ -16,9 +16,8 @@ module.exports = app => {
 
   // 用户
   router.get('/admin/manage', controller.admin.manage.index);
-  router.get('/admin/manage/add', controller.admin.manage.add);
+  router.get('/admin/manage/add', controller.admin.manage.add); // 表单页面， 后面可以跟参数 ？id=1
   router.post('/admin/manage/add', controller.admin.manage.doAdd); // ok
-  router.get('/admin/manage/edit', controller.admin.manage.edit);
   router.post('/admin/manage/edit', controller.admin.manage.doEdit); //
   router.get('/admin/manage/delete', controller.admin.manage.delete); //
 

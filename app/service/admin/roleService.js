@@ -3,18 +3,11 @@
 const Service = require('egg').Service;
 
 class RoleService extends Service {
-
-  /**
-   * 角色管理
-   */
-  async index(offset) {
-    const result = await this.app.model.Role.findAndCountAll({
-      limit: 4,
-      offset: (offset - 1) * 4,
-      order: [[ 'addTime', 'DESC' ]],
-    });
-    return result;
-  }
+  // 角色管理
+  // async index() {
+  //   const result = await this.app.model.Role.findAll();
+  //   return result;
+  // }
 
   // 新加一个角色
   async addOneRole({ title, description }) {
@@ -50,16 +43,10 @@ class RoleService extends Service {
     }, { where: { id } });
     return result;
   }
+
   // 查询不被禁用的角色
-  async usedRole() {
-    const result = await this.app.model.Role.findAll({
-      where: {
-        status: {
-          $gt: 0,
-        },
-      },
-      order: [[ 'addTime', 'DESC' ]],
-    });
+  async all() {
+    const result = await this.app.model.Role.findAll();
     return result;
   }
   // 根据id 删除一个角色

@@ -5,8 +5,10 @@ const Controller = require('egg').Controller;
 class BaseController extends Controller {
   constructor(ctx) {
     super(ctx);
-    ctx.locals.menu = [
+    ctx.locals.userMenu = [
       { name: '用户管理', url: '/admin/manage' },
+      { name: '角色管理', url: '/admin/role' },
+      { name: '菜单管理', url: '/admin/access' },
     ]; // 菜单栏
   }
 
