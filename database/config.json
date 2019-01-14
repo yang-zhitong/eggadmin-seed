@@ -1,0 +1,16 @@
+{
+  "development": {
+    "username": "root",
+    "password": "123456",
+    "database": "gameadmin_dev",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": "123456",
+    "database": "gameadmin_pro",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
