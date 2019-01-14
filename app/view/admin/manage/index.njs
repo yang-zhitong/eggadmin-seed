@@ -29,18 +29,20 @@
                 <th>ID</th>
                 <th>用户名</th>
                 <th>用户角色</th>
-                <th>Reason</th>
+                <th>操作</th>
               </tr>
+              {% for item in userList %}
               <tr>
-                <td>183</td>
-                <td>John Doe</td>
-                <td>111</td>
+                <td>{{item.id}}</td>
+                <td>{{item.username}}</td>
+                <td>{{item.roleName}}</td>
                 <td>
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-info btn-xs">编辑</button>
-                    </div>
+                  <div class="btn-group">
+                    <a href="/admin/manage/{{item.id}}/edit" type="button" class="btn btn-info btn-xs">编辑</a>
+                  </div>
                 </td>
               </tr>
+              {% endfor %}
             </tbody>
           </table>
         </div>

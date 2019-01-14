@@ -16,24 +16,22 @@ module.exports = app => {
 
   // 用户
   router.get('/admin/manage', controller.admin.manage.index);
-  router.get('/admin/manage/add', controller.admin.manage.add); // 表单页面， 后面可以跟参数 ？id=1
+  router.get('/admin/manage/add', controller.admin.manage.add); // 表单页面
+  router.get('/admin/manage/:id/edit', controller.admin.manage.edit); // 表单页面
   router.post('/admin/manage/add', controller.admin.manage.doAdd); // ok
-  router.post('/admin/manage/edit', controller.admin.manage.doEdit); //
-  router.get('/admin/manage/delete', controller.admin.manage.delete); //
+  router.post('/admin/manage/:id/edit', controller.admin.manage.doEdit); //
+  router.get('/admin/manage/:id/delete', controller.admin.manage.delete); //
 
   // 角色
-  router.get('/admin/role', controller.admin.role.index);
-  router.get('/admin/role/add', controller.admin.role.add);
-  router.post('/admin/role/add', controller.admin.role.doAdd); //
-  router.get('/admin/role/edit', controller.admin.role.edit);
-  router.post('/admin/role/edit', controller.admin.role.doEdit); //
-  router.get('/admin/role/delete', controller.admin.role.delete); //
 
   // 权限管理
-  router.get('/admin/access', controller.admin.access.index);
-  router.get('/admin/access/add', controller.admin.access.add);
-  router.post('/admin/access/add', controller.admin.access.doAdd);
-  router.get('/admin/access/edit', controller.admin.access.edit);
-  router.post('/admin/access/edit', controller.admin.access.doEdit);
-  router.get('/admin/access/delete', controller.admin.access.delete);
+  
+  
+  // 游戏
+  router.get('/admin/game/:type', controller.admin.game.index);
+  router.get('/admin/game/:type/add', controller.admin.game.add);
+  router.get('/admin/game/:type/:id/edit', controller.admin.game.edit);
+  router.post('/admin/game/:type/add', controller.admin.game.doAdd);
+  router.post('/admin/game/:type/:id/edit', controller.admin.game.doEdit);
+  router.get('/admin/game/:type/:id/delete', controller.admin.game.delete);
 };

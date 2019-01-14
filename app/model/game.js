@@ -5,10 +5,13 @@ module.exports = app => {
 
   const Game = app.model.define('game', {
     id: { type: INTEGER, primaryKey: true, autoIncrement: true },
-    type: INTEGER,
-    name: STRING(30),
-    des: STRING(255),
-    href: STRING(255),
+    type: INTEGER, // type 1 端游 type 2 手游
+    show: INTEGER, // 1 展示 0 不展示
+    sort: INTEGER, // 从小到大进行排序, 1即第一位显示 
+    name: STRING(30), // 名字
+    des: STRING(255), // 描述
+    href: STRING(255), // 官网地址
+    img: STRING(255), // 缩略图地址
     created_at: DATE,
     updated_at: DATE,
   }, {

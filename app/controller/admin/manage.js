@@ -5,21 +5,24 @@ const BaseController = require('./base');
 class ManageController extends BaseController {
   async index() {
     const offset = this.ctx.request.query.page ? Number(this.ctx.request.query.page) : 1;
-    const result = await this.ctx.service.admin.authService.getUserList(offset);
-    console.log(result);
+    const userList = await this.ctx.service.admin.authService.getUserList(offset);
     // console.log(JSON.stringify(result))
-    await this.render('/admin/manage/index');
+    await this.render('/admin/manage/index', {
+      userList,
+    });
+  }
+  async add() {
+    const roleList = await this.ctx.service.admin.roleService.all();
+    await this.ctx.render('/admin/manage/edit', {
+      roleList,
+    });
   }
 
-  async add() {
-    const { id } = this.ctx.request.query;
-    let queryUser;
-    if (id) {
-      queryUser = await this.ctx.service.admin.authService.findUser(id);
-    }
-    // 查询角色列表
+  async edit() {
+    const { id } = this.ctx.params;
+    if (!id) return this.fail('');
+    const queryUser = await this.ctx.service.admin.authService.findUser(id);
     const roleList = await this.ctx.service.admin.roleService.all();
-
     await this.ctx.render('/admin/manage/edit', {
       queryUser,
       roleList,
@@ -36,7 +39,6 @@ class ManageController extends BaseController {
   // post 增加用户
   async doAdd() {
     const { username, password, rid } = this.ctx.request.body;
-
     const md5pawd = await this.ctx.service.tools.md5(password);
     const result = await this.ctx.service.admin.authService.addOneUser({
       username, password: md5pawd, rid,
