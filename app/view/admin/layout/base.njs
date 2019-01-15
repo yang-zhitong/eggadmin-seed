@@ -58,6 +58,11 @@
         {{msg}} 
       </div>
       {% endif %}
+      <style>
+        .box form {
+          width: 50%;
+        }
+      </style>
       {%- block content %}{% endblock -%}
     </div>
 

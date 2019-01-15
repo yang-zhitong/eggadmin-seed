@@ -39,4 +39,7 @@ module.exports = app => {
   router.post('/admin/game/:type/add', controller.admin.game.doAdd);
   router.post('/admin/game/:type/:id/edit', controller.admin.game.doEdit);
   router.get('/admin/game/:type/:id/delete', controller.admin.game.delete);
+  router.get('/admin/game/:type/:id/show/:position', controller.admin.game.show); // 游戏出现在首页上
+  router.get('/admin/game/:type/:id/sort/:position', controller.admin.game.sort); // 游戏出现在首页上
+  router.post('/admin/game/:type/:id/sort/:position', controller.admin.game.doSort); // 游戏出现在首页上
 };

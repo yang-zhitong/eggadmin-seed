@@ -1,4 +1,5 @@
-'use strict';
+
+const path = require('path');
 
 module.exports = appInfo => {
   const config = exports = {};
@@ -30,6 +31,17 @@ module.exports = appInfo => {
     },
   };
 
+  config.multipart = {
+    mode: 'file',
+    tmpdir: path.join(__dirname, '../egg-multipart-tmp'),
+    fileSize: '1mb',
+    whitelist: [
+      '.jpg', '.jpeg', // image/jpeg
+      '.png', // image/png, image/x-png
+      '.gif', // image/gif
+      '.bmp', // image/bmp
+    ],
+  };
 
   return config;
 };

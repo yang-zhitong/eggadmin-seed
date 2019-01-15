@@ -2,6 +2,7 @@ logs/
 npm-debug.log
 yarn-error.log
 node_modules/
+egg-multipart-tmp/
 package-lock.json
 yarn.lock
 coverage/
@@ -10,3 +11,6 @@ run/
 .DS_Store
 *.sw*
 *.un~
+app/public/upload/*.jpg
+app/public/upload/*.png
+app/public/upload/*.jpg
