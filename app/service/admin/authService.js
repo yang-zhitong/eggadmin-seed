@@ -33,7 +33,7 @@ class AuthService extends Service {
       }],
       attributes: {
         include: [
-          [ Sequelize.col('userRole.rid'), 'rid' ],
+          [ Sequelize.col('userRole.rid'), 'roleId' ],
           [ Sequelize.col('userRole->role.title'), 'roleName' ],
         ],
       },
@@ -63,7 +63,7 @@ class AuthService extends Service {
       }],
       attributes: {
         include: [
-          [ Sequelize.col('userRole.rid'), 'rid' ],
+          [ Sequelize.col('userRole.rid'), 'roleId' ],
           [ Sequelize.col('userRole->role.title'), 'roleName' ],
         ],
       },
@@ -94,7 +94,7 @@ class AuthService extends Service {
       const { id: uid } = await this.app.model.User.create({
         username,
         password,
-        isSuper: +rid === 1 ? '1' : '0',
+        isSuper: +rid === 1 ? 1 : 0,
       });
       await this.app.model.UserRole.create({
         uid,
@@ -107,23 +107,21 @@ class AuthService extends Service {
   }
 
   // 更新一个用户的信息
-  // todo rid不存在的情况 因为外键绑定不能更新
+  // todo 因为角色被删除, 所以用户和角色的绑定关系也被删掉了
   async updateOneUser({ id, username, password, rid }) {
     console.log(`roleId====>${rid}`);
     const result = await this.app.model.User.update({
       username,
       password,
-      isSuper: rid === 1 ? '1' : '0',
+      isSuper: +rid === 1 ? 1 : 0,
     }, {
       where: { id },
     });
-    if (rid) {
-      await this.app.model.UserRole.update({
-        rid,
-      }, {
-        where: { uid: id },
-      });
-    }
+    // 创建或更新
+    await this.app.model.UserRole.upsert({
+      rid,
+      uid: id,
+    });
     return result;
   }
 

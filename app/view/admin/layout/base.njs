@@ -34,7 +34,7 @@
         <div class="navbar-custom-menu">
           <ul class="nav navbar-nav">
             <li><a>admin</a></li>
-            <li><a href="/">退出</a></li>
+            <li><a href="/admin/logout">退出</a></li>
           </ul>
         </div>
       </nav>
@@ -45,6 +45,19 @@
     <!-- =============================================== -->
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
+      <!-- 成功的提示 -->
+      {% if code === 1 %}
+      <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>恭喜!</strong> {{msg}} 
+      </div>
+      {% elif code === 0 %}
+      <!-- 失败的msg -->
+      <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        {{msg}} 
+      </div>
+      {% endif %}
       {%- block content %}{% endblock -%}
     </div>
 

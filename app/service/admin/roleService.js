@@ -4,10 +4,10 @@ const Service = require('egg').Service;
 
 class RoleService extends Service {
   // 角色管理
-  // async index() {
-  //   const result = await this.app.model.Role.findAll();
-  //   return result;
-  // }
+  async index() {
+    const result = await this.app.model.Role.findAll();
+    return result;
+  }
 
   // 新加一个角色
   async addOneRole({ title, description }) {
@@ -44,13 +44,14 @@ class RoleService extends Service {
     return result;
   }
 
-  // 查询不被禁用的角色
-  async all() {
-    const result = await this.app.model.Role.findAll();
-    return result;
-  }
+
   // 根据id 删除一个角色
   async deleteOne(id) {
+    const userRoleRes = await this.app.model.UserRole.destroy({
+      where: {
+        rid: id,
+      },
+    });
     const result = await this.app.model.Role.destroy({
       where: {
         id,

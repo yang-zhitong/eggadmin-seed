@@ -21,8 +21,6 @@ module.exports = app => {
         key: 'id',
       },
     },
-    created_at: DATE,
-    updated_at: DATE,
   }, {
     tableName: 'user_role', // 也可以手动定义tableName
   });

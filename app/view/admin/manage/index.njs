@@ -19,7 +19,7 @@
 
           <div class="box-tools">
             <a href="/admin/manage/add" type="button" class="btn btn-block btn-primary">新增用户</a>
-          </div>
+          </div>  
         </div>
         <!-- /.box-header -->
         <div class="box-body table-responsive no-padding">

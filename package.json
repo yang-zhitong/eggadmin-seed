@@ -27,6 +27,7 @@
     "node": ">=8.9.0"
   },
   "scripts": {
+    "sql:init": "node database/index.js",
     "start": "egg-scripts start --daemon --title=egg-server-sequelize-project",
     "stop": "egg-scripts stop --title=egg-server-sequelize-project",
     "dev": "egg-bin dev",

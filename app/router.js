@@ -23,10 +23,15 @@ module.exports = app => {
   router.get('/admin/manage/:id/delete', controller.admin.manage.delete); //
 
   // 角色
+  router.get('/admin/role', controller.admin.role.index);
+  router.get('/admin/role/add', controller.admin.role.add); // 表单页面
+  router.get('/admin/role/:id/edit', controller.admin.role.edit); // 表单页面
+  router.post('/admin/role/add', controller.admin.role.doAdd); // ok
+  router.post('/admin/role/:id/edit', controller.admin.role.doEdit); //
+  router.get('/admin/role/:id/delete', controller.admin.role.delete); //
 
   // 权限管理
-  
-  
+
   // 游戏
   router.get('/admin/game/:type', controller.admin.game.index);
   router.get('/admin/game/:type/add', controller.admin.game.add);

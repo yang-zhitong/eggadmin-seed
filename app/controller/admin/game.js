@@ -29,7 +29,7 @@ class GameController extends BaseController {
     // const { type, id } = this.ctx.params;
     const { name, url, sort, show } = this.ctx.request.body;
     const result = await this.ctx.service.admin.gameService.addOne({
-      name, url, sort, show
+      name, url, sort, show,
     });
     if (result) {
       this.success({ result });
@@ -41,13 +41,13 @@ class GameController extends BaseController {
     const { type, id } = this.ctx.params;
     const { name, url, sort, show } = this.ctx.request.body;
     const result = await this.ctx.service.admin.gameService.updateOne({
-      id, name, url, sort, show
+      id, name, url, sort, show,
     });
     if (result) {
       this.success({ result });
     } else {
       this.fail('用户名已存在');
-    }    
+    }
   }
 
   // 删除用户

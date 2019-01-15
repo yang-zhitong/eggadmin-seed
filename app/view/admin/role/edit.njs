@@ -3,7 +3,7 @@
 {% block content %}
 <!-- Content Header (Page header) -->  
 <section class="content-header">
-  <h1>{{ '编辑' if queryUser else '新增' }}用户</h1>
+  <h1>{{ '编辑' if queryRole else '新增' }}角色</h1>
 </section>
 
 <!-- Main content -->
@@ -12,29 +12,21 @@
     <div class="col-xs-12">
       <div class="box box-primary">
         <!-- form start -->
-        <form {% if queryUser %} action="/admin/manage/{{queryUser.id}}/edit"  {% else %} action="/admin/manage/add" {% endif %} method="post">
+        <form {% if queryRole %} action="/admin/role/{{queryRole.id}}/edit"  {% else %} action="/admin/role/add" {% endif %} method="post">
 
           <div class="box-body">
             <div class="form-group">
-              <label for="input1">用户名</label>
-              <input type="text" class="form-control" id="input1" name="username" placeholder="用户名" value="{{queryUser.username}}">
+              <label for="input1">角色名称</label>
+              <input type="text" class="form-control" id="input1" name="title" placeholder="角色名称" value="{{queryRole.title}}">
             </div>
             <div class="form-group">
-              <label for="input2">密码</label>
-              <input type="password" class="form-control" id="input2" name="password" placeholder="Password">
-            </div>
-            <div class="form-group">
-              <label>用户角色</label>
-              <select class="form-control" name="rid">
-                {% for item in roleList %}
-                <option value="{{item.id}}" {% if item.id == queryUser.roleId %} selected="selected" {% endif %}>{{item.title}}</option>
-                {% endfor %}
-              </select>
+              <label for="input2">角色详细描述(可为空)</label>
+              <input type="text" class="form-control" id="input2" name="description" placeholder="角色名称" value="{{queryRole.description}}">
             </div>
           </div>
           <div class="box-footer">
             <button type="submit" class="btn btn-primary">提交</button>
-            {% if queryUser %}
+            {% if queryRole %}
             <button type="button" class="btn btn-danger pull-right" data-toggle="modal" data-target="#modal-default">删除</button>
             {% endif %}
           </div>
@@ -58,7 +50,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">取消</button>
-          <a href="/admin/manage/{{queryUser.id}}/delete" type="button" class="btn btn-primary">确认</a>
+          <a href="/admin/role/{{queryRole.id}}/delete" type="button" class="btn btn-primary">确认</a>
         </div>
       </div>
       <!-- /.modal-content -->

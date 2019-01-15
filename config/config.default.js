@@ -25,6 +25,9 @@ module.exports = appInfo => {
     database: 'gameadmin_dev',
     host: '127.0.0.1',
     dialect: 'mysql',
+    define: {
+      underscored: false, // 统一用驼峰命名..好记
+    },
   };
 
 

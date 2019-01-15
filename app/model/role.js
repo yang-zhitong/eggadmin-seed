@@ -7,8 +7,6 @@ module.exports = app => {
     id: { type: INTEGER, primaryKey: true, autoIncrement: true },
     title: { type: STRING(255), allowNull: true },
     description: { type: STRING(255), allowNull: true },
-    created_at: DATE,
-    updated_at: DATE,
   }, {
     freezeTableName: true, // 也可以手动定义tableName
   });
