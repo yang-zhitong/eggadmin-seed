@@ -67,6 +67,11 @@ class GameService extends Service {
     return result;
   }
 
+  // 找到所有要可见的, 有 top 和 left两种
+  async findAllSort(type, key) {
+
+  }
+
   // 根据id 把一个任务变成顶部可见或
   //
   async show(id, position) {

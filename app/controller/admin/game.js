@@ -121,6 +121,16 @@ class GameController extends BaseController {
     }
     const result = await this.ctx.service.admin.gameService.show(id, key);
   }
+
+  // 列表页 把有sorttop 和 sortleft 的都搜索出来并列表 
+  async sort() {
+    // render('/admin/game/sort')
+  }
+
+  // 接收一个数字即给这个id的游戏排序到这个位置上
+  async doSort() {
+
+  }
 }
 
 module.exports = GameController;
