@@ -68,15 +68,27 @@ class GameService extends Service {
   }
 
   // 找到所有要可见的, 有 top 和 left两种
-  async findAllSort(type, key) {
-
+  // type pc 1 mb 2 key sortLeft sortTop
+  async findSorted(type, key) {
+    const $gt = Op.gt;
+    const result = await this.app.model.Game.findAll({
+      where: {
+        type: type === 'pc' ? 1 : 2,
+        [key]: {
+          [$gt]: 0,
+        },
+      },
+      raw: true,
+    });
+    return result;
   }
 
   // 根据id 把一个任务变成顶部可见或
-  //
-  async show(id, position) {
-    const result = await this.app.model.Game.update({
-      [position]: 1,
+  // key 只会为 sortLeft  sortTop show = 0 || 1
+  async show(id, key, show) {
+    const [ result ] = await this.app.model.Game.update({
+      [key]: show,
+    }, {
       where: {
         id,
       },

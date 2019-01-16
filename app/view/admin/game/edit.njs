@@ -48,9 +48,9 @@
 
             {% if queryGame.img %}
             <div class="form-group">
-              <label for="input3">原图(图片比例仅作展示, 点击查看原图)</label>
+              <label>原图(图片比例仅作展示, 点击查看原图)</label>
               <a href="{{queryGame.img}}" target="_blank" class="thumbnail">
-                <img alt="100%x180" src="{{queryGame.img}}" data-holder-rendered="true">
+                <img width="180" height="180" alt="100%x180" src="{{queryGame.img}}" data-holder-rendered="true">
               </a>
             </div>
             {% endif %}

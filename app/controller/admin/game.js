@@ -110,26 +110,50 @@ class GameController extends BaseController {
 
   // 只修改表里sortTop或sortLeft字段
   async show() {
-    const { id, position } = this.ctx.params;
-    let key;
-    if (position === 'top') {
-      key = 'sortTop';
-    } else if (position === 'left') {
-      key = 'sortLeft';
-    } else {
+    const { show } = this.ctx.query;
+    const isShow = Number(show);
+    if (!(isShow === 1 || isShow === 0)) {
       return this.fail('错误');
     }
-    const result = await this.ctx.service.admin.gameService.show(id, key);
+    const { id, position } = this.ctx.params;
+    if (!(position === 'top' || position === 'left')) {
+      return this.fail('错误');
+    }
+    const key = position === 'top' ? 'sortTop' : 'sortLeft';
+    const result = await this.ctx.service.admin.gameService.show(id, key, show);
+    if (result) {
+      this.success({ result });
+    } else {
+      this.fail('请重试');
+    }
   }
 
-  // 列表页 把有sorttop 和 sortleft 的都搜索出来并列表 
+  // 列表页 把有sorttop 和 sortleft 的都搜索出来并列表
   async sort() {
-    // render('/admin/game/sort')
+    const { type, position } = this.ctx.params;
+    if (!(position === 'top' || position === 'left')) {
+      return this.fail('错误');
+    }
+    const key = position === 'top' ? 'sortTop' : 'sortLeft';
+    const sortList = await this.ctx.service.admin.gameService.findSorted(type, key);
+
+    await this.render('/admin/game/sort', {
+      sortList,
+      key,
+      position,
+    });
   }
 
   // 接收一个数字即给这个id的游戏排序到这个位置上
   async doSort() {
-
+    const { id, type, position } = this.ctx.params;
+    if (!(position === 'top' || position === 'left')) {
+      return this.fail('错误');
+    }
+    const { sort } = this.ctx.request.body;
+    const key = position === 'top' ? 'sortTop' : 'sortLeft';
+    const result = await this.ctx.service.admin.gameService.show(id, key, sort);
+    this.success(result);
   }
 }
 

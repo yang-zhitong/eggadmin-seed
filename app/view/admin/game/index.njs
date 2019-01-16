@@ -15,7 +15,9 @@
         <div class="box-header">
           <h3 class="box-title">{{gameType.text}}列表</h3>
           <div class="box-tools">
-            <a href="/admin/game/{{gameType.type}}/add" type="button" class="btn btn-block btn-primary">新增{{gameType.text}}</a>
+            <a href="/admin/game/{{gameType.type}}/top/sort" type="button" class="btn btn-sm btn-primary">顶部排序</a>
+            <a href="/admin/game/{{gameType.type}}/left/sort" type="button" class="btn btn-sm btn-primary">左侧排序</a>
+            <a href="/admin/game/{{gameType.type}}/add" type="button" class="btn btn-sm btn-primary">新增{{gameType.text}}</a>
           </div>  
         </div>
         <div class="box-body table-responsive no-padding">
@@ -39,15 +41,15 @@
                 <td>{{item.href}}</td>
                 <td>
                   <a href="/admin/game/{{gameType.type}}/{{item.id}}/edit" type="button" class="btn btn-info btn-xs">编辑</a>
-                  {% if item.sortTop %}
-                  <button type="button" data-url="/admin/game/{{gameType.type}}/{{item.id}}/show/top" class="J_clickShow btn btn-xs bg-orange btn-flat margin">取消顶部显示</button>
+                  {% if item.sortTop > 0 %}
+                  <button type="button" data-show="0" data-url="/admin/game/{{gameType.type}}/top/{{item.id}}/show" class="J_clickShow btn btn-xs bg-orange btn-flat margin">取消顶部显示</button>
                   {% else %}
-                  <button type="button" data-url="/admin/game/{{gameType.type}}/{{item.id}}/show/top" class="J_clickShow btn btn-xs bg-orange btn-flat margin">顶部显示</button>
+                  <button type="button" data-show="1" data-url="/admin/game/{{gameType.type}}/top/{{item.id}}/show" class="J_clickShow btn btn-xs bg-orange btn-flat margin">顶部显示</button>
                   {% endif %}
-                  {% if item.sortLeft %}
-                  <button type="button" data-url="/admin/game/{{gameType.type}}/{{item.id}}/show/left" class="J_clickShow btn btn-xs bg-orange btn-flat margin">取消显示</button>
+                  {% if item.sortLeft > 0 %}
+                  <button type="button" data-show="0" data-url="/admin/game/{{gameType.type}}/left/{{item.id}}/show" class="J_clickShow btn btn-xs bg-orange btn-flat margin">取消左侧显示</button>
                   {% else %}
-                  <button type="button" data-url="/admin/game/{{gameType.type}}/{{item.id}}/show/left" class="J_clickShow btn btn-xs bg-orange btn-flat margin">左侧显示</button>
+                  <button type="button" data-show="1" data-url="/admin/game/{{gameType.type}}/left/{{item.id}}/show" class="J_clickShow btn btn-xs bg-orange btn-flat margin">左侧显示</button>
                   {% endif %}
                 </td>
               </tr>
@@ -82,8 +84,19 @@
     $(document).on('click', '.J_clickShow', function() {
       var $this = $(this);
       var url = $this.data('url');
-      $.get(url, function(res) {
-        console.log('res', res);
+      var show = +$this.data('show');
+      $.get(url + '?show=' + show, function(res) {
+        if (res.code == 1) {
+          var text = $this.text();
+          // 如果是要展示的
+          if (show === 1) {
+            $this.attr('data-show', 0);
+            $this.text('取消' + text);
+          } else {
+            $this.attr('data-show', 1);
+            $this.text(text.slice(2));
+          }
+        }
       });
     });
   });
