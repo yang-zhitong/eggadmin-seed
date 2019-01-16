@@ -38,6 +38,25 @@ $ npm stop
 
 [egg]: https://eggjs.org
 
+### 配置mysql
+
+1. 下载docker镜像
+
+`docker pull mysql:5.6`
+
+2. 启动
+
+```sh
+docker run -p 3306:3306 --name mymysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.7
+```
+
+3. `docker container exec -it mymysql /bin/sh`
+
+4.  `mysql -uroot -p`
+
+5. `CREATE DATABASE IF NOT EXISTS aaa  DEFAULT CHARSET utf8 COLLATE utf8_general_ci;`
+
+6. ctrl + p + q 退出daocker
 
 ### 初始化
 

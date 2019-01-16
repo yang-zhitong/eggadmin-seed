@@ -42,12 +42,12 @@
                   {% if item.sortTop > 0 %}
                   <button type="button" data-show="0" data-url="/admin/game/{{gameType.type}}/top/{{item.id}}/show" class="J_clickShow btn btn-xs bg-orange btn-flat margin">取消顶部显示</button>
                   {% else %}
-                  <button type="button" data-show="1" data-url="/admin/game/{{gameType.type}}/top/{{item.id}}/show" class="J_clickShow btn btn-xs bg-orange btn-flat margin">顶部显示</button>
+                  <button type="button" data-show="1" data-url="/admin/game/{{gameType.type}}/top/{{item.id}}/show" class="J_clickShow btn btn-xs btn-default btn-flat margin">顶部显示</button>
                   {% endif %}
                   {% if item.sortLeft > 0 %}
                   <button type="button" data-show="0" data-url="/admin/game/{{gameType.type}}/left/{{item.id}}/show" class="J_clickShow btn btn-xs bg-orange btn-flat margin">取消左侧显示</button>
                   {% else %}
-                  <button type="button" data-show="1" data-url="/admin/game/{{gameType.type}}/left/{{item.id}}/show" class="J_clickShow btn btn-xs bg-orange btn-flat margin">左侧显示</button>
+                  <button type="button" data-show="1" data-url="/admin/game/{{gameType.type}}/left/{{item.id}}/show" class="J_clickShow btn btn-xs btn-default btn-flat margin">左侧显示</button>
                   {% endif %}
                 </td>
               </tr>
@@ -89,16 +89,17 @@
       var $this = $(this);
       var url = $this.data('url');
       var show = +$this.data('show');
+      console.log(show);
       $.get(url + '?show=' + show, function(res) {
         if (res.code == 1) {
           var text = $this.text();
           // 如果是要展示的
           if (show === 1) {
-            $this.attr('data-show', 0);
-            $this.text('取消' + text);
+            $this.attr('data-show', 0).data('show', 0);
+            $this.text('取消' + text).removeClass('btn-default').addClass('bg-orange');
           } else {
-            $this.attr('data-show', 1);
-            $this.text(text.slice(2));
+            $this.attr('data-show', 1).data('show', 1);
+            $this.text(text.slice(2)).removeClass('bg-orange').addClass('btn-default');
           }
         }
       });

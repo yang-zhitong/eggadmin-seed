@@ -13,8 +13,8 @@
       <div class="box box-primary">
         <!-- form start -->
         <form 
-        {% if queryNew %} action="/admin/news/{{queryNew.id}}/edit"  
-        {% else %} action="/admin/news/add" 
+        {% if queryNew %} action="/admin/new/{{queryNew.id}}/edit"  
+        {% else %} action="/admin/new/add" 
         {% endif %} method="post">
           <div class="box-body">
             <div class="form-group">
@@ -55,7 +55,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">取消</button>
-          <a href="/admin/news/{{queryNew.id}}/delete" type="button" class="btn btn-primary">确认</a>
+          <a href="/admin/new/{{queryNew.id}}/delete" type="button" class="btn btn-primary">确认</a>
         </div>
       </div>
       <!-- /.modal-content -->

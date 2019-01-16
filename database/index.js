@@ -101,7 +101,7 @@ const New = sequelize.define('new', {
 
 
 sequelize.sync({
-  // force: true,
+  force: true,
 }).then(async result => {
   const role = await Role.create({ title: '管理员' });
   await Role.create({ title: '普通用户' });
@@ -118,12 +118,16 @@ sequelize.sync({
   let index = 0;
   console.log('正在增加一些测试用的翻页数据');
   while (++index < 15) {
-    await new Promise(res => setTimeout(res, 1000));
+    await new Promise(res => setTimeout(res, 2000));
     await Game.create({
       type: 1,
-      name: index,
-      des: 'des' + index,
-      href: 'href' + index,
+      name: '游戏名字游戏名字游戏名字游戏名字游戏名字' + index,
+      des: '游戏描述游戏描述游戏描述游戏描述游戏描述' + index,
+      href: '下载地址下载地址下载地址下载地址' + index,
+    });
+    await New.create({
+      title: '新闻标题标题标题标题标题' + index,
+      type: '公告',
     });
   }
   console.log('完成 请用ctrl + c 结束');

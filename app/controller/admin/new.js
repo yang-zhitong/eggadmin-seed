@@ -41,9 +41,9 @@ class NewController extends BaseController {
       title, content, type,
     });
     if (result) {
-      this.success({ result });
+      this.successRender('添加成功', '/admin/new');
     } else {
-      this.fail('新增失败');
+      this.failRender('新增失败', '/admin/new/add');
     }
   }
   async doEdit() {
@@ -54,9 +54,9 @@ class NewController extends BaseController {
       id, title, content, type,
     });
     if (result) {
-      this.success({ result });
+      this.successRender('编辑成功', '/admin/new');
     } else {
-      this.fail('更新成功');
+      this.failRender('更新失败', `/admin/new/${id}/edit`);
     }
   }
   async delete() {
@@ -64,9 +64,9 @@ class NewController extends BaseController {
     if (!id) return this.fail('错误');
     const result = await this.ctx.service.admin.newService.deleteOne(id);
     if (result) {
-      this.success({ result });
+      this.successRender('删除成功', '/admin/new');
     } else {
-      this.fail('删除失败');
+      this.failRender('删除失败', '/admin/new');
     }
   }
 

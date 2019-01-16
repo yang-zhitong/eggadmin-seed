@@ -68,7 +68,7 @@ class GameController extends BaseController {
       });
       this.successRender('添加成功', `/admin/game/${type}`);
     } catch (error) {
-      this.failRender(JSON.stringify(error), '/admin/game/add');
+      this.failRender(JSON.stringify(error), `/admin/game/${type}/add`);
     }
   }
   // 编辑的时候最好把原来的图片删掉
@@ -83,9 +83,11 @@ class GameController extends BaseController {
         relativePath = path.join('/public/upload', basename);
         const newpath = path.join(this.config.baseDir, 'app', relativePath);
         await renameAsnyc(file.filepath, newpath);
-        const { img: oldImg } = await this.ctx.service.admin.gameService.findOne(id);
-        const oldpath = path.join(this.config.baseDir, 'app', oldImg);
-        await unlinkAsnyc(oldpath);
+        const { img: oldImg = '' } = await this.ctx.service.admin.gameService.findOne(id);
+        if (oldImg) {
+          const oldpath = path.join(this.config.baseDir, 'app', oldImg);
+          await unlinkAsnyc(oldpath).catch(e => e);
+        }
       }
       await this.ctx.service.admin.gameService.editOne({
         id, name, href, type, des,

@@ -45,11 +45,11 @@ module.exports = app => {
   router.get('/admin/game/:type/:position/:id/show', controller.admin.game.show); // 游戏出现在首页上
 
   // 新闻
-  router.get('/admin/news', controller.admin.new.index);
-  router.get('/admin/news/add', controller.admin.new.add); // 表单页面
-  router.get('/admin/news/:id/edit', controller.admin.new.edit); // 表单页面
-  router.post('/admin/news/add', controller.admin.new.doAdd); // ok
-  router.post('/admin/news/:id/edit', controller.admin.new.doEdit); //
-  router.post('/admin/news/:id/sort', controller.admin.new.doSort); //
-  router.get('/admin/news/:id/delete', controller.admin.new.delete); //
+  router.get('/admin/new', controller.admin.new.index);
+  router.get('/admin/new/add', controller.admin.new.add); // 表单页面
+  router.get('/admin/new/:id/edit', controller.admin.new.edit); // 表单页面
+  router.post('/admin/new/add', controller.admin.new.doAdd); // ok
+  router.post('/admin/new/:id/edit', controller.admin.new.doEdit); //
+  router.post('/admin/new/:id/sort', controller.admin.new.doSort); //
+  router.get('/admin/new/:id/delete', controller.admin.new.delete); //
 };

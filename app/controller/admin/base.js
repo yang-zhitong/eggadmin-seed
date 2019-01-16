@@ -10,7 +10,7 @@ class BaseController extends Controller {
     ctx.locals.userMenu = [
       { name: 'PC端游', url: '/admin/game/pc' },
       { name: '手机游戏', url: '/admin/game/mb' },
-      { name: '新闻', url: '/admin/news' },
+      { name: '新闻', url: '/admin/new' },
     ]; // 菜单栏
     if (ctx.locals.userInfo.isSuper) {
       ctx.locals.userMenu.push({ name: '用户管理', url: '/admin/manage' });
