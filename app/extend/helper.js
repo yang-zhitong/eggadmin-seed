@@ -1,2 +1,2 @@
 
-exports.lowercaseFirst = str => str[0].toLowerCase() + str.substring(1);
+exports.localDate = date => new Date(date).toLocaleString().slice(0, -3);

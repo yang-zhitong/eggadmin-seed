@@ -33,7 +33,7 @@
         <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
           <ul class="nav navbar-nav">
-            <li><a>admin</a></li>
+            <li><a>{{userInfo.username}}</a></li>
             <li><a href="/admin/logout">退出</a></li>
           </ul>
         </div>
@@ -51,7 +51,7 @@
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <strong>恭喜!</strong> {{msg}} 
       </div>
-      {% elif code === 0 %}
+      {% elif code === -1 %}
       <!-- 失败的msg -->
       <div class="alert alert-danger alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -62,19 +62,21 @@
         .box form {
           width: 50%;
         }
+        .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+          vertical-align: middle;
+        }
       </style>
       {%- block content %}{% endblock -%}
     </div>
 
     
     <!-- /.content-wrapper -->
-    <footer class="main-footer">
+    <!-- <footer class="main-footer">
       <div class="pull-right hidden-xs">
-        <!-- <b>Version</b> 2.3.7 -->
       </div>
       <strong>Copyright &copy; 2019 <a href="">xxxx</a>.</strong> All rights
       reserved.
-    </footer>
+    </footer> -->
   </div>
 
 

@@ -11,27 +11,24 @@
 <section class="content">
   <div class="row">
     <div class="col-xs-12">
-      <div class="box">
+      <div class="box box-primary">
         <div class="box-header">
           <h3 class="box-title">{{gameType.text}}列表</h3>
           <div class="box-tools">
+            <a href="/admin/game/{{gameType.type}}" type="button" class="btn btn-sm btn-primary">全部{{gameType.text}}</a>
             <a href="/admin/game/{{gameType.type}}/top/sort" type="button" class="btn btn-sm btn-primary">顶部排序</a>
             <a href="/admin/game/{{gameType.type}}/left/sort" type="button" class="btn btn-sm btn-primary">左侧排序</a>
             <a href="/admin/game/{{gameType.type}}/add" type="button" class="btn btn-sm btn-primary">新增{{gameType.text}}</a>
           </div>  
         </div>
-        <div class="box-body table-responsive no-padding">
-          <style>
-            .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
-              vertical-align: middle;
-            }
-          </style>
+        <div class="box-body table-responsive">
           <table class="table table-hover">
             <tbody>
               <tr>
-                <th>游戏名</th>
+                <th width="30%">游戏名</th>
                 <th>游戏描述</th>
                 <th>下载地址</th>
+                <th>创建时间</th>
                 <th>操作</th>
               </tr>
               {% for item in gameList %}
@@ -39,6 +36,7 @@
                 <td>{{item.name}}</td>
                 <td>{{item.des}}</td>
                 <td>{{item.href}}</td>
+                <td>{{ helper.localDate(item.createdAt) }}</td>
                 <td>
                   <a href="/admin/game/{{gameType.type}}/{{item.id}}/edit" type="button" class="btn btn-info btn-xs">编辑</a>
                   {% if item.sortTop > 0 %}
@@ -59,15 +57,21 @@
         </div>
         <!-- /.box-body -->
 
-        <!-- <div class="box-footer clearfix">
-                <ul class="pagination pagination-sm no-margin pull-right">
-                  <li><a href="#">«</a></li>
-                  <li><a href="#">1</a></li>
-                  <li><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#">»</a></li>
-                </ul>
-              </div> -->
+        {% if pageRange > 1 %}
+        <div class="box-footer clearfix">
+          <ul class="pagination pagination-sm no-margin">
+            {% if nowPage > 1 %}
+            <li><a href="/admin/game/{{gameType.type}}?page={{nowPage - 1}}">«</a></li>
+            {% endif %}
+            {% for i in range(1, pageRange + 1) -%}
+            <li><a href="/admin/game/{{gameType.type}}?page={{i}}">{{i}}</a></li>
+            {%- endfor %}
+            {% if nowPage < pageRange %}
+            <li><a href="/admin/game/{{gameType.type}}?page={{nowPage + 1}}">»</a></li>
+            {% endif %}
+          </ul>
+        </div>
+        {% endif %}
 
       </div>
     </div>

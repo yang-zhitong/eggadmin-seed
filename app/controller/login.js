@@ -1,18 +1,12 @@
 'use strict';
 
-const BaseController = require('./base');
+const Controller = require('egg').Controller;
 
-class LoginController extends BaseController {
+class LoginController extends Controller {
   async index() {
-    await this.render('/admin/login');
+    await this.ctx.render('/admin/login');
   }
 
-  /*
-    $.post('/admin/login', {
-      username: 'admin',
-      password: '123',
-    }, (data) => console.log(data));
-  */
   // post登陆
   async doLogin() {
     const { username, password } = this.ctx.request.body;
@@ -22,7 +16,11 @@ class LoginController extends BaseController {
       this.ctx.session.user = result;
       return this.ctx.redirect('/admin');
     }
-    return this.fail('fail');
+
+    return this.ctx.render('/admin/login', {
+      code: -1,
+      msg: '登录失败, 请重新尝试',
+    });
     // 如果有验证码, 还要把session里的验证码取出来对比一遍
     //  if(captcha.toLocaleLowerCase() === this.ctx.session.captcha.toLocaleLowerCase()){
   }

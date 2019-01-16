@@ -15,6 +15,7 @@ const sequelize = new Sequelize(
 const {
   STRING,
   INTEGER,
+  TEXT,
 } = Sequelize;
 
 const User = sequelize.define('user', {
@@ -78,8 +79,8 @@ const Game = sequelize.define('game', {
   id: { type: INTEGER, primaryKey: true, autoIncrement: true },
   type: INTEGER, // type 1 端游 type 2 手游
   show: INTEGER, // 1 展示 0 不展示
-  sortTop: INTEGER, // 从小到大进行排序, 1即第一位显示
-  sortLeft: INTEGER, // 从小到大进行排序, 1即第一位显示
+  sortTop: { type: INTEGER, defaultValue: 0 }, // 从小到大进行排序, 1即第一位显示
+  sortLeft: { type: INTEGER, defaultValue: 0 }, // 从小到大进行排序, 1即第一位显示
   name: STRING(30), // 名字
   des: STRING(255), // 描述
   href: STRING(255), // 官网地址
@@ -88,17 +89,43 @@ const Game = sequelize.define('game', {
   freezeTableName: true, // 也可以手动定义tableName
 });
 
+const New = sequelize.define('new', {
+  id: { type: INTEGER, primaryKey: true, autoIncrement: true },
+  type: STRING(255), // 新闻自己编辑的类型, 用于分类筛选
+  sort: { type: INTEGER, defaultValue: 0 }, // 这里是置顶, 数字越大即置顶
+  title: STRING, // 名字
+  content: TEXT, // 描述
+}, {
+  freezeTableName: true, // 也可以手动定义tableName
+});
+
+
 sequelize.sync({
-  force: true,
+  // force: true,
 }).then(async result => {
   const role = await Role.create({ title: '管理员' });
+  await Role.create({ title: '普通用户' });
   console.log('生成了一个role');
   console.log(JSON.stringify(role));
   const password = await md5('123');
-  const user = await User.create({ username: 'admin', password, isSuper: '1' });
+  const user = await User.create({ username: 'admin', password, isSuper: 1 });
+  await User.create({ username: 'user1', password, isSuper: 0 });
   console.log('生成了一个user admin 密码 123');
   console.log(JSON.stringify(user));
   await UserRole.create({ rid: 1, uid: 1 });
+  await UserRole.create({ rid: 2, uid: 2 });
+
+  let index = 0;
+  console.log('正在增加一些测试用的翻页数据');
+  while (++index < 15) {
+    await new Promise(res => setTimeout(res, 1000));
+    await Game.create({
+      type: 1,
+      name: index,
+      des: 'des' + index,
+      href: 'href' + index,
+    });
+  }
   console.log('完成 请用ctrl + c 结束');
 });
 

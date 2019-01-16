@@ -18,7 +18,11 @@
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
+      {% if code === -1 %}
+      <p class="login-box-msg text-danger">{{msg}}</p>
+      {% else %}
       <p class="login-box-msg">请登录</p>
+      {% endif %}
 
       <form action="/admin/login" method="post">
         <div class="form-group has-feedback">

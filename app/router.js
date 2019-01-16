@@ -9,10 +9,10 @@ module.exports = app => {
 
   // router.get('/admin/captcha', controller.admin.base.captcha); // 验证码
 
-  router.get('/admin', controller.admin.manage.index);
-  router.get('/admin/login', controller.admin.login.index); // 登录页
-  router.post('/admin/login', controller.admin.login.doLogin); // 登录请求成功跳转
-  router.get('/admin/logout', controller.admin.login.logout);
+  router.get('/admin', controller.admin.game.index);
+  router.get('/admin/login', controller.login.index); // 登录页
+  router.post('/admin/login', controller.login.doLogin); // 登录请求成功跳转
+  router.get('/admin/logout', controller.login.logout);
 
   // 用户
   router.get('/admin/manage', controller.admin.manage.index);
@@ -43,4 +43,13 @@ module.exports = app => {
   router.get('/admin/game/:type/:position/sort', controller.admin.game.sort); // 游戏出现在首页上
   router.post('/admin/game/:type/:position/:id/sort', controller.admin.game.doSort); // 游戏出现在首页上
   router.get('/admin/game/:type/:position/:id/show', controller.admin.game.show); // 游戏出现在首页上
+
+  // 新闻
+  router.get('/admin/news', controller.admin.new.index);
+  router.get('/admin/news/add', controller.admin.new.add); // 表单页面
+  router.get('/admin/news/:id/edit', controller.admin.new.edit); // 表单页面
+  router.post('/admin/news/add', controller.admin.new.doAdd); // ok
+  router.post('/admin/news/:id/edit', controller.admin.new.doEdit); //
+  router.post('/admin/news/:id/sort', controller.admin.new.doSort); //
+  router.get('/admin/news/:id/delete', controller.admin.new.delete); //
 };

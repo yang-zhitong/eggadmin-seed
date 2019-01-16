@@ -4,12 +4,13 @@ const { Op } = require('sequelize');
 class GameService extends Service {
   // 全部游戏管理
   async index(offset, type) {
-    const limit = 20;
+    const limit = this.config.pageSize;
     const result = await this.app.model.Game.findAndCountAll({
       where: { type: type === 'pc' ? 1 : 2 },
       raw: true,
       limit,
       offset: (offset - 1) * limit,
+      order: [[ 'createdAt', 'DESC' ]],
     });
     return result;
   }
@@ -79,6 +80,7 @@ class GameService extends Service {
         },
       },
       raw: true,
+      order: [[ key ], [ 'createdAt', 'DESC' ]],
     });
     return result;
   }

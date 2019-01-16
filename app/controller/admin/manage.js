@@ -3,6 +3,15 @@
 const BaseController = require('./base');
 
 class ManageController extends BaseController {
+
+  constructor(ctx) {
+    super(ctx);
+    const { isSuper } = this.ctx.session.user;
+    if (isSuper !== 1) {
+      return this.ctx.redirect('/admin');
+    }
+  }
+
   async index() {
     const offset = this.ctx.request.query.page ? Number(this.ctx.request.query.page) : 1;
     const { count, rows: userList } = await this.ctx.service.admin.authService.getUserList(offset);
@@ -11,6 +20,7 @@ class ManageController extends BaseController {
       count,
     });
   }
+
   async add() {
     const roleList = await this.ctx.service.admin.roleService.index();
     await this.ctx.render('/admin/manage/edit', {
@@ -33,15 +43,17 @@ class ManageController extends BaseController {
   // post 增加用户
   async doAdd() {
     const { username, password, rid } = this.ctx.request.body;
-    if (!rid) return this.fail('增加失败');
+    if (!rid) {
+      return this.failRender('用户需要一个角色', '/admin/manage/add');
+    }
     const md5pawd = await this.ctx.service.tools.md5(password);
     const result = await this.ctx.service.admin.authService.addOneUser({
       username, password: md5pawd, rid,
     });
     if (result) {
-      this.success({ result });
+      this.successRender('添加成功', '/admin/manage');
     } else {
-      this.fail('用户名已存在');
+      this.failRender('用户名重复', '/admin/manage/add');
     }
   }
 
@@ -53,9 +65,9 @@ class ManageController extends BaseController {
       id, username, password: md5pawd, rid,
     });
     if (result) {
-      this.success({ result });
+      this.successRender('更新成功', '/admin/manage');
     } else {
-      this.fail('编辑用户失败');
+      this.failRender('更新失败', `/admin/manage/${id}/edit`);
     }
   }
 
@@ -65,12 +77,14 @@ class ManageController extends BaseController {
   // 删除用户
   async delete() {
     const { id } = this.ctx.params;
-    if (!id) return this.fail('删除错误');
+    if (!id) {
+      return this.failRender('删除失败', '/admin/manage');
+    }
     const result = await this.ctx.service.admin.authService.deleteUser(id);
     if (result) {
-      this.success('删除用户成功');
+      this.successRender('删除成功', '/admin/manage');
     } else {
-      this.fail('删除用户失败');
+      this.failRender('删除失败', '/admin/manage');
     }
   }
 }

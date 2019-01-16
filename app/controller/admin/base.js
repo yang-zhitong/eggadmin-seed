@@ -6,13 +6,15 @@ class BaseController extends Controller {
   constructor(ctx) {
     super(ctx);
     ctx.locals.userInfo = this.ctx.session.user;
+
     ctx.locals.userMenu = [
       { name: 'PC端游', url: '/admin/game/pc' },
       { name: '手机游戏', url: '/admin/game/mb' },
-      { name: '用户管理', url: '/admin/manage' },
-      { name: '角色管理', url: '/admin/role' },
-      // { name: '菜单管理', url: '/admin/access' },
+      { name: '新闻', url: '/admin/news' },
     ]; // 菜单栏
+    if (ctx.locals.userInfo.isSuper) {
+      ctx.locals.userMenu.push({ name: '用户管理', url: '/admin/manage' });
+    }
   }
 
   /**
@@ -25,6 +27,16 @@ class BaseController extends Controller {
    */
   render(viewPath, viewData) {
     return this.ctx.render(viewPath, viewData);
+  }
+
+  successRender(msg, url) {
+    this.ctx.session.redirectTip = { code: 1, msg };
+    return this.ctx.redirect(url);
+  }
+
+  failRender(msg, url) {
+    this.ctx.session.redirectTip = { code: -1, msg };
+    return this.ctx.redirect(url);
   }
 
   success(data) {
@@ -45,6 +57,11 @@ class BaseController extends Controller {
   notFound(msg) {
     msg = msg || 'not found';
     this.ctx.throw(404, msg);
+  }
+
+  pageRange(count, size = this.config.pageSize) {
+    const page = Math.ceil(count / size);
+    return page;
   }
   // async index() {
   //   await this.ctx.render('/admin/index.html');

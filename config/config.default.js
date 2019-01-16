@@ -13,12 +13,14 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1547274155064_3319';
 
   // add your config here
-  config.middleware = [ 'auth' ];
+  config.middleware = [ 'auth', 'tip' ];
 
   config.view = {
     defaultViewEngine: 'nunjucks',
     defaultExtension: '.njs',
   };
+
+  config.pageSize = 10;
 
   config.sequelize = {
     username: 'root',
