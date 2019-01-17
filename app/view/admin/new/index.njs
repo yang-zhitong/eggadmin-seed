@@ -17,7 +17,7 @@
           <h3 class="box-title">新闻列表</h3>
           <div class="box-tools">
             <a href="/admin/new/add" type="button" class="btn btn-sm btn-primary">新增新闻</a>
-          </div>  
+          </div>
         </div>
 
         <div class="box-body table-responsive">
@@ -29,7 +29,7 @@
                 <th>操作</th>
                 <th>创建时间</th>
                 <th>置顶
-                  <small style="font-weight:400" class="text-info">（数字越大越靠前, 光标失去焦点即保存, 刷新查看正确结果）</small>
+                  <small style="font-weight:400" class="text-info">（数字越大越靠前, 光标失去焦点即保存）</small>
                 </th>
               </tr>
               {% for item in list %}
@@ -43,7 +43,9 @@
                 </td>
                 <td>{{ helper.localDate(item.createdAt) }}</td>
                 <td>
-                  <input data-toggle="popover" data-container="body" data-placement="right" data-content="保存成功，刷新查看最新排序" style="width:30%" value="{{item.sort}}" class="form-control J_inputSort" maxlength="2" type="text" data-url="/admin/new/{{item.id}}/sort" placeholder="1-99">
+                  <input data-toggle="popover" data-container="body" data-placement="right" data-content="保存成功，刷新查看最新排序"
+                    style="width:30%" value="{{item.sort}}" class="form-control J_inputSort" maxlength="2" type="text"
+                    data-url="/admin/new/{{item.id}}/sort" placeholder="1-99">
                 </td>
               </tr>
               {% endfor %}
@@ -60,9 +62,8 @@
             {% for i in range(1, pageRange + 1) -%}
             <li><a href="/admin/new?page={{i}}">{{i}}</a></li>
             {%- endfor %}
-            {% if nowPage < pageRange %}
-            <li><a href="/admin/new?page={{nowPage + 1}}">»</a></li>
-            {% endif %}
+            {% if nowPage < pageRange %} <li><a href="/admin/new?page={{nowPage + 1}}">»</a></li>
+              {% endif %}
           </ul>
         </div>
         {% endif %}
@@ -71,21 +72,37 @@
     </div>
   </div>
 </section>
+
+<div class="modal fade" id="modal-default" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span></button>
+        <h4 class="modal-title">更新成功</h4>
+      </div>
+      <div class="modal-body">
+        <p>手动刷新查看最新顺序, 点击外面任意区域即可关闭弹窗</p>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+
 {% endblock %}
 {% block script %}
 <script>
-  $(function() {
-    $(".J_inputSort").on('blur', function() {
+  $(function () {
+    $(".J_inputSort").on('blur', function () {
       var self = this;
       var url = $(this).data('url');
       var val = $.trim($(this).val());
       if (val > 0) {
-        $.post(url, { sort: val}, function() {
-          $(self).popover();
-          $(self).popover('show');
-          setTimeout(function() {
-            $(self).popover('destroy');
-          }, 1000)
+        $.post(url, {
+          sort: val
+        }, function () {
+          $("#modal-default").modal('show');
         })
       }
     });

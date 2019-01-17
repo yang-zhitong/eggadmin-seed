@@ -39,10 +39,10 @@ module.exports = app => {
   router.post('/admin/game/:type/add', controller.admin.game.doAdd);
   router.post('/admin/game/:type/:id/edit', controller.admin.game.doEdit);
   router.get('/admin/game/:type/:id/delete', controller.admin.game.delete);
+  router.get('/admin/game/:type/:position/:id/show', controller.admin.game.show); // 展示广告在某个位置上
 
-  router.get('/admin/game/:type/:position/sort', controller.admin.game.sort); // 游戏出现在首页上
-  router.post('/admin/game/:type/:position/:id/sort', controller.admin.game.doSort); // 游戏出现在首页上
-  router.get('/admin/game/:type/:position/:id/show', controller.admin.game.show); // 游戏出现在首页上
+  router.get('/admin/sort/:type/:position', controller.admin.game.sort); // 展示的广告的排序页面, 如果是顶部，其实是没有type的
+  router.post('/admin/sort/:type/:position/:id', controller.admin.game.doSort); // 接收传来的顺序
 
   // 新闻
   router.get('/admin/new', controller.admin.new.index);

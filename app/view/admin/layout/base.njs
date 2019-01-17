@@ -63,14 +63,14 @@
           width: 50%;
         }
         table {
-          table-layout:fixed;
+          /* table-layout:fixed; */
         }
         .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
           vertical-align: middle;
-          overflow: hidden;
+          /* overflow: hidden;
           width: 25%;
           white-space: nowrap;
-          text-overflow: ellipsis;
+          text-overflow: ellipsis; */
         }
       </style>
       {%- block content %}{% endblock -%}

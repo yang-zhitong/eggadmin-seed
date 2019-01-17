@@ -6,7 +6,23 @@
       <ul class="nav sidebar-menu">
         <li class="header">条目列表</li>
         {% for item in userMenu %}
-        <li class="" active><a href="{{ item.url }}"><i class="fa fa-circle-o"></i>{{ item.name }}</a></li>
+          {% if item.children %}
+            <li class="treeview">
+              <a href="javascript:;">
+                <i class="fa fa-circle-o"></i> <span>{{item.name}}</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu" style="display: none;">
+                {% for childItem in item.children %}
+                <li><a data-sub="1" href="{{ childItem.url }}"><i class="fa fa-circle-o"></i> {{childItem.name}}</a></li>
+                {% endfor %}
+              </ul>
+            </li>
+          {% else %}
+          <li class=""><a href="{{ item.url }}"><i class="fa fa-circle-o"></i>{{ item.name }}</a></li>
+          {% endif %}
         {% endfor %}
       </ul>
     </div>
@@ -14,4 +30,19 @@
     <div class="slimScrollRail" style="width: 3px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
   </div>
   <!-- /.sidebar -->
+  <script>
+    $(function() {
+      $('#scrollspy a').each(function() {
+        var url = $(this).attr('href');
+        var isSub = +$(this).data('sub');
+        if (window.location.pathname == url) {
+          console.log(url);
+          var parent = $(this).parent('li').addClass('active');
+          if (isSub) {
+            parent.parent('ul').show().parent('.treeview').addClass('active');
+          }
+        } 
+      }); 
+    });
+  </script>
 </aside>

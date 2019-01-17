@@ -113,7 +113,7 @@ class GameController extends BaseController {
     }
   }
 
-  // 只修改表里sortTop或sortLeft字段
+  // 只修改表里sortTop或sortLeft字段, 即让这个广告进行展示
   // /admin/game/pc/top/14/show
   async show() {
     const { show } = this.ctx.query;
@@ -142,7 +142,6 @@ class GameController extends BaseController {
     }
     const key = position === 'top' ? 'sortTop' : 'sortLeft';
     const sortList = await this.ctx.service.admin.gameService.findSorted(type, key);
-
     await this.render('/admin/game/sort', {
       sortList,
       key,

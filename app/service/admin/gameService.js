@@ -72,13 +72,17 @@ class GameService extends Service {
   // type pc 1 mb 2 key sortLeft sortTop
   async findSorted(type, key) {
     const $gt = Op.gt;
-    const result = await this.app.model.Game.findAll({
-      where: {
-        type: type === 'pc' ? 1 : 2,
-        [key]: {
-          [$gt]: 0,
-        },
+    const where = {
+      [key]: {
+        [$gt]: 0,
       },
+    };
+    // 只有左侧列表区分类型
+    if (key === 'sortLeft') {
+      where.type = type === 'pc' ? 1 : 2;
+    }
+    const result = await this.app.model.Game.findAll({
+      where,
       raw: true,
       order: [[ key ], [ 'createdAt', 'DESC' ]],
     });

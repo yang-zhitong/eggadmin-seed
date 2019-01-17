@@ -16,6 +16,9 @@ module.exports = appInfo => {
   config.middleware = [ 'auth', 'tip' ];
 
   config.view = {
+    mapping: {
+      '.html': 'nunjucks',
+    },
     defaultViewEngine: 'nunjucks',
     defaultExtension: '.njs',
   };
