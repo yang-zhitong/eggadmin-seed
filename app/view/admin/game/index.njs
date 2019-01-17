@@ -80,6 +80,22 @@
     </div>
   </div>
 </section>
+<div class="modal fade" id="modal-default" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span></button>
+          <h4 class="modal-title J_errorMsg">操作结果</h4>
+        </div>
+        <div class="modal-body">
+          <p>手动刷新查看最新顺序, 点击外面任意区域即可关闭弹窗</p>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
 {% endblock %}
 
 {% block script %}
@@ -92,9 +108,8 @@
       var $this = $(this);
       var url = $this.data('url');
       var show = +$this.data('show');
-      console.log(show);
       $.get(url + '?show=' + show, function(res) {
-        if (res.code == 1) {
+        if (+res.code == 1) {
           var text = $this.text();
           // 如果是要展示的
           if (show === 1) {
@@ -104,6 +119,9 @@
             $this.attr('data-show', 1).data('show', 1);
             $this.text(text.slice(2)).removeClass('bg-orange').addClass('btn-default');
           }
+        } else {
+          $(".J_errorMsg").addClass('text-danger').text('更新错误, ' + res.msg);
+          $("#modal-default").modal('show');
         }
       });
     });

@@ -121,12 +121,20 @@ class GameController extends BaseController {
     if (!(isShow === 1 || isShow === 0)) {
       return this.fail('错误');
     }
-    const { id, position } = this.ctx.params;
+    const { id, position, type } = this.ctx.params;
     if (!(position === 'top' || position === 'left')) {
       return this.fail('错误');
     }
+    // 如果是对广告进行左侧展示, 就判断是不是超过6个了
     const key = position === 'top' ? 'sortTop' : 'sortLeft';
-    const result = await this.ctx.service.admin.gameService.show(id, key, show);
+    if (key === 'sortLeft' && isShow === 1) {
+      const sortList = await this.ctx.service.admin.gameService.findSorted(type, key);
+      if (sortList.length >= 6) {
+        return this.fail('首页左侧列表最多显示6个广告', `/admin/game/${type}`);
+      }
+    }
+
+    const result = await this.ctx.service.admin.gameService.show(id, key, isShow);
     if (result) {
       this.success({ result });
     } else {
@@ -138,7 +146,7 @@ class GameController extends BaseController {
   async sort() {
     const { type, position } = this.ctx.params;
     if (!(position === 'top' || position === 'left')) {
-      return this.fail('错误');
+      return this.fail('位置错误');
     }
     const key = position === 'top' ? 'sortTop' : 'sortLeft';
     const sortList = await this.ctx.service.admin.gameService.findSorted(type, key);
@@ -153,7 +161,7 @@ class GameController extends BaseController {
   async doSort() {
     const { id, type, position } = this.ctx.params;
     if (!(position === 'top' || position === 'left')) {
-      return this.fail('错误');
+      return this.fail('位置错误');
     }
     const { sort } = this.ctx.request.body;
     const key = position === 'top' ? 'sortTop' : 'sortLeft';

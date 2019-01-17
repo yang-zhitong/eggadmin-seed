@@ -56,18 +56,6 @@ class GameService extends Service {
     return result;
   }
 
-  async findSortMax(position) {
-    const $gt = Op.gt;
-    const result = await this.app.model.Game.count({
-      where: {
-        [position]: {
-          [$gt]: 0,
-        },
-      },
-    });
-    return result;
-  }
-
   // 找到所有要可见的, 有 top 和 left两种
   // type pc 1 mb 2 key sortLeft sortTop
   async findSorted(type, key) {

@@ -79,7 +79,7 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span></button>
-        <h4 class="modal-title">更新成功</h4>
+        <h4 class="modal-title J_errorMsg">更新成功</h4>
       </div>
       <div class="modal-body">
         <p>手动刷新查看最新顺序, 点击外面任意区域即可关闭弹窗</p>
@@ -99,9 +99,12 @@
       var url = $(this).data('url');
       var val = $.trim($(this).val());
       if (val > 0) {
-        $.post(url, {
-          sort: val
-        }, function () {
+        $.post(url, { sort: val }, function (res) {
+          if (+res.code !== 1) {
+            $(".J_errorMsg").addClass('text-danger').text('更新错误, ' + res.msg);
+          } else {
+            $(".J_errorMsg").addClass('text-success').text('更新成功, ' + (res.msg ? res.msg : ''));
+          }
           $("#modal-default").modal('show');
         })
       }

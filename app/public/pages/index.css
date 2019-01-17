@@ -277,7 +277,7 @@ footer .copyright {
 /* 内容 */
 .hot-box {
   background: #fff;
-  margin-bottom: 40px;
+  margin-bottom: 15px;
 }
 
 .hot-box .title {
@@ -296,6 +296,7 @@ footer .copyright {
   width: 380px;
   height: 250px;
   margin-right: 30px;
+  margin-bottom: 25px;
   position: relative;
   float: left;
   display: block;
@@ -313,6 +314,11 @@ footer .copyright {
   color: #363636;
   font-size: 18px;
   line-height: 48px;
+  display: block;
+    width: 260px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 .gray {
   color: #888888;
@@ -320,18 +326,22 @@ footer .copyright {
 .hot-box .game-box .des {
   color: #888888;
   font-size: 12px;
+  width: 350px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .hot-box .game-box .icons {
   position: absolute;
   right: 6px;
-  bottom: 40px;
+  bottom: 36px;
   text-align: right;
 }
 
 .hot-box .game-box .icons a {
   display: inline-block;
-  vertical-align: middle;
+  vertical-align: middle;    margin: 0 3px;
 }
 
 .hot-box .game-box .icons .android {
@@ -402,6 +412,12 @@ footer .copyright {
   border-bottom: none;
 }
 
+.ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 .server-list .normal-show {
   font-size: 14px;
   color: #626262;
@@ -411,9 +427,27 @@ footer .copyright {
   box-sizing: border-box;
 }
 
+.server-list .normal-show .name {
+  width: 110px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.server-list .normal-show .open {
+  margin-left: 10px;
+  margin-right: 28px;
+  width: 123px;
+  vertical-align: middle;
+}
+
+.server-list .normal-show .open,
+.server-list .normal-show .state {
+  font-size: 12px;
+}
+
 .server-list .hover-show {
   color: #ff6633;
-  height: 79px;
+  height: 78px;
   font-size: 12px;
   display: none;
   box-sizing: border-box;
@@ -438,11 +472,13 @@ footer .copyright {
   width: 150px;
   overflow: hidden;
 }
+
 .server-list .hover-show .name {
   display: block;
   font-size: 16px;
   margin-bottom: 10px;
 }
+
 .server-list .hover-show .name,
 .server-list .hover-show .open {
   overflow: hidden;
@@ -581,12 +617,15 @@ footer .copyright {
   margin-left: 410px;
   margin-bottom: 30px;
 }
+.news-list .common-bd {
+  min-height: 289px;
+}
 
 .news-list .item {
   padding: 0 11px;
   margin: 0 7px;
-  height: 40px;
-  line-height: 40px;
+  height: 41px;
+  line-height: 41px;
   color: #626262;
   font-size: 14px;
   border-bottom: 1px dashed #d8d8d8;
@@ -596,7 +635,9 @@ footer .copyright {
 .news-list .item:last-child {
   border-bottom: none;
 }
-
+.news-list .item .title {
+  color: #626262;
+}
 .news-list .item .time {
   font-size: 12px;
 }

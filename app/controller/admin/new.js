@@ -15,7 +15,7 @@ class NewController extends BaseController {
   async index() {
     const { page, type } = this.ctx.request.query;
     const offset = page ? +page : 1;
-    const { rows: list, count } = await this.ctx.service.admin.newService.index(offset, type);
+    const { rows: list, count } = await this.ctx.service.admin.newService.index(offset);
     await this.render('/admin/new/index', {
       list,
       nowPage: offset,

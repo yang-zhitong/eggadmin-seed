@@ -78,60 +78,19 @@
       <div class="hot-box">
         <p class="title">热门端游</p>
         <div class="games-wrap">
-          <div class="game-box">
-            <a href="/"><img src="/public/assets/banner_bg.jpg" alt="" class="thumbnail"/></a>
-            <a href="/" class="name">天心神途</a>
-            <p class="des">一人带队群殴BOSS！新区火爆</p>
-            <div class="icons">
-              <a class="android"></a> <a class="ios"></a> <a class="pc"></a>
+          {% for item in pcTop %}
+            <div class="game-box">
+              <a href="/"><img src="/public/assets/banner_bg.jpg" alt="" class="thumbnail"/></a>
+              <a href="/" class="name">{{item.name}}</a>
+              <p class="des">{{item.des}}</p>
+              <div class="icons">
+                <a class="ios"></a>
+                <a class="android"></a> 
+                <a class="pc"></a>
+              </div>
+              <a href="{{item.href}}" class="enter-web">进入官网</a>
             </div>
-            <a href="/" class="enter-web">进入官网</a>
-          </div>
-          <div class="game-box">
-            <a href="/"><img src="/public/assets/banner_bg.jpg" alt="" class="thumbnail"/></a>
-            <a href="/" class="name">天心神途</a>
-            <p class="des">一人带队群殴BOSS！新区火爆</p>
-            <div class="icons">
-              <a class="android"></a> <a class="ios"></a> <a class="pc"></a>
-            </div>
-            <a href="/" class="enter-web">进入官网</a>
-          </div>
-          <div class="game-box">
-            <a href="/"><img src="/public/assets/banner_bg.jpg" alt="" class="thumbnail"/></a>
-            <a href="/" class="name">天心神途</a>
-            <p class="des">一人带队群殴BOSS！新区火爆</p>
-            <div class="icons">
-              <a class="android"></a> <a class="ios"></a> <a class="pc"></a>
-            </div>
-            <a href="/" class="enter-web">进入官网</a>
-          </div>
-          <div class="game-box">
-            <a href="/"><img src="/public/assets/banner_bg.jpg" alt="" class="thumbnail"/></a>
-            <a href="/" class="name">天心神途</a>
-            <p class="des">一人带队群殴BOSS！新区火爆</p>
-            <div class="icons">
-              <a class="android"></a> <a class="ios"></a> <a class="pc"></a>
-            </div>
-            <a href="/" class="enter-web">进入官网</a>
-          </div>
-          <div class="game-box">
-            <a href="/"><img src="/public/assets/banner_bg.jpg" alt="" class="thumbnail"/></a>
-            <a href="/" class="name">天心神途</a>
-            <p class="des">一人带队群殴BOSS！新区火爆</p>
-            <div class="icons">
-              <a class="android"></a> <a class="ios"></a> <a class="pc"></a>
-            </div>
-            <a href="/" class="enter-web">进入官网</a>
-          </div>
-          <div class="game-box">
-            <a href="/"><img src="/public/assets/banner_bg.jpg" alt="" class="thumbnail"/></a>
-            <a href="/" class="name">天心神途</a>
-            <p class="des">一人带队群殴BOSS！新区火爆</p>
-            <div class="icons">
-              <a class="android"></a> <a class="ios"></a> <a class="pc"></a>
-            </div>
-            <a href="/" class="enter-web">进入官网</a>
-          </div>
+          {% endfor %}
         </div>
       </div>
 
@@ -142,189 +101,45 @@
           <p class="tab J_gameTabs">手游开服表</p>
         </div>
         <div class="bd">
+
           <div class="J_gameTabBd">
-            <div class="item hover">
-              <a class="normal-show">
-                <span class="name">天心神途</span>
-                <span class="open">每日 10/14/20 点开服</span>
-                <span class="state gray">火爆开放中</span>
-              </a>
-              <div href="/" class="hover-show ib-center">
-                <img src="/public/assets/banner_bg.jpg" alt="" class="thumbnail ib" />
-                <div class="text-box ib">
-                  <a class="name">天心神途天心神途天心神途天心神途</a>
-                  <p class="open">每日 每日 10/14/每日 10/14/10/14/20 点开服</p>
+            {% for item in pcLeft %}
+            <div class="item {% if loop.index0 == 0 %} hover {% endif %}">
+                <a class="normal-show">
+                  <span class="name ellipsis">{{item.name}}</span>
+                  <span class="open ellipsis">每日 10/14/20 点开服</span>
+                  <span class="state ellipsis">火爆开放中</span>
+                </a>
+                <div href="/" class="hover-show ib-center">
+                  <img src="/public/assets/banner_bg.jpg" alt="" class="thumbnail ib" />
+                  <div class="text-box ib">
+                    <a class="name ellipsis">天心神途天心神途天心神途天心神途</a>
+                    <p class="open ellipsis">每日 每日 10/14/每日 10/14/10/14/20 点开服</p>
+                  </div>
+                  <a href="" class="start-link">开始游戏</a>
                 </div>
-                <a href="" class="start-link">开始游戏</a>
-              </div>
             </div>
-            <div class="item">
-              <a class="normal-show">
-                <span class="name">天心神途</span>
-                <span class="open">每日 10/14/20 点开服</span>
-                <span class="state gray">火爆开放中</span>
-              </a>
-              <div href="/" class="hover-show ib-center">
-                <img src="/public/assets/banner_bg.jpg" alt="" class="thumbnail ib" />
-                <div class="text-box ib">
-                  <a class="name">天心神途天心神途天心神途天心神途</a>
-                  <p class="open">每日 每日 10/14/每日 10/14/10/14/20 点开服</p>
-                </div>
-                <a href="" class="start-link">开始游戏</a>
-              </div>
-            </div>
-            <div class="item">
-              <a class="normal-show">
-                <span class="name">天心神途</span>
-                <span class="open">每日 10/14/20 点开服</span>
-                <span class="state gray">火爆开放中</span>
-              </a>
-              <div href="/" class="hover-show ib-center">
-                <img src="/public/assets/banner_bg.jpg" alt="" class="thumbnail ib" />
-                <div class="text-box ib">
-                  <a class="name">天心神途天心神途天心神途天心神途</a>
-                  <p class="open">每日 每日 10/14/每日 10/14/10/14/20 点开服</p>
-                </div>
-                <a href="" class="start-link">开始游戏</a>
-              </div>
-            </div>
-            <div class="item">
-              <a class="normal-show">
-                <span class="name">天心神途</span>
-                <span class="open">每日 10/14/20 点开服</span>
-                <span class="state gray">火爆开放中</span>
-              </a>
-              <div href="/" class="hover-show ib-center">
-                <img src="/public/assets/banner_bg.jpg" alt="" class="thumbnail ib" />
-                <div class="text-box ib">
-                  <a class="name">天心神途天心神途天心神途天心神途</a>
-                  <p class="open">每日 每日 10/14/每日 10/14/10/14/20 点开服</p>
-                </div>
-                <a href="" class="start-link">开始游戏</a>
-              </div>
-            </div>
-            <div class="item">
-              <a class="normal-show">
-                <span class="name">天心神途</span>
-                <span class="open">每日 10/14/20 点开服</span>
-                <span class="state gray">火爆开放中</span>
-              </a>
-              <div href="/" class="hover-show ib-center">
-                <img src="/public/assets/banner_bg.jpg" alt="" class="thumbnail ib" />
-                <div class="text-box ib">
-                  <a class="name">天心神途天心神途天心神途天心神途</a>
-                  <p class="open">每日 每日 10/14/每日 10/14/10/14/20 点开服</p>
-                </div>
-                <a href="" class="start-link">开始游戏</a>
-              </div>
-            </div>
-            <div class="item">
-              <a class="normal-show">
-                <span class="name">天心神途</span>
-                <span class="open">每日 10/14/20 点开服</span>
-                <span class="state gray">火爆开放中</span>
-              </a>
-              <div href="/" class="hover-show ib-center">
-                <img src="/public/assets/banner_bg.jpg" alt="" class="thumbnail ib" />
-                <div class="text-box ib">
-                  <a class="name">天心神途天心神途天心神途天心神途</a>
-                  <p class="open">每日 每日 10/14/每日 10/14/10/14/20 点开服</p>
-                </div>
-                <a href="" class="start-link">开始游戏</a>
-              </div>
-            </div>
+            {% endfor %}
           </div>
+
           <div class="J_gameTabBd" style="display:none">
-            <div class="item hover">
-              <a class="normal-show">
-                <span class="name">贪玩蓝月</span>
-                <span class="open">每日 10/14/20 点开服</span>
-                <span class="state gray">火爆开放中</span>
-              </a>
-              <div href="/" class="hover-show ib-center">
-                <img src="/public/assets/banner_bg.jpg" alt="" class="thumbnail ib" />
-                <div class="text-box ib">
-                  <a class="name">贪玩蓝月贪玩蓝月贪玩蓝月贪玩蓝月</a>
-                  <p class="open">每日 每日 10/14/每日 10/14/10/14/20 点开服</p>
-                </div>
-                <a href="" class="start-link">开始游戏</a>
+              {% for item in mbLeft %}
+              <div class="item {% if loop.index0 == 0 %} hover {% endif %}">
+                  <a class="normal-show">
+                    <span class="name ellipsis">{{item.name}}</span>
+                    <span class="open ellipsis">每日 10/14/20 点开服</span>
+                    <span class="state ellipsis">火爆开放中</span>
+                  </a>
+                  <div href="/" class="hover-show ib-center">
+                    <img src="/public/assets/banner_bg.jpg" alt="" class="thumbnail ib" />
+                    <div class="text-box ib">
+                      <a class="name ellipsis">天心神途天心神途天心神途天心神途</a>
+                      <p class="open ellipsis">每日 每日 10/14/每日 10/14/10/14/20 点开服</p>
+                    </div>
+                    <a href="" class="start-link">开始游戏</a>
+                  </div>
               </div>
-            </div>
-            <div class="item">
-              <a class="normal-show">
-                <span class="name">贪玩蓝月</span>
-                <span class="open">每日 10/14/20 点开服</span>
-                <span class="state gray">火爆开放中</span>
-              </a>
-              <div href="/" class="hover-show ib-center">
-                <img src="/public/assets/banner_bg.jpg" alt="" class="thumbnail ib" />
-                <div class="text-box ib">
-                  <a class="name">贪玩蓝月贪玩蓝月贪玩蓝月贪玩蓝月</a>
-                  <p class="open">每日 每日 10/14/每日 10/14/10/14/20 点开服</p>
-                </div>
-                <a href="" class="start-link">开始游戏</a>
-              </div>
-            </div>
-            <div class="item">
-              <a class="normal-show">
-                <span class="name">贪玩蓝月</span>
-                <span class="open">每日 10/14/20 点开服</span>
-                <span class="state gray">火爆开放中</span>
-              </a>
-              <div href="/" class="hover-show ib-center">
-                <img src="/public/assets/banner_bg.jpg" alt="" class="thumbnail ib" />
-                <div class="text-box ib">
-                  <a class="name">贪玩蓝月贪玩蓝月贪玩蓝月贪玩蓝月</a>
-                  <p class="open">每日 每日 10/14/每日 10/14/10/14/20 点开服</p>
-                </div>
-                <a href="" class="start-link">开始游戏</a>
-              </div>
-            </div>
-            <div class="item">
-              <a class="normal-show">
-                <span class="name">贪玩蓝月</span>
-                <span class="open">每日 10/14/20 点开服</span>
-                <span class="state gray">火爆开放中</span>
-              </a>
-              <div href="/" class="hover-show ib-center">
-                <img src="/public/assets/banner_bg.jpg" alt="" class="thumbnail ib" />
-                <div class="text-box ib">
-                  <a class="name">贪玩蓝月贪玩蓝月贪玩蓝月贪玩蓝月</a>
-                  <p class="open">每日 每日 10/14/每日 10/14/10/14/20 点开服</p>
-                </div>
-                <a href="" class="start-link">开始游戏</a>
-              </div>
-            </div>
-            <div class="item">
-              <a class="normal-show">
-                <span class="name">贪玩蓝月</span>
-                <span class="open">每日 10/14/20 点开服</span>
-                <span class="state gray">火爆开放中</span>
-              </a>
-              <div href="/" class="hover-show ib-center">
-                <img src="/public/assets/banner_bg.jpg" alt="" class="thumbnail ib" />
-                <div class="text-box ib">
-                  <a class="name">贪玩蓝月贪玩蓝月贪玩蓝月贪玩蓝月</a>
-                  <p class="open">每日 每日 10/14/每日 10/14/10/14/20 点开服</p>
-                </div>
-                <a href="" class="start-link">开始游戏</a>
-              </div>
-            </div>
-            <div class="item">
-              <a class="normal-show">
-                <span class="name">天心神途</span>
-                <span class="open">每日 10/14/20 点开服</span>
-                <span class="state gray">火爆开放中</span>
-              </a>
-              <div href="/" class="hover-show ib-center">
-                <img src="/public/assets/banner_bg.jpg" alt="" class="thumbnail ib" />
-                <div class="text-box ib">
-                  <a class="name">天心神途天心神途天心神途天心神途</a>
-                  <p class="open">每日 每日 10/14/每日 10/14/10/14/20 点开服</p>
-                </div>
-                <a href="" class="start-link">开始游戏</a>
-              </div>
-            </div>
+              {% endfor %}
           </div>
         </div>
       </div>
@@ -333,52 +148,16 @@
       <!-- 游戏咨询 start -->
       <div class="news-list">
         <div class="common-hd">
-          <p class="common-title">游戏咨询</p>
+          <p class="common-title">游戏资讯</p>
           <a href="" class="more-btn">更多 &nbsp;>></a>
         </div>
         <div class="common-bd">
-          <div class="item">
-            <span class="title"
-              >【新闻】热血神途之国战三职业复古微变铭文版开启有奖测试</span
-            >
-            <span class="time fr">2019-01-09</span>
-          </div>
-          <div class="item">
-            <span class="title"
-              >【新闻】热血神途之国战三职业复古微变铭文版开启有奖测试</span
-            >
-            <span class="time fr">2019-01-09</span>
-          </div>
-          <div class="item">
-            <span class="title"
-              >【新闻】热血神途之国战三职业复古微变铭文版开启有奖测试</span
-            >
-            <span class="time fr">2019-01-09</span>
-          </div>
-          <div class="item">
-            <span class="title"
-              >【新闻】热血神途之国战三职业复古微变铭文版开启有奖测试</span
-            >
-            <span class="time fr">2019-01-09</span>
-          </div>
-          <div class="item">
-            <span class="title"
-              >【新闻】热血神途之国战三职业复古微变铭文版开启有奖测试</span
-            >
-            <span class="time fr">2019-01-09</span>
-          </div>
-          <div class="item">
-            <span class="title"
-              >【新闻】热血神途之国战三职业复古微变铭文版开启有奖测试</span
-            >
-            <span class="time fr">2019-01-09</span>
-          </div>
-          <div class="item">
-            <span class="title"
-              >【新闻】热血神途之国战三职业复古微变铭文版开启有奖测试</span
-            >
-            <span class="time fr">2019-01-09</span>
-          </div>
+          {% for item in newList %}
+            <div class="item">
+              <a href="/new/{{item.id}}" class="title">{{item.title}}</a>
+              <span class="time fr">{{ helper.newsFormateDate(item.createdAt) }}</span>
+            </div>
+          {% endfor %}
         </div>
       </div>
       <!-- 游戏咨询 end -->
@@ -387,22 +166,22 @@
       <div class="quickway">
         <div class="common-hd"><span class="common-title">快速通道</span></div>
         <div class="common-bd">
-          <a href="" class="way-item">
+          <a href="/" class="way-item">
             <i class="icon quick1"></i> <span>快速注册</span>
           </a>
-          <a href="" class="way-item">
+          <a href="/" class="way-item">
             <i class="icon quick2"></i> <span>找回密码</span>
           </a>
-          <a href="" class="way-item">
+          <a href="/" class="way-item">
             <i class="icon quick3"></i> <span>充值中心</span>
           </a>
-          <a href="" class="way-item">
+          <a href="/" class="way-item">
             <i class="icon quick4"></i> <span>被盗申诉</span>
           </a>
           <div class="qqkf">
             <i class="kf-icon"></i>
             <div class="ib">
-              <a href="" class="contact-kf">联系在线客服</a>
+              <a href="/" class="contact-kf">联系在线客服</a>
               <p class="qqnum">官方客服QQ：800828608</p>
             </div>
           </div>

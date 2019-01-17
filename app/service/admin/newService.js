@@ -1,10 +1,10 @@
 const Service = require('egg').Service;
 const { Op } = require('sequelize');
 
-class GameService extends Service {
+class NewService extends Service {
   // 全部新闻
-  async index(offset, type) {
-    const limit = this.config.pageSize;
+  async index(offset, { type, pageSize } = {}) {
+    const limit = pageSize || this.config.pageSize;
     const result = await this.app.model.New.findAndCountAll({
       // where: { type },
       raw: true,
@@ -62,4 +62,4 @@ class GameService extends Service {
 
 }
 
-module.exports = GameService;
+module.exports = NewService;
