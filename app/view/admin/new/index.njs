@@ -5,6 +5,7 @@
 <section class="content-header">
   <h1>
     新闻管理
+    <small>表格排序时, 光标离开会提示保存成功, 不过不会自动刷新,可以改几个再刷新查看顺序是否正确 </small>
   </h1>
 </section>
 
@@ -29,7 +30,7 @@
                 <th>操作</th>
                 <th>创建时间</th>
                 <th>置顶
-                  <small style="font-weight:400" class="text-info">（数字越大越靠前, 光标失去焦点即保存）</small>
+                  <small style="font-weight:400" class="text-info">(数字为0-99, 数字大即置顶)</small>
                 </th>
               </tr>
               {% for item in list %}
@@ -43,7 +44,7 @@
                 </td>
                 <td>{{ helper.localDate(item.createdAt) }}</td>
                 <td>
-                  <input data-toggle="popover" data-container="body" data-placement="right" data-content="保存成功，刷新查看最新排序"
+                  <input data-toggle="tooltip" data-container="right" data-placement="right"  title="数字1-99,光标离开自动保存"
                     style="width:30%" value="{{item.sort}}" class="form-control J_inputSort" maxlength="2" type="text"
                     data-url="/admin/new/{{item.id}}/sort" placeholder="1-99">
                 </td>
@@ -94,6 +95,7 @@
 {% block script %}
 <script>
   $(function () {
+    $('[data-toggle="tooltip"]').tooltip();
     $(".J_inputSort").on('blur', function () {
       var self = this;
       var url = $(this).data('url');

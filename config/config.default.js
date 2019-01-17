@@ -39,7 +39,7 @@ module.exports = appInfo => {
   config.multipart = {
     mode: 'file',
     tmpdir: path.join(__dirname, '../egg-multipart-tmp'),
-    fileSize: '1mb',
+    fileSize: '2mb',
     whitelist: [
       '.jpg', '.jpeg', // image/jpeg
       '.png', // image/png, image/x-png

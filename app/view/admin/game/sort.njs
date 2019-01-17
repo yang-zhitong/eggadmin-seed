@@ -5,7 +5,7 @@
 <section class="content-header">
   <h1>
     排序管理
-    <small>从1-10表示顺序, 数字相同则按时间排序, 即新创建的在上面 </small>
+    <small>表格排序时, 光标离开会提示保存成功, 不过不会自动刷新,可以改几个再刷新查看顺序是否正确 </small>
   </h1>
 </section>
 
@@ -34,7 +34,7 @@
                 <th>创建时间</th>
                 <th>
                   顺序
-                  <small style="font-weight:400" class="text-info">(光标离开输入框自动保存)</small>
+                  <small style="font-weight:400" class="text-info">(数字为1-99, 删除或输入0则为取消显示)</small>
                 </th>
               </tr>
               {% for item in sortList %}
@@ -44,8 +44,10 @@
                 <td>{{ item.href.slice(0, 8) if item.href else '' }}</td>
                 <td>{{ helper.localDate(item.createdAt) }}</td>
                 <td>
-                  <input style="width:30%" class="form-control J_inputSort" maxlength="1" type="text" value="{{item[key]}}"
-                    data-url="/admin/sort/{{gameType.type}}/{{position}}/{{item.id}}" placeholder="输入1-9">
+                  <input data-toggle="tooltip" data-container="right" data-placement="right"
+                  data-title="数字1-99,失去焦点自动保存"
+                  style="width:30%" class="form-control J_inputSort" maxlength="2" type="text" value="{{item[key]}}"
+                    data-url="/admin/sort/{{gameType.type}}/{{position}}/{{item.id}}" placeholder="">
                 </td>
               </tr>
               {% endfor %}
@@ -84,13 +86,14 @@
 <script src="/public/plugins/iCheck/icheck.min.js"></script> -->
 <script>
   $(function () {
-    // $('[data-toggle="popover"]').popover()
+    $('[data-toggle="tooltip"]').tooltip();
 
     $(".J_inputSort").on('blur', function () {
       var self = this;
       var url = $(this).data('url');
       var val = $.trim($(this).val());
-      if (val > 0) {
+      if (!val) val = 0;
+      if (val >= 0) {
         $.post(url, { sort: val }, function (res) {
           if (+res.code !== 1) {
             $(".J_errorMsg").addClass('text-danger').text('更新错误, ' + res.msg);

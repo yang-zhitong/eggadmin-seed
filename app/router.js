@@ -17,6 +17,9 @@ module.exports = app => {
   router.post('/admin/login', controller.login.doLogin); // 登录请求成功跳转
   router.get('/admin/logout', controller.login.logout);
 
+  router.get('/admin/ue', controller.admin.ue.index);
+  router.post('/admin/ue', controller.admin.ue.handleAction);
+
   // 用户
   router.get('/admin/manage', controller.admin.manage.index);
   router.get('/admin/manage/add', controller.admin.manage.add); // 表单页面

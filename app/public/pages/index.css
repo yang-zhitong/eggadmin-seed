@@ -343,7 +343,7 @@ footer .copyright {
 .hot-box .game-box .des {
   color: #888888;
   font-size: 12px;
-  width: 350px;
+  width: 240px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
@@ -382,6 +382,13 @@ footer .copyright {
   right: 0;
   bottom: 10px;
   color: #888888;
+}
+
+.hot-box .game-box .people-hot {
+  position: absolute;
+    right: 60px;
+    bottom: 10px;
+    color: #ff6633;
 }
 
 

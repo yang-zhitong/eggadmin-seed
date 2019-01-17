@@ -16,11 +16,12 @@ class GameService extends Service {
   }
 
   // 新加一个, 好像名字重复也没事
-  async addOne({ name, des, href, type, img, openTime }) {
-    const result = await this.app.model.Game.create({
-      name, href, img, des, openTime,
+  async addOne(data) {
+    const { type } = data;
+    const crateData = Object.assign({}, data, {
       type: type === 'pc' ? 1 : 2,
     });
+    const result = await this.app.model.Game.create(crateData);
     return result;
   }
 
@@ -35,13 +36,12 @@ class GameService extends Service {
   }
 
   // 编辑一个的基本信息
-  async editOne({ id, name, des, href, type, img, openTime }) {
-    const result = await this.app.model.Game.update({
-      name, href, img, des, openTime,
+  async editOne(id, data) {
+    const { type } = data;
+    const crateData = Object.assign({}, data, {
       type: type === 'pc' ? 1 : 2,
-    }, { where: { id } });
-    console.log('result---------------');
-    console.log(result);
+    });
+    const result = await this.app.model.Game.update(crateData, { where: { id } });
     return result;
   }
 
@@ -72,7 +72,7 @@ class GameService extends Service {
     const result = await this.app.model.Game.findAll({
       where,
       raw: true,
-      order: [[ key ], [ 'createdAt', 'DESC' ]],
+      order: [[ key, 'DESC' ], [ 'createdAt', 'DESC' ]],
     });
     return result;
   }

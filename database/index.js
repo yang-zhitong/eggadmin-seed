@@ -78,14 +78,18 @@ const UserRole = sequelize.define('userRole', {
 const Game = sequelize.define('game', {
   id: { type: INTEGER, primaryKey: true, autoIncrement: true },
   type: INTEGER, // type 1 端游 type 2 手游
-  show: INTEGER, // 1 展示 0 不展示
   sortTop: { type: INTEGER, defaultValue: 0 }, // 从小到大进行排序, 1即第一位显示
   sortLeft: { type: INTEGER, defaultValue: 0 }, // 从小到大进行排序, 1即第一位显示
   name: STRING(30), // 名字
+  additionName: STRING(30), // 名字附加描述
   des: STRING(255), // 描述
   href: STRING(255), // 官网地址
   openTime: STRING, // 开服时间
   img: STRING(255), // 缩略图地址
+  iconPC: INTEGER, // 是否展示这个图标
+  iconAD: INTEGER, // 是否展示这个图标
+  iconIOS: INTEGER, // 是否展示这个图标
+  hot: INTEGER, // 人气
 }, {
   freezeTableName: true, // 也可以手动定义tableName
 });
@@ -118,11 +122,13 @@ sequelize.sync({
 
   let index = 0;
   console.log('正在增加一些测试用的翻页数据');
-  while (++index < 15) {
+  while (++index < 10) {
     await new Promise(res => setTimeout(res, 2000));
     await Game.create({
       type: 1,
-      name: '游戏名字游戏名字游戏名' + index,
+      name: '游戏名' + index,
+      additionName: '[附加]' + index,
+      hot: '人气' + index,
       openTime: `预计明天${index}开放`,
       des: '游戏描述游戏描述游戏描述游戏描述游戏描述' + index,
       href: '下载地址下载地址下载' + index,

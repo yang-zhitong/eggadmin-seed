@@ -2,20 +2,29 @@
 
 {% block main %}
 <main class="width-1280 main">
-  <p class="page-box-title">热门端游</p>
+  <p class="page-box-title">热门游戏</p>
   <div class="hot-box">
     <div class="games-wrap">
       {% for item in pcTop %}
       <div class="game-box">
-        <a href="{{item.href}}"><img src="{{item.img}}" alt="" class="thumbnail" /></a>
-        <a href="{{item.href}}" class="name">{{item.name}}</a>
+        <a target="_blank" href="{{item.href}}"><img src="{{item.img}}" alt="" class="thumbnail" /></a>
+        <a target="_blank" href="{{item.href}}" class="name">{{item.name}}{{item.additionName}}</a>
         <p class="des">{{item.des}}</p>
         <div class="icons">
+          {% if item.iconIOS %}
           <a class="ios"></a>
+          {% endif %}
+          {% if item.iconAD %}
           <a class="android"></a>
+          {% endif %}
+          {% if item.iconPC %}
           <a class="pc"></a>
+          {% endif %}
         </div>
-        <a href="{{item.href}}" class="enter-web">进入官网</a>
+        {% if item.hot > 0 %}
+        <span class="people-hot">人气: {{item.hot}}</span>
+        {% endif %}
+        <a href="{{item.href}}" target="_blank" class="enter-web">进入官网</a>
       </div>
       {% endfor %}
     </div>
@@ -32,18 +41,18 @@
       <div class="J_gameTabBd">
         {% for item in pcLeft %}
         <div class="item {% if loop.index0 == 0 %}hover{% endif %}">
-          <a class="normal-show">
+          <div class="normal-show">
             <span class="name ellipsis">{{item.name}}</span>
             <span class="open ellipsis">{{item.openTime}}&nbsp;</span>
             <span class="state ellipsis">火爆开放中</span>
-          </a>
-          <div href="{{item.href}}" class="hover-show ib-center">
+          </div>
+          <div class="hover-show ib-center">
             <img src="{{item.img}}" alt="" class="thumbnail ib" />
             <div class="text-box ib">
-              <a class="name ellipsis">{{item.name}}</a>
+              <p  class="name ellipsis">{{item.name}}</a>
               <p class="open ellipsis">{{item.openTime}}&nbsp;</p>
             </div>
-            <a href="{{item.href}}" class="start-link">开始游戏</a>
+            <a target="_blank" href="{{item.href}}" class="start-link">开始游戏</a>
           </div>
         </div>
         {% endfor %}
@@ -51,21 +60,21 @@
 
       <div class="J_gameTabBd" style="display:none">
         {% for item in mbLeft %}
-        <div class="item {% if loop.index0 == 0 %} hover {% endif %}">
-          <a class="normal-show">
-            <span class="name ellipsis">{{item.name}}</span>
-            <span class="open ellipsis">{{item.openTime}}&nbsp;</span>
-            <span class="state ellipsis">火爆开放中</span>
-          </a>
-          <div href="{{item.href}}" class="hover-show ib-center">
-            <img src="{{item.img}}" alt="" class="thumbnail ib" />
-            <div class="text-box ib">
-              <a class="name ellipsis">{{item.name}}</a>
-              <p class="open ellipsis">{{item.openTime}}&nbsp;</p>
+        <div class="item {% if loop.index0 == 0 %}hover{% endif %}">
+            <div class="normal-show">
+              <span class="name ellipsis">{{item.name}}</span>
+              <span class="open ellipsis">{{item.openTime}}&nbsp;</span>
+              <span class="state ellipsis">火爆开放中</span>
             </div>
-            <a href="{{item.href}}" class="start-link">开始游戏</a>
+            <div class="hover-show ib-center">
+              <img src="{{item.img}}" alt="" class="thumbnail ib" />
+              <div class="text-box ib">
+                <p  class="name ellipsis">{{item.name}}</a>
+                <p class="open ellipsis">{{item.openTime}}&nbsp;</p>
+              </div>
+              <a target="_blank" href="{{item.href}}" class="start-link">开始游戏</a>
+            </div>
           </div>
-        </div>
         {% endfor %}
       </div>
     </div>
@@ -76,12 +85,12 @@
   <div class="news-list">
     <div class="common-hd">
       <p class="common-title">游戏资讯</p>
-      <a href="" class="more-btn">更多 &nbsp;>></a>
+      <a target="_blank"  href="/news" class="more-btn">更多 &nbsp;>></a>
     </div>
     <div class="common-bd">
       {% for item in newList %}
       <div class="item">
-        <a href="/news/{{item.id}}" class="title">{{item.title}}</a>
+        <a target="_blank" href="/news/{{item.id}}" class="title">{{item.title}}</a>
         <span class="time fr">{{ helper.newsFormateDate(item.createdAt) }}</span>
       </div>
       {% endfor %}
@@ -93,22 +102,22 @@
   <div class="quickway">
     <div class="common-hd"><span class="common-title">快速通道</span></div>
     <div class="common-bd">
-      <a href="/" class="way-item">
+      <a target="_blank"  href="/" class="way-item">
         <i class="icon quick1"></i> <span>快速注册</span>
       </a>
-      <a href="/" class="way-item">
+      <a target="_blank"  href="/" class="way-item">
         <i class="icon quick2"></i> <span>找回密码</span>
       </a>
-      <a href="/" class="way-item">
+      <a target="_blank"  href="/" class="way-item">
         <i class="icon quick3"></i> <span>充值中心</span>
       </a>
-      <a href="/" class="way-item">
+      <a target="_blank"  href="/" class="way-item">
         <i class="icon quick4"></i> <span>被盗申诉</span>
       </a>
       <div class="qqkf">
         <i class="kf-icon"></i>
         <div class="ib">
-          <a href="/" class="contact-kf">联系在线客服</a>
+          <a target="_blank"  href="/" class="contact-kf">联系在线客服</a>
           <p class="qqnum">官方客服QQ：800828608</p>
         </div>
       </div>

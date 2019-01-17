@@ -22,7 +22,7 @@
           <table class="table table-hover">
             <tbody>
               <tr>
-                <th width="30%">游戏名</th>
+                <th width="25%">游戏名</th>
                 <th>开服时间</th>
                 <th>游戏描述</th>
                 <th>创建时间</th>
@@ -32,7 +32,7 @@
               </tr>
               {% for item in gameList %}
               <tr>
-                <td>{{item.name}}</td>
+                <td>{{item.name}}{{item.additionName}}</td>
                 <td>{{ item.openTime.slice(0, 8) if item.openTime else '' }}</td>
                 <td>{{ item.des.slice(0, 8) if item.des else '' }}</td>
                 <td>{{ helper.localDate(item.createdAt) }}</td>
