@@ -98,5 +98,6 @@
         </p>
       </div>
     </footer>
+    {%- block script %}{% endblock -%}
   </body>
 </html>

@@ -31,7 +31,7 @@
 
       <div class="J_gameTabBd">
         {% for item in pcLeft %}
-        <div class="item {% if loop.index0 == 0 %} hover {% endif %}">
+        <div class="item {% if loop.index0 == 0 %}hover{% endif %}">
           <a class="normal-show">
             <span class="name ellipsis">{{item.name}}</span>
             <span class="open ellipsis">{{item.openTime}}&nbsp;</span>
@@ -142,4 +142,30 @@
   </div>
   <!-- 关注我们 end -->
 </main>
+{% endblock %}
+
+
+{% block script %}
+<script>
+    $(function() {
+      $('.J_gameTabs').hover(function() {
+        var index = $(this).index();
+        $(this)
+          .addClass('on')
+          .siblings()
+          .removeClass('on');
+        $('.J_gameTabBd')
+          .eq(index)
+          .show()
+          .siblings()
+          .hide();
+      });
+      $('.J_gameTabBd .item').hover(function() {
+        $(this)
+          .addClass('hover')
+          .siblings('.item')
+          .removeClass('hover');
+      });
+    });
+  </script>
 {% endblock %}
