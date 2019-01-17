@@ -16,9 +16,9 @@ class GameService extends Service {
   }
 
   // 新加一个, 好像名字重复也没事
-  async addOne({ name, des, href, type, img }) {
+  async addOne({ name, des, href, type, img, openTime }) {
     const result = await this.app.model.Game.create({
-      name, href, img, des,
+      name, href, img, des, openTime,
       type: type === 'pc' ? 1 : 2,
     });
     return result;
@@ -35,9 +35,9 @@ class GameService extends Service {
   }
 
   // 编辑一个的基本信息
-  async editOne({ id, name, des, href, type, img }) {
+  async editOne({ id, name, des, href, type, img, openTime }) {
     const result = await this.app.model.Game.update({
-      name, href, img, des,
+      name, href, img, des, openTime,
       type: type === 'pc' ? 1 : 2,
     }, { where: { id } });
     console.log('result---------------');

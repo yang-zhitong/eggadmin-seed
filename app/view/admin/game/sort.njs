@@ -40,8 +40,8 @@
               {% for item in sortList %}
               <tr>
                 <td>{{item.name}}</td>
-                <td>{{item.des.slice(0, 8)}}</td>
-                <td>{{item.href.slice(0, 8) }}</td>
+                <td>{{ item.des.slice(0, 8) if item.des else '' }}</td>
+                <td>{{ item.href.slice(0, 8) if item.href else '' }}</td>
                 <td>{{ helper.localDate(item.createdAt) }}</td>
                 <td>
                   <input style="width:30%" class="form-control J_inputSort" maxlength="1" type="text" value="{{item[key]}}"

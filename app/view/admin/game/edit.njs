@@ -31,9 +31,15 @@
               <label for="input2">描述</label>
               <input type="text" class="form-control" id="input2" name="des" placeholder="" value="{{queryGame.des}}">
             </div>
+
             <div class="form-group">
               <label for="input3">官网下载地址</label>
               <input type="text" class="form-control" id="input3" name="href" placeholder="" value="{{queryGame.href}}">
+            </div>
+
+            <div class="form-group">
+              <label for="input4">官网左侧预告开服时间</label>
+              <input type="text" class="form-control" id="input4" name="openTime" placeholder="" value="{{queryGame.openTime}}">
             </div>
 
             <div class="form-group">

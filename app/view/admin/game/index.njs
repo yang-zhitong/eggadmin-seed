@@ -23,8 +23,8 @@
             <tbody>
               <tr>
                 <th width="30%">游戏名</th>
+                <th>开服时间</th>
                 <th>游戏描述</th>
-                <th>地址</th>
                 <th>创建时间</th>
                 <th>显示</th>
                 <th>显示</th>
@@ -33,8 +33,8 @@
               {% for item in gameList %}
               <tr>
                 <td>{{item.name}}</td>
-                <td>{{item.des.slice(0, 8)}}</td>
-                <td>{{item.href.slice(0, 8) }}</td>
+                <td>{{ item.openTime.slice(0, 8) if item.openTime else '' }}</td>
+                <td>{{ item.des.slice(0, 8) if item.des else '' }}</td>
                 <td>{{ helper.localDate(item.createdAt) }}</td>
                 <td>
                   {% if item.sortTop > 0 %}

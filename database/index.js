@@ -84,6 +84,7 @@ const Game = sequelize.define('game', {
   name: STRING(30), // 名字
   des: STRING(255), // 描述
   href: STRING(255), // 官网地址
+  openTime: STRING, // 开服时间
   img: STRING(255), // 缩略图地址
 }, {
   freezeTableName: true, // 也可以手动定义tableName
@@ -121,9 +122,10 @@ sequelize.sync({
     await new Promise(res => setTimeout(res, 2000));
     await Game.create({
       type: 1,
-      name: '游戏名字游戏名字游戏名字游戏名字游戏名字' + index,
+      name: '游戏名字游戏名字游戏名' + index,
+      openTime: `预计明天${index}开放`,
       des: '游戏描述游戏描述游戏描述游戏描述游戏描述' + index,
-      href: '下载地址下载地址下载地址下载地址' + index,
+      href: '下载地址下载地址下载' + index,
     });
     await New.create({
       title: '新闻标题标题标题标题标题' + index,

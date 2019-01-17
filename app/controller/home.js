@@ -10,13 +10,29 @@ class HomeController extends Controller {
       this.ctx.service.admin.gameService.findSorted('pc', 'sortTop'),
       this.ctx.service.admin.newService.index(1, { pageSize: 7 }),
     ]);
-    await this.ctx.render('/index.html', {
+    await this.ctx.render('/index', {
       mbLeft,
       pcLeft,
       pcTop,
       newList,
     });
   }
+
+  async news() {
+    await this.ctx.render('/news', {
+    });
+  }
+
+  async newsDetail() {
+    await this.ctx.render('/newsDetail', {
+    });
+  }
+
+  async about() {
+    await this.ctx.render('/about', {
+    });
+  }
+
 }
 
 module.exports = HomeController;

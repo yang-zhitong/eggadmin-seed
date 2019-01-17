@@ -51,7 +51,7 @@ class GameController extends BaseController {
   // post 增加游戏
   async doAdd() {
     const { type } = this.ctx.params;
-    const { name, des, href } = this.ctx.request.body;
+    const { name, des, href, openTime } = this.ctx.request.body;
     try {
       const file = this.ctx.request.files[0];
       let relativePath;
@@ -63,7 +63,7 @@ class GameController extends BaseController {
         await renameAsnyc(file.filepath, newpath);
       }
       await this.ctx.service.admin.gameService.addOne({
-        name, href, type, des,
+        name, href, type, des, openTime,
         img: relativePath,
       });
       this.successRender('添加成功', `/admin/game/${type}`);
@@ -74,7 +74,8 @@ class GameController extends BaseController {
   // 编辑的时候最好把原来的图片删掉
   async doEdit() {
     const { type, id } = this.ctx.params;
-    const { name, des, href } = this.ctx.request.body;
+    const { name, des, href, openTime } = this.ctx.request.body;
+    console.log(name, des, href, openTime);
     try {
       const file = this.ctx.request.files[0];
       let relativePath;
@@ -90,7 +91,7 @@ class GameController extends BaseController {
         }
       }
       await this.ctx.service.admin.gameService.editOne({
-        id, name, href, type, des,
+        id, name, href, type, des, openTime,
         img: relativePath,
       });
       this.successRender('编辑成功', `/admin/game/${type}`);
