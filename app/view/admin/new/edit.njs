@@ -77,13 +77,13 @@
 {% block script %}
 <script>
   $(function () {
-    // 富文本
-    var ue = UE.getEditor('editor', {
-      autoHeightEnabled: true,
-    });
-    ue.ready(function () {
-      ue.setContent('');
-    });
+    // // 富文本
+    // var ue = UE.getEditor('editor', {
+    //   autoHeightEnabled: true,
+    // });
+    // ue.ready(function () {
+    //   ue.setContent('');
+    // });
 
   });
 </script>
