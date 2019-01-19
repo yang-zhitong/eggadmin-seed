@@ -13,4 +13,10 @@ run/
 *.un~
 app/public/upload/*.jpg
 app/public/upload/*.png
-app/public/upload/*.jpg
+app/public/upload/*.gif
+app/public/upload/*.bmp
+
+app/public/news/*.jpg
+app/public/news/*.png
+app/public/news/*.gif
+app/public/news/*.bmp

@@ -1,10 +1,9 @@
 {% extends '../layout/base.njs' %}
 
 {% block head %}
-<link rel="stylesheet" href="/public/plugins/ueditor/third-party/webuploader/webuploader.css">
 <script type="text/javascript" charset="utf-8" src="/public/plugins/ueditor/ueditor.config.js"></script>
 <script type="text/javascript" charset="utf-8" src="/public/plugins/ueditor/ueditor.all.min.js"></script>
-<script type="text/javascript" charset="utf-8" src="/public/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript" src="/public/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -20,7 +19,7 @@
       <div class="box box-primary">
         <!-- form start -->
         <form {% if queryNew %} action="/admin/new/{{queryNew.id}}/edit" {% else %} action="/admin/new/add" {% endif %}
-          method="post">
+          method="post" style="width: 100%">
           <div class="box-body">
             <div class="form-group">
               <label for="input1">新闻名称</label>
@@ -32,7 +31,7 @@
             </div>
             <div class="form-group">
               <label for="input2">内容(编辑器待添加)</label>
-              <script id="editor" type="text/plain" style="width:100%;height:600px;"></script>
+              <script type="text/plain" id="editor" style="width:100%;height:240px;"></script>
             </div>
           </div>
           <div class="box-footer">
@@ -77,13 +76,11 @@
 {% block script %}
 <script>
   $(function () {
-    // // 富文本
-    // var ue = UE.getEditor('editor', {
-    //   autoHeightEnabled: true,
-    // });
-    // ue.ready(function () {
-    //   ue.setContent('');
-    // });
+
+    var um = UE.getEditor('editor');
+    um.ready(function () {
+      um.setContent('欢迎使用<h1>umeditor</h1>');
+    });
 
   });
 </script>
