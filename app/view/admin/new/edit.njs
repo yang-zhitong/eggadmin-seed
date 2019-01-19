@@ -31,7 +31,11 @@
             </div>
             <div class="form-group">
               <label for="input2">内容(编辑器待添加)</label>
-              <script type="text/plain" id="editor" style="width:100%;height:240px;"></script>
+              <script type="text/plain" id="editor" style="width:100%;height:240px;">
+                {% if queryNew.content %}
+                {{queryNew.content | safe }}
+                {% endif %}
+              </script>
             </div>
           </div>
           <div class="box-footer">
@@ -79,9 +83,9 @@
 
     var um = UE.getEditor('editor');
     um.ready(function () {
-      um.setContent('欢迎使用<h1>umeditor</h1>');
+      // um.setContent('');
     });
-
+    
   });
 </script>
 {% endblock %}

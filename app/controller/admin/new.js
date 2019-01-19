@@ -36,9 +36,9 @@ class NewController extends BaseController {
   }
 
   async doAdd() {
-    const { title, content, type } = this.ctx.request.body;
+    const { title, type, editorValue } = this.ctx.request.body;
     const result = await this.ctx.service.admin.newService.addOne({
-      title, content, type,
+      title, content: editorValue, type,
     });
     if (result) {
       this.successRender('添加成功', '/admin/new');
@@ -49,9 +49,9 @@ class NewController extends BaseController {
   async doEdit() {
     const { id } = this.ctx.params;
     if (!id) return this.fail('');
-    const { title, content, type } = this.ctx.request.body;
+    const { title, editorValue, type } = this.ctx.request.body;
     const result = await this.ctx.service.admin.newService.editOne({
-      id, title, content, type,
+      id, title, content: editorValue, type,
     });
     if (result) {
       this.successRender('编辑成功', '/admin/new');

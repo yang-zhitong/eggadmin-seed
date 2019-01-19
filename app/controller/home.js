@@ -24,7 +24,10 @@ class HomeController extends Controller {
   }
 
   async newsDetail() {
+    const { id } = this.ctx.params;
+    const queryNew = await this.ctx.service.admin.newService.findOne(id);
     await this.ctx.render('/newsDetail', {
+      queryNew,
     });
   }
 
