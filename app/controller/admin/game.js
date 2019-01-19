@@ -70,7 +70,7 @@ class GameController extends BaseController {
         iconPC: iconPC === 'on' ? 1 : 0,
         iconAD: iconAD === 'on' ? 1 : 0,
         iconIOS: iconIOS === 'on' ? 1 : 0,
-        hot,
+        hot: +hot,
         img: relativePath,
       });
       this.successRender('添加成功', `/admin/game/${type}`);
@@ -104,7 +104,7 @@ class GameController extends BaseController {
         iconPC: iconPC === 'on' ? 1 : 0,
         iconAD: iconAD === 'on' ? 1 : 0,
         iconIOS: iconIOS === 'on' ? 1 : 0,
-        hot,
+        hot: +hot,
         img: relativePath,
       });
       this.successRender('编辑成功', `/admin/game/${type}`);

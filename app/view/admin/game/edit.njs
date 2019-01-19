@@ -43,7 +43,7 @@
 
             <div class="form-group">
               <label for="input6">人气</label>
-              <input type="text" class="form-control" id="input6" name="hot" placeholder="" value="{{queryGame.hot}}">
+              <input type="text" class="form-control" id="input6" name="hot" placeholder="" value="{{ queryGame.hot if queryGame.hot else 0 }}">
             </div>
 
             <div class="checkbox">
