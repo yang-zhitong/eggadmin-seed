@@ -9,6 +9,7 @@ module.exports = app => {
   router.get('/news', controller.home.news);
   router.get('/news/:id', controller.home.newsDetail);
   router.get('/about', controller.home.about);
+  router.get('/customer', controller.home.customer);
 
   // router.get('/admin/captcha', controller.admin.base.captcha); // 验证码
 
@@ -17,8 +18,17 @@ module.exports = app => {
   router.post('/admin/login', controller.login.doLogin); // 登录请求成功跳转
   router.get('/admin/logout', controller.login.logout);
 
+  // 处理百度编辑器ueditor的请求
   router.get('/admin/ue', controller.admin.ue.index);
   router.post('/admin/ue', controller.admin.ue.handleAction);
+  router.get('/admin/ue/images', controller.admin.ue.images);
+  router.get('/admin/ue/images/del', controller.admin.ue.imageDel);
+
+  // 编辑关于我们与客服中心
+  router.get('/admin/about', controller.admin.static.about);
+  router.post('/admin/about', controller.admin.static.editAbout);
+  router.get('/admin/customer', controller.admin.static.customer);
+  router.post('/admin/customer', controller.admin.static.editCustomer);
 
   // 用户
   router.get('/admin/manage', controller.admin.manage.index);

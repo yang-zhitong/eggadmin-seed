@@ -104,40 +104,50 @@ const New = sequelize.define('new', {
   freezeTableName: true, // 也可以手动定义tableName
 });
 
+const Static = sequelize.define('static', {
+  id: { type: INTEGER, primaryKey: true, autoIncrement: true },
+  title: STRING,
+  content: TEXT, // 描述
+}, {
+  freezeTableName: true, // 也可以手动定义tableName
+});
+
 
 sequelize.sync({
-  force: true,
+  // force: true,
 }).then(async result => {
-  const role = await Role.create({ title: '管理员' });
-  await Role.create({ title: '普通用户' });
-  console.log('生成了一个role');
-  console.log(JSON.stringify(role));
-  const password = await md5('123');
-  const user = await User.create({ username: 'admin', password, isSuper: 1 });
-  await User.create({ username: 'user1', password, isSuper: 0 });
-  console.log('生成了一个user admin 密码 123');
-  console.log(JSON.stringify(user));
-  await UserRole.create({ rid: 1, uid: 1 });
-  await UserRole.create({ rid: 2, uid: 2 });
+  await Static.create({ title: 'about' });
+  await Static.create({ title: 'customer' });
+  // const role = await Role.create({ title: '管理员' });
+  // await Role.create({ title: '普通用户' });
+  // console.log('生成了一个role');
+  // console.log(JSON.stringify(role));
+  // const password = await md5('123');
+  // const user = await User.create({ username: 'admin', password, isSuper: 1 });
+  // await User.create({ username: 'user1', password, isSuper: 0 });
+  // console.log('生成了一个user admin 密码 123');
+  // console.log(JSON.stringify(user));
+  // await UserRole.create({ rid: 1, uid: 1 });
+  // await UserRole.create({ rid: 2, uid: 2 });
 
-  let index = 0;
-  console.log('正在增加一些测试用的翻页数据');
-  while (++index < 10) {
-    await new Promise(res => setTimeout(res, 2000));
-    await Game.create({
-      type: 1,
-      name: '游戏名' + index,
-      additionName: '[附加]' + index,
-      hot: '人气' + index,
-      openTime: `预计明天${index}开放`,
-      des: '游戏描述游戏描述游戏描述游戏描述游戏描述' + index,
-      href: '下载地址下载地址下载' + index,
-    });
-    await New.create({
-      title: '新闻标题标题标题标题标题' + index,
-      type: '公告',
-    });
-  }
-  console.log('完成 请用ctrl + c 结束');
+  // let index = 0;
+  // console.log('正在增加一些测试用的翻页数据');
+  // while (++index < 10) {
+  //   await new Promise(res => setTimeout(res, 2000));
+  //   await Game.create({
+  //     type: 1,
+  //     name: '游戏名' + index,
+  //     additionName: '[附加]' + index,
+  //     hot: '人气' + index,
+  //     openTime: `预计明天${index}开放`,
+  //     des: '游戏描述游戏描述游戏描述游戏描述游戏描述' + index,
+  //     href: '下载地址下载地址下载' + index,
+  //   });
+  //   await New.create({
+  //     title: '新闻标题标题标题标题标题' + index,
+  //     type: '公告',
+  //   });
+  // }
+  // console.log('完成 请用ctrl + c 结束');
 });
 

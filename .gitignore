@@ -16,7 +16,7 @@ app/public/upload/*.png
 app/public/upload/*.gif
 app/public/upload/*.bmp
 
-app/public/news/*.jpg
-app/public/news/*.png
-app/public/news/*.gif
-app/public/news/*.bmp
+app/public/images/*.jpg
+app/public/images/*.png
+app/public/images/*.gif
+app/public/images/*.bmp

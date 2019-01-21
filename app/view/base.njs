@@ -55,9 +55,9 @@
           <img src="/public/assets/logo.png" alt="" class="logo ib" />
           <nav class="nav fr">
             <a href="/" class="nav-item">首页</a>
-            <a href="/news" class="nav-item">新闻中心</a>
-            <a href="/about" class="nav-item">关于中心</a>
-            <a href="/" class="nav-item">客服中心</a>
+            <a href="/news" class="nav-item">新闻列表</a>
+            <a href="/about" class="nav-item">关于我们</a>
+            <a href="/customer" class="nav-item">客服中心</a>
           </nav>
         </div>
       </div>

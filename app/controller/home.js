@@ -32,7 +32,22 @@ class HomeController extends Controller {
   }
 
   async about() {
+    const result = await this.ctx.model.Static.findOne({
+      where: { title: 'about' },
+      raw: true,
+    });
     await this.ctx.render('/about', {
+      result,
+    });
+  }
+
+  async customer() {
+    const result = await this.ctx.model.Static.findOne({
+      where: { title: 'customer' },
+      raw: true,
+    });
+    await this.ctx.render('/customer', {
+      result,
     });
   }
 

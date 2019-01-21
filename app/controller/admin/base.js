@@ -16,6 +16,8 @@ class BaseController extends Controller {
         { name: '左侧手游', url: '/admin/sort/mb/left' },
       ] },
       { name: '新闻', url: '/admin/new' },
+      { name: '关于我们', url: '/admin/about' },
+      { name: '客服中心', url: '/admin/customer' },
     ]; // 菜单栏
     if (ctx.locals.userInfo.isSuper) {
       ctx.locals.userMenu.push({ name: '用户管理', url: '/admin/manage' });
