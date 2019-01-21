@@ -38,13 +38,13 @@
             <i class="icon icon2"></i> <span>放到桌面</span>
           </a>
           <div class="fr">
-            <a href="" class="header-link">
+            <a href="/about" class="header-link">
               <i class="icon icon3"></i> <span>关于我们</span>
             </a>
-            <a href="" class="header-link">
+            <a  target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=4000929777&site=qq&menu=yes" class="header-link">
               <i class="icon icon4"></i> <span>在线客服</span>
             </a>
-            <a href="" class="header-link">
+            <a href="javascript:;" class="header-link">
               <i class="icon icon5"></i> <span>关注微信</span>
             </a>
           </div>
@@ -55,6 +55,7 @@
           <img src="/public/assets/logo.png" alt="" class="logo ib" />
           <nav class="nav fr">
             <a href="/" class="nav-item">首页</a>
+            <a href="http://www.ccxst.com" target="_blank" class="nav-item">开服列表</a>
             <a href="/news" class="nav-item">新闻列表</a>
             <a href="/about" class="nav-item">关于我们</a>
             <a href="/customer" class="nav-item">客服中心</a>

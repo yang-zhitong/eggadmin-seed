@@ -271,7 +271,7 @@ footer .copyright {
   margin-top: -238px;
   box-sizing: border-box;
   background: #fff;
-  min-height: 1000px;
+  min-height: 620px;
 }
 
 .shadow {
@@ -681,6 +681,10 @@ footer .copyright {
   color: #626262;
   text-align: center;
   line-height: 23px;
+}
+.sub-us .sub-way img {
+  width: 212px;
+  height: 212px;
 }
 
 .sub-us .sub-way .text:first-of-type {
