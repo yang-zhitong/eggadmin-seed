@@ -58,6 +58,8 @@ docker run -p 3306:3306 --name mymysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.
 
 6. ctrl + p + q 退出daocker
 
+更改字段
+
 ### 初始化
 
 ```

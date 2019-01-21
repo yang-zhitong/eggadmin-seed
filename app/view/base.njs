@@ -24,7 +24,7 @@
     <!--[if lt IE 9]>
       <script src="http://lib.baomitu.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
-    <link rel="stylesheet" href="/public/pages/index.css?v1" />
+    <link rel="stylesheet" href="/public/pages/index.css?v2" />
     <script>
       $(function() {
         $('.J_scroll').on('click', function() {
