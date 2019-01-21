@@ -20,6 +20,7 @@ class BaseController extends Controller {
       { name: '客服中心', url: '/admin/customer' },
     ]; // 菜单栏
     if (ctx.locals.userInfo.isSuper) {
+      ctx.locals.userMenu.push({ name: '图片管理', url: '/admin/ue/images' });
       ctx.locals.userMenu.push({ name: '用户管理', url: '/admin/manage' });
     }
   }
