@@ -3,7 +3,7 @@
 {% block content %}
 <!-- Content Header (Page header) -->  
 <section class="content-header">
-  <h1>{{ '编辑' if queryGame else '新增' }}{{gameType.text}}</h1>
+  <h1>{{ '编辑' if queryGame else '新增' }}游戏</h1>
 </section>
 
 <!-- Main content -->
@@ -14,9 +14,9 @@
         <!-- form start -->
         <form enctype="multipart/form-data"
          {% if queryGame %} 
-         action="/admin/game/{{gameType.type}}/{{queryGame.id}}/edit" 
+         action="/admin/game/{{queryGame.id}}/edit" 
          {% else %} 
-         action="/admin/game/{{gameType.type}}/add" 
+         action="/admin/game/add" 
          {% endif %} 
          method="post">
 
@@ -113,7 +113,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">取消</button>
-          <a href="/admin/game/{{gameType.type}}/{{queryGame.id}}/delete" type="button" class="btn btn-primary">确认</a>
+          <a href="/admin/game/{{queryGame.id}}/delete" type="button" class="btn btn-primary">确认</a>
         </div>
       </div>
       <!-- /.modal-content -->

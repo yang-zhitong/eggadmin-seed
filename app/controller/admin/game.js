@@ -9,25 +9,24 @@ const unlinkAsnyc = promisify(unlink);
 
 class GameController extends BaseController {
 
-  constructor(ctx) {
-    super(ctx);
-    const { type } = this.ctx.params;
-    const data = {};
-    if (type === 'mb') {
-      data.type = 'mb';
-      data.text = '手游';
-    } else {
-      this.ctx.params.type = 'pc';
-      data.type = 'pc';
-      data.text = '端游';
-    }
-    ctx.locals.gameType = data;
-  }
+  // constructor(ctx) {
+  //   super(ctx);
+  //   const { type } = this.ctx.params;
+  //   const data = {};
+  //   if (type === 'mb') {
+  //     data.type = 'mb';
+  //     data.text = '手游';
+  //   } else {
+  //     this.ctx.params.type = 'pc';
+  //     data.type = 'pc';
+  //     data.text = '端游';
+  //   }
+  //   ctx.locals.gameType = data;
+  // }
 
   async index() {
-    const { type } = this.ctx.params;
     const offset = this.ctx.request.query.page ? Number(this.ctx.request.query.page) : 1;
-    const { rows: gameList, count } = await this.ctx.service.admin.gameService.index(offset, type);
+    const { rows: gameList, count } = await this.ctx.service.admin.gameService.index(offset);
     await this.render('/admin/game/index', {
       gameList,
       count,
@@ -50,7 +49,6 @@ class GameController extends BaseController {
 
   // post 增加游戏
   async doAdd() {
-    const { type } = this.ctx.params;
     const {
       name, des, href, openTime, additionName,
       iconPC, iconAD, iconIOS, hot,
@@ -66,21 +64,21 @@ class GameController extends BaseController {
         await renameAsnyc(file.filepath, newpath);
       }
       await this.ctx.service.admin.gameService.addOne({
-        name, des, href, openTime, additionName, type,
+        name, des, href, openTime, additionName,
         iconPC: iconPC === 'on' ? 1 : 0,
         iconAD: iconAD === 'on' ? 1 : 0,
         iconIOS: iconIOS === 'on' ? 1 : 0,
         hot: +hot,
         img: relativePath,
       });
-      this.successRender('添加成功', `/admin/game/${type}`);
+      this.successRender('添加成功', '/admin/game');
     } catch (error) {
-      this.failRender(JSON.stringify(error), `/admin/game/${type}/add`);
+      this.failRender(JSON.stringify(error), '/admin/game/add');
     }
   }
   // 编辑的时候最好把原来的图片删掉
   async doEdit() {
-    const { type, id } = this.ctx.params;
+    const { id } = this.ctx.params;
     const {
       name, des, href, openTime, additionName,
       iconPC, iconAD, iconIOS, hot,
@@ -100,14 +98,14 @@ class GameController extends BaseController {
         }
       }
       await this.ctx.service.admin.gameService.editOne(id, {
-        name, des, href, openTime, additionName, type,
+        name, des, href, openTime, additionName,
         iconPC: iconPC === 'on' ? 1 : 0,
         iconAD: iconAD === 'on' ? 1 : 0,
         iconIOS: iconIOS === 'on' ? 1 : 0,
         hot: +hot,
         img: relativePath,
       });
-      this.successRender('编辑成功', `/admin/game/${type}`);
+      this.successRender('编辑成功', '/admin/game');
     } catch (error) {
       this.failRender(JSON.stringify(error), '/admin/game/add');
     }
@@ -115,36 +113,42 @@ class GameController extends BaseController {
 
   // 删除用户
   async delete() {
-    const { type, id } = this.ctx.params;
+    const { id } = this.ctx.params;
     if (!id) {
-      return this.failRender('删除失败', `/admin/game/${type}`);
+      return this.failRender('删除失败', '/admin/game');
     }
     const result = await this.ctx.service.admin.gameService.deleteOne(id);
     if (result) {
-      this.successRender('删除成功', `/admin/game/${type}`);
+      this.successRender('删除成功', '/admin/game');
     } else {
-      this.failRender('删除失败', `/admin/game/${type}`);
+      this.failRender('删除失败', '/admin/game');
     }
   }
 
-  // 只修改表里sortTop或sortLeft字段, 即让这个广告进行展示
-  // /admin/game/pc/top/14/show
+  // 只修改表里sortTop或sortPCLeft sortMBLeft字段, 即让这个广告进行展示
+  // /admin/game/top/14/show
   async show() {
     const { show } = this.ctx.query;
     const isShow = Number(show);
     if (!(isShow === 1 || isShow === 0)) {
       return this.fail('错误');
     }
-    const { id, position, type } = this.ctx.params;
-    if (!(position === 'top' || position === 'left')) {
-      return this.fail('错误');
+    const { id, position } = this.ctx.params;
+    const keyMap = {
+      top: 'sortTop',
+      pcleft: 'sortPCLeft',
+      mbleft: 'sortMBLeft',
+    };
+    const key = keyMap[position];
+    if (!key) {
+      return this.fail('位置错误');
     }
+
     // 如果是对广告进行左侧展示, 就判断是不是超过6个了
-    const key = position === 'top' ? 'sortTop' : 'sortLeft';
-    if (key === 'sortLeft' && isShow === 1) {
-      const sortList = await this.ctx.service.admin.gameService.findSorted(type, key);
+    if (key !== 'sortTop' && isShow === 1) {
+      const sortList = await this.ctx.service.admin.gameService.findSorted(key);
       if (sortList.length >= 6) {
-        return this.fail('首页左侧列表最多显示6个广告', `/admin/game/${type}`);
+        return this.fail('首页左侧列表最多显示6个广告', '/admin/game');
       }
     }
 
@@ -158,12 +162,17 @@ class GameController extends BaseController {
 
   // 列表页 把有sorttop 和 sortleft 的都搜索出来并列表
   async sort() {
-    const { type, position } = this.ctx.params;
-    if (!(position === 'top' || position === 'left')) {
+    const { position } = this.ctx.params;
+    const keyMap = {
+      top: 'sortTop',
+      pcleft: 'sortPCLeft',
+      mbleft: 'sortMBLeft',
+    };
+    const key = keyMap[position];
+    if (!key) {
       return this.fail('位置错误');
     }
-    const key = position === 'top' ? 'sortTop' : 'sortLeft';
-    const sortList = await this.ctx.service.admin.gameService.findSorted(type, key);
+    const sortList = await this.ctx.service.admin.gameService.findSorted(key);
     await this.render('/admin/game/sort', {
       sortList,
       key,
@@ -173,12 +182,17 @@ class GameController extends BaseController {
 
   // 接收一个数字即给这个id的游戏排序到这个位置上
   async doSort() {
-    const { id, type, position } = this.ctx.params;
-    if (!(position === 'top' || position === 'left')) {
+    const { id, position } = this.ctx.params;
+    const keyMap = {
+      top: 'sortTop',
+      pcleft: 'sortPCLeft',
+      mbleft: 'sortMBLeft',
+    };
+    const key = keyMap[position];
+    if (!key) {
       return this.fail('位置错误');
     }
     const { sort } = this.ctx.request.body;
-    const key = position === 'top' ? 'sortTop' : 'sortLeft';
     const result = await this.ctx.service.admin.gameService.show(id, key, sort);
     this.success(result);
   }

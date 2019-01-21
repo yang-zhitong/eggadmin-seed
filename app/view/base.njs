@@ -25,6 +25,13 @@
       <script src="http://lib.baomitu.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
     <link rel="stylesheet" href="/public/pages/index.css?v1" />
+    <script>
+      $(function() {
+        $('.J_scroll').on('click', function() {
+          $( "html, body" ).animate({scrollTop: 3000 });
+        });
+      });
+    </script>
   </head>
 
   <body>
@@ -41,10 +48,11 @@
             <a href="/about" class="header-link">
               <i class="icon icon3"></i> <span>关于我们</span>
             </a>
-            <a  target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=4000929777&site=qq&menu=yes" class="header-link">
+            <a href="customer" class="header-link">
+            <!-- <a  target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=4000929777&site=qq&menu=yes" class="header-link"> -->
               <i class="icon icon4"></i> <span>在线客服</span>
             </a>
-            <a href="javascript:;" class="header-link">
+            <a href="javascript:;" class="header-link J_scroll">
               <i class="icon icon5"></i> <span>关注微信</span>
             </a>
           </div>

@@ -4,7 +4,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    {{gameType.text}}管理
+    游戏管理
   </h1>
 </section>
 
@@ -13,9 +13,9 @@
     <div class="col-xs-12">
       <div class="box box-primary">
         <div class="box-header">
-          <h3 class="box-title">{{gameType.text}}列表</h3>
+          <h3 class="box-title">游戏列表</h3>
           <div class="box-tools">
-            <a href="/admin/game/{{gameType.type}}/add" type="button" class="btn btn-sm btn-primary">新增{{gameType.text}}</a>
+            <a href="/admin/game/add" type="button" class="btn btn-sm btn-primary">新增游戏</a>
           </div>  
         </div>
         <div class="box-body table-responsive">
@@ -28,7 +28,8 @@
                 <th>创建时间</th>
                 <th>显示</th>
                 <th>显示</th>
-                <th>操作</th>
+                <th>显示</th>
+                <th>编辑</th>
               </tr>
               {% for item in gameList %}
               <tr>
@@ -38,20 +39,27 @@
                 <td>{{ helper.localDate(item.createdAt) }}</td>
                 <td>
                   {% if item.sortTop > 0 %}
-                  <button type="button" data-show="0" data-url="/admin/game/{{gameType.type}}/top/{{item.id}}/show" class="J_clickShow btn btn-xs bg-orange btn-flat margin">取消顶部显示</button>
+                  <button type="button" data-show="0" data-url="/admin/game/{{item.id}}/show/top" class="J_clickShow btn btn-xs bg-orange btn-flat margin">取消顶部显示</button>
                   {% else %}
-                  <button type="button" data-show="1" data-url="/admin/game/{{gameType.type}}/top/{{item.id}}/show" class="J_clickShow btn btn-xs btn-default btn-flat margin">顶部显示</button>
+                  <button type="button" data-show="1" data-url="/admin/game/{{item.id}}/show/top" class="J_clickShow btn btn-xs btn-default btn-flat margin">顶部显示</button>
                   {% endif %}
                 </td>
                 <td>
-                  {% if item.sortLeft > 0 %}
-                  <button type="button" data-show="0" data-url="/admin/game/{{gameType.type}}/left/{{item.id}}/show" class="J_clickShow btn btn-xs bg-orange btn-flat margin">取消左侧显示</button>
+                  {% if item.sortPCLeft > 0 %}
+                  <button type="button" data-show="0" data-url="/admin/game/{{item.id}}/show/pcleft" class="J_clickShow btn btn-xs bg-orange btn-flat margin">取消左侧显示</button>
                   {% else %}
-                  <button type="button" data-show="1" data-url="/admin/game/{{gameType.type}}/left/{{item.id}}/show" class="J_clickShow btn btn-xs btn-default btn-flat margin">左侧显示</button>
+                  <button type="button" data-show="1" data-url="/admin/game/{{item.id}}/show/pcleft" class="J_clickShow btn btn-xs btn-default btn-flat margin">左侧端游显示</button>
                   {% endif %}
                 </td>
                 <td>
-                  <a href="/admin/game/{{gameType.type}}/{{item.id}}/edit" type="button" class="btn btn-info btn-xs">编辑</a>
+                  {% if item.sortMBLeft > 0 %}
+                  <button type="button" data-show="0" data-url="/admin/game/{{item.id}}/show/mbleft" class="J_clickShow btn btn-xs bg-orange btn-flat margin">取消左侧显示</button>
+                  {% else %}
+                  <button type="button" data-show="1" data-url="/admin/game/{{item.id}}/show/mbleft" class="J_clickShow btn btn-xs btn-default btn-flat margin">左侧手游显示</button>
+                  {% endif %}
+                </td>
+                <td>
+                  <a href="/admin/game/{{item.id}}/edit" type="button" class="btn btn-info btn-xs">编辑</a>
                 </td>
               </tr>
               {% endfor %}
@@ -64,13 +72,13 @@
         <div class="box-footer clearfix">
           <ul class="pagination pagination-sm no-margin">
             {% if nowPage > 1 %}
-            <li><a href="/admin/game/{{gameType.type}}?page={{nowPage - 1}}">«</a></li>
+            <li><a href="/admin/game?page={{nowPage - 1}}">«</a></li>
             {% endif %}
             {% for i in range(1, pageRange + 1) -%}
-            <li><a href="/admin/game/{{gameType.type}}?page={{i}}">{{i}}</a></li>
+            <li><a href="/admin/game?page={{i}}">{{i}}</a></li>
             {%- endfor %}
             {% if nowPage < pageRange %}
-            <li><a href="/admin/game/{{gameType.type}}?page={{nowPage + 1}}">»</a></li>
+            <li><a href="/admin/game?page={{nowPage + 1}}">»</a></li>
             {% endif %}
           </ul>
         </div>

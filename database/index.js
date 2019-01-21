@@ -77,11 +77,12 @@ const UserRole = sequelize.define('userRole', {
 
 const Game = sequelize.define('game', {
   id: { type: INTEGER, primaryKey: true, autoIncrement: true },
-  type: INTEGER, // type 1 端游 type 2 手游
+  // type: INTEGER, // type 1 端游 type 2 手游
   sortTop: { type: INTEGER, defaultValue: 0 }, // 从小到大进行排序, 1即第一位显示
-  sortLeft: { type: INTEGER, defaultValue: 0 }, // 从小到大进行排序, 1即第一位显示
+  sortPCLeft: { type: INTEGER, defaultValue: 0 }, // 从小到大进行排序, 1即第一位显示
+  sortMBLeft: { type: INTEGER, defaultValue: 0 }, // 从小到大进行排序, 1即第一位显示
   name: STRING(30), // 名字
-  additionName: STRING(30), // 名字附加描述
+  additionName: STRING(30), // 名字附加描述, 只给在顶部比较多的空间展示
   des: STRING(255), // 描述
   href: STRING(255), // 官网地址
   openTime: STRING, // 开服时间
@@ -116,8 +117,9 @@ const Static = sequelize.define('static', {
 sequelize.sync({
   // force: true,
 }).then(async result => {
-  await Static.create({ title: 'about' });
-  await Static.create({ title: 'customer' });
+  // await Static.create({ title: 'about' });
+  // await Static.create({ title: 'customer' });
+
   // const role = await Role.create({ title: '管理员' });
   // await Role.create({ title: '普通用户' });
   // console.log('生成了一个role');

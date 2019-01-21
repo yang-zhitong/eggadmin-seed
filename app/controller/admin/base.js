@@ -8,12 +8,12 @@ class BaseController extends Controller {
     ctx.locals.userInfo = this.ctx.session.user;
 
     ctx.locals.userMenu = [
-      { name: '端游', url: '/admin/game/pc' },
-      { name: '手游', url: '/admin/game/mb' },
+      { name: '游戏', url: '/admin/game' },
+      // { name: '手游', url: '/admin/game/mb' },
       { name: '游戏首页排序', children: [
-        { name: '顶部', url: '/admin/sort/pc/top' },
-        { name: '左侧端游', url: '/admin/sort/pc/left' },
-        { name: '左侧手游', url: '/admin/sort/mb/left' },
+        { name: '顶部', url: '/admin/sort/top' },
+        { name: '左侧端游', url: '/admin/sort/pcleft' },
+        { name: '左侧手游', url: '/admin/sort/mbleft' },
       ] },
       { name: '新闻', url: '/admin/new' },
       { name: '关于我们', url: '/admin/about' },

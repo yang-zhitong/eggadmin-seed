@@ -17,8 +17,10 @@
           <h3 class="box-title">
             {% if key == 'sortTop' %}
             顶部
+            {% elif key == 'sortPCLeft' %}
+            左侧端游
             {% else %}
-            左侧
+            左侧手游
             {% endif %}排序
           </h3>
           <div class="box-tools">
@@ -47,7 +49,7 @@
                   <input data-toggle="tooltip" data-container="right" data-placement="right"
                   data-title="数字1-99,失去焦点自动保存"
                   style="width:30%" class="form-control J_inputSort" maxlength="2" type="text" value="{{item[key]}}"
-                    data-url="/admin/sort/{{gameType.type}}/{{position}}/{{item.id}}" placeholder="">
+                    data-url="/admin/sort/{{position}}/{{item.id}}" placeholder="">
                 </td>
               </tr>
               {% endfor %}
@@ -87,6 +89,13 @@
 <script>
   $(function () {
     $('[data-toggle="tooltip"]').tooltip();
+
+    // $('#modal-default').on('hidden.bs.modal', function (e) {
+    //   console.log(1);
+    //   if ($(".modal-backdrop.fade.in").length > 1) {
+    //     $(".modal-backdrop.fade.in").remove();
+    //   }
+    // })
 
     $(".J_inputSort").on('blur', function () {
       var self = this;

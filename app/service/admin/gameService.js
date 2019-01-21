@@ -3,10 +3,9 @@ const { Op } = require('sequelize');
 
 class GameService extends Service {
   // 全部游戏管理
-  async index(offset, type) {
+  async index(offset) {
     const limit = this.config.pageSize;
     const result = await this.app.model.Game.findAndCountAll({
-      where: { type: type === 'pc' ? 1 : 2 },
       raw: true,
       limit,
       offset: (offset - 1) * limit,
@@ -17,10 +16,7 @@ class GameService extends Service {
 
   // 新加一个, 好像名字重复也没事
   async addOne(data) {
-    const { type } = data;
-    const crateData = Object.assign({}, data, {
-      type: type === 'pc' ? 1 : 2,
-    });
+    const crateData = Object.assign({}, data);
     const result = await this.app.model.Game.create(crateData);
     return result;
   }
@@ -37,10 +33,7 @@ class GameService extends Service {
 
   // 编辑一个的基本信息
   async editOne(id, data) {
-    const { type } = data;
-    const crateData = Object.assign({}, data, {
-      type: type === 'pc' ? 1 : 2,
-    });
+    const crateData = Object.assign({}, data);
     const result = await this.app.model.Game.update(crateData, { where: { id } });
     return result;
   }
@@ -57,18 +50,18 @@ class GameService extends Service {
   }
 
   // 找到所有要可见的, 有 top 和 left两种
-  // type pc 1 mb 2 key sortLeft sortTop
-  async findSorted(type, key) {
+  // key sortPCLeft sortMBLeft sortTop
+  async findSorted(key) {
     const $gt = Op.gt;
     const where = {
       [key]: {
         [$gt]: 0,
       },
     };
-    // 只有左侧列表区分类型
-    if (key === 'sortLeft') {
-      where.type = type === 'pc' ? 1 : 2;
-    }
+    // // 只有左侧列表区分类型
+    // if (key === 'sortLeft') {
+    //   where.type = type === 'pc' ? 1 : 2;
+    // }
     const result = await this.app.model.Game.findAll({
       where,
       raw: true,
