@@ -85,12 +85,12 @@
   <div class="news-list">
     <div class="common-hd">
       <p class="common-title">游戏资讯</p>
-      <a target="_blank"  href="/news" class="more-btn">更多 &nbsp;>></a>
+      <!-- <a target="_blank"  href="/news" class="more-btn">更多 &nbsp;>></a> -->
     </div>
     <div class="common-bd">
       {% for item in newList %}
       <div class="item">
-        <a target="_blank" href="/news/{{item.id}}" class="title">{{item.title}}</a>
+        <a target="_blank" href="{{item.href}}" class="title">{{item.title}}</a>
         <span class="time fr">{{ helper.newsFormateDate(item.createdAt) }}</span>
       </div>
       {% endfor %}
@@ -129,7 +129,7 @@
   <div class="sub-us">
     <div class="common-hd">
       <span class="common-title">关注我们</span>
-      <a href="" class="more-btn">更多 &nbsp;>></a>
+      <!-- <a href="" class="more-btn">更多 &nbsp;>></a> -->
     </div>
     <div class="bd">
       <div class="sub-way">

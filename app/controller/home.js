@@ -50,6 +50,25 @@ class HomeController extends Controller {
       result,
     });
   }
+  async zzsq() {
+    const result = await this.ctx.model.Static.findOne({
+      where: { title: 'zzsq' },
+      raw: true,
+    });
+    await this.ctx.render('/zzsq', {
+      result,
+    });
+  }
+
+  async lyhz() {
+    const result = await this.ctx.model.Static.findOne({
+      where: { title: 'lyhz' },
+      raw: true,
+    });
+    await this.ctx.render('/lyhz', {
+      result,
+    });
+  }
 
 }
 

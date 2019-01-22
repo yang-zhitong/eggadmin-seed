@@ -26,7 +26,7 @@
             <tbody>
               <tr>
                 <th width="30%">新闻标题</th>
-                <th>类别</th>
+                <th>下载地址</th>
                 <th>操作</th>
                 <th>创建时间</th>
                 <th>置顶
@@ -36,7 +36,7 @@
               {% for item in list %}
               <tr>
                 <td>{{item.title}}</td>
-                <td>{{item.type}}</td>
+                <td>{{item.href}}</td>
                 <td>
                   <div class="btn-group">
                     <a href="/admin/new/{{item.id}}/edit" type="button" class="btn btn-info btn-xs">编辑</a>

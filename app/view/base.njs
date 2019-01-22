@@ -38,7 +38,7 @@
     <header>
       <div class="lt-header">
         <div class="width-1280">
-          <a href="" class="header-link">
+          <a href="http://www.ccxst.com" target="_blank" class="header-link">
             <i class="icon icon1"></i> <span>开服列表</span>
           </a>
           <a href="" class="header-link">
@@ -64,7 +64,8 @@
           <nav class="nav fr">
             <a href="/" class="nav-item">首页</a>
             <a href="http://www.ccxst.com" target="_blank" class="nav-item">开服列表</a>
-            <a href="/news" class="nav-item">新闻列表</a>
+            <a href="/zzsq" class="nav-item">资质授权</a>
+            <a href="/lyhz" class="nav-item">联运合作</a>
             <a href="/about" class="nav-item">关于我们</a>
             <a href="/customer" class="nav-item">客服中心</a>
           </nav>

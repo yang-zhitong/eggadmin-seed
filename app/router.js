@@ -10,6 +10,8 @@ module.exports = app => {
   router.get('/news/:id', controller.home.newsDetail);
   router.get('/about', controller.home.about);
   router.get('/customer', controller.home.customer);
+  router.get('/lyhz', controller.home.lyhz);
+  router.get('/zzsq', controller.home.zzsq);
 
   // router.get('/admin/captcha', controller.admin.base.captcha); // 验证码
 
@@ -29,6 +31,10 @@ module.exports = app => {
   router.post('/admin/about', controller.admin.static.editAbout);
   router.get('/admin/customer', controller.admin.static.customer);
   router.post('/admin/customer', controller.admin.static.editCustomer);
+  router.get('/admin/zzsq', controller.admin.static.zzsq);
+  router.post('/admin/zzsq', controller.admin.static.editzzsq);
+  router.get('/admin/lyhz', controller.admin.static.lyhz);
+  router.post('/admin/lyhz', controller.admin.static.editlyhz);
 
   // 用户
   router.get('/admin/manage', controller.admin.manage.index);

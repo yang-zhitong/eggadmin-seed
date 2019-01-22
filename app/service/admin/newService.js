@@ -16,9 +16,9 @@ class NewService extends Service {
   }
 
   // 新加一个, 好像名字重复也没事
-  async addOne({ title, content, type }) {
+  async addOne({ title, content, type, href }) {
     const result = await this.app.model.New.create({
-      title, content, type,
+      title, content, type, href
     });
     return result;
   }
@@ -35,9 +35,9 @@ class NewService extends Service {
   }
 
   // 编辑一个的基本信息
-  async editOne({ id, title, content, type }) {
+  async editOne({ id, title, content, type, href }) {
     const result = await this.app.model.New.update({
-      title, content, type,
+      title, content, type, href,
     }, { where: { id } });
     return result;
   }

@@ -26,17 +26,21 @@
               <input type="text" class="form-control" id="input1" name="title" placeholder="新闻名称" value="{{queryNew.title}}">
             </div>
             <div class="form-group">
+              <label for="input3">新闻地址</label>
+              <input type="text" class="form-control" id="input3" name="href" value="{{queryNew.href}}">
+            </div>
+            <!-- <div class="form-group">
               <label for="input2">新闻类型</label>
               <input type="text" class="form-control" id="input2" name="type" placeholder="如资讯，公告，攻略" value="{{queryNew.type}}">
-            </div>
-            <div class="form-group">
-              <label for="input2">内容(编辑器待添加)</label>
+            </div> -->
+            <!-- <div class="form-group">
+              <label>内容(编辑器待添加)</label>
               <script type="text/plain" id="editor" style="width:100%;height:240px;">
                 {% if queryNew.content %}
                 {{queryNew.content | safe }}
                 {% endif %}
               </script>
-            </div>
+            </div> -->
           </div>
           <div class="box-footer">
             <button type="submit" class="btn btn-primary">提交</button>
@@ -81,10 +85,10 @@
 <script>
   $(function () {
 
-    var um = UE.getEditor('editor');
-    um.ready(function () {
-      // um.setContent('');
-    });
+    // var um = UE.getEditor('editor');
+    // um.ready(function () {
+    //   // um.setContent('');
+    // });
     
   });
 </script>
