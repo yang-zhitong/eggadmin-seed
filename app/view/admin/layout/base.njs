@@ -59,8 +59,10 @@
       </div>
       {% endif %}
       <style>
-        .box form {
-          width: 50%;
+        @media screen and (min-width: 1000px) {
+          .box form {
+            width: 50%;
+          }
         }
         table {
           /* table-layout:fixed; */
