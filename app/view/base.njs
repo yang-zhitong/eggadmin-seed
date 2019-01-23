@@ -19,7 +19,7 @@
     <!--[if lt IE 9]>
       <script src="http://lib.baomitu.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
-    <link rel="stylesheet" href="/public/pages/index.css?v3" />
+    <link rel="stylesheet" href="/public/pages/index.css?v4" />
     <script>
       $(function() {
         $('.J_scroll').on('click', function() {
@@ -55,7 +55,8 @@
       </div>
       <div class="nav-header">
         <div class="width-1280 ib-center">
-          <img src="/public/assets/logo.png" alt="" class="logo ib" />
+          <a href="/"><img src="/public/assets/logo.png" alt="天心神途" class="logo ib" /></a>
+          <img src="/public/assets/logo_text.png" class="ib logo-text" alt="天心神途">
           <nav class="nav fr">
             <a href="/" class="nav-item">首页</a>
             <a href="http://www.ccxst.com" target="_blank" class="nav-item">开服列表</a>
