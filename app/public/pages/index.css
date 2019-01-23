@@ -76,7 +76,7 @@ em {
 /* 让非ie浏览器默认也显示垂直滚动条，防止因滚动条引起的闪烁 */
 
 html {
-  /* overflow-x: scroll; */
+  overflow-y: scroll;
 }
 
 fieldset,
@@ -86,9 +86,8 @@ img {
 }
 
 body {
-  overflow-x: scroll;
   min-width: 1280px;
-  position: relative;
+  overflow: hidden;
 }
 .fl {
   float: left;

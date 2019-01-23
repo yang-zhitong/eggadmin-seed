@@ -18,6 +18,32 @@ const {
   TEXT,
 } = Sequelize;
 
+const UserRole = sequelize.define('userRole', {
+  id: {
+    type: INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+  },
+  uid: {
+    type: INTEGER,
+    allowNull: false,
+    references: {
+      model: 'user',
+      key: 'id',
+    },
+  },
+  rid: {
+    type: INTEGER,
+    allowNull: false,
+    references: {
+      model: 'role',
+      key: 'id',
+    },
+  },
+}, {
+  tableName: 'user_role', // 也可以手动定义tableName
+});
+
 const User = sequelize.define('user', {
   id: {
     type: INTEGER,
@@ -49,31 +75,6 @@ const Role = sequelize.define('role', {
   freezeTableName: true, // 也可以手动定义tableName
 });
 
-const UserRole = sequelize.define('userRole', {
-  id: {
-    type: INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-  uid: {
-    type: INTEGER,
-    allowNull: false,
-    references: {
-      model: 'user',
-      key: 'id',
-    },
-  },
-  rid: {
-    type: INTEGER,
-    allowNull: false,
-    references: {
-      model: 'role',
-      key: 'id',
-    },
-  },
-}, {
-  tableName: 'user_role', // 也可以手动定义tableName
-});
 
 const Game = sequelize.define('game', {
   id: { type: INTEGER, primaryKey: true, autoIncrement: true },
@@ -140,7 +141,6 @@ sequelize.sync({
   while (++index < 10) {
     await new Promise(res => setTimeout(res, 2000));
     await Game.create({
-      type: 1,
       name: '游戏名' + index,
       additionName: '[附加]' + index,
       hot: index,
@@ -150,6 +150,7 @@ sequelize.sync({
     });
     await New.create({
       title: '新闻标题标题标题标题标题' + index,
+      href: '/',
       type: '公告',
     });
   }
