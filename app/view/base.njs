@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="viewport" content="width=1280, initial-scale=1.0" />
 
     <!-- 用在360中 -->
     <meta name="renderer" content="webkit" />
