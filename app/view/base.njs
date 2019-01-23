@@ -12,11 +12,9 @@
     <!-- 针对百度搜索 -->
     <meta http-equiv="Cache-Control" content="no-transform" />
 
-    <title>首页</title>
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <!-- <link rel="icon" href="favicon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" /> -->
+    <title>天心神途</title>
+    <meta name="description" content="天心神途官网, 好玩版本, 一网打尽" />
+    <meta name="keywords" content="天心神途" />
     <script src="http://lib.baomitu.com/jquery/1.12.4/jquery.min.js"></script>
     <!--[if lt IE 9]>
       <script src="http://lib.baomitu.com/html5shiv/3.7.3/html5shiv.min.js"></script>

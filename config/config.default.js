@@ -1,5 +1,6 @@
 
 const path = require('path');
+const fs = require('fs');
 
 module.exports = appInfo => {
   const config = exports = {};
@@ -9,6 +10,20 @@ module.exports = appInfo => {
       enable: false,
     },
   };
+
+  // favicon
+  config.siteFile = {
+    '/favicon.ico': fs.readFileSync(path.join(__dirname, '../favicon.png')),
+  };
+  // 端口
+  config.cluster = {
+    listen: {
+      path: '',
+      port: 7001,
+      hostname: '',
+    },
+  };
+
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1547274155064_3319';
 

@@ -6,7 +6,7 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="renderer" content="webkit">
-  <title>后台</title>
+  <title>天心神途后台</title>
   {%- include "./_assets.njs" -%}
   {%- block head %}{% endblock -%}
 </head>
