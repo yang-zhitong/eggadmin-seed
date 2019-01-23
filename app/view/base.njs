@@ -3,8 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta name="viewport" content="width=1280, initial-scale=1.0" />
-
     <!-- 用在360中 -->
     <meta name="renderer" content="webkit" />
     <!-- 用在其它 -->
@@ -19,7 +17,6 @@
     <meta name="keywords" content="" />
     <!-- <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" /> -->
-
     <script src="http://lib.baomitu.com/jquery/1.12.4/jquery.min.js"></script>
     <!--[if lt IE 9]>
       <script src="http://lib.baomitu.com/html5shiv/3.7.3/html5shiv.min.js"></script>
