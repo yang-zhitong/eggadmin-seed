@@ -40,9 +40,7 @@ $ npm stop
 
 ### 配置mysql
 
-1. 下载docker镜像
-
-`docker pull mysql:5.6`
+1. 下载docker镜像 `docker pull mysql:5.6`
 
 2. 启动
 
@@ -56,9 +54,8 @@ docker run -p 3306:3306 --name mymysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.
 
 5. `CREATE DATABASE IF NOT EXISTS aaa  DEFAULT CHARSET utf8 COLLATE utf8_general_ci;`
 
-6. ctrl + p + q 退出daocker
+6. ctrl + p + q 退出docker
 
-更改字段
 
 ### 初始化
 
@@ -68,6 +65,19 @@ npm run sql:init
 
 会运行 database里面index.js, 进行drop表再创建表
 
+在这里面已经创建好了一个admin用户, 开始写路由吧
+
 todo: 引入定义好的模型, 现在是在model里写一遍, 又在database里复制过去一遍
 
-### 已经创建好了一个admin用户, 开始写路由吧
+### 后面数据库增加字段
+
+1. 进入docker `docker container exec -it aaa /bin/sh`
+
+2. 进入mysql `mysql -u root -p`
+
+3. 输入密码后
+
+4. 使用某一个数据库`use aaa;`
+
+5. 比如给表bbb增加一个整型testKey字段 `alter table bbb add testKey ini;`
+
