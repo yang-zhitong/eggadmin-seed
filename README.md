@@ -83,7 +83,7 @@ todo: 引入定义好的模型, 现在是在model里写一遍, 又在database里
 
 ### 上线前
 
-`docker exec -it 6108 mysqldump --opt -d -uroot -p123456 gameadmin_dev >./database/sql.sql`
+`docker exec -it 6108 mysqldump --opt -d -uroot -p123456 gameadmin_dev >./database-init/init.sql`
 
 networks:
   default:

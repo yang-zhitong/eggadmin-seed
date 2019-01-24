@@ -6,6 +6,8 @@ let sequelize;
 if (isPro) {
   console.log('生产环境');
   console.log(process.env.DB_NAME);
+  console.log(process.env.DB_USER);
+  console.log(process.env.DB_PASS);
   sequelize = new Sequelize(
     process.env.DB_NAME, // 数据库名
     process.env.DB_USER, // 用户名

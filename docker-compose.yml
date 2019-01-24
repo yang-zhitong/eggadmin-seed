@@ -27,7 +27,6 @@ services:
     container_name: ${PROJECT_NAME}_mysql
     environment:
       MYSQL_ROOT_PASSWORD: '${DB_PASS}' # TODO: Change this
-      MYSQL_DATABASE: '${DB_NAME}'
     ports:
       - 3306:3306 
     volumes:
