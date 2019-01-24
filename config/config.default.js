@@ -43,7 +43,7 @@ module.exports = appInfo => {
   config.sequelize = {
     username: 'root',
     password: '123456',
-    database: 'gameadmin_dev',
+    database: 'shen_tu',
     host: '127.0.0.1',
     dialect: 'mysql',
     define: {

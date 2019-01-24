@@ -21,12 +21,12 @@ if (isPro) {
   );
 } else {
   sequelize = new Sequelize(
-    'gameadmin_dev', // 数据库名
+    'shen_tu', // 数据库名
     'root', // 用户名
     '123456', // 用户密码
     {
       dialect: 'mysql', // 数据库使用mysql
-      host: 'localhost', // 数据库服务器ip
+      host: '127.0.0.1', // 数据库服务器ip
       port: 3306, // 数据库服务器端口
     }
   );
@@ -174,24 +174,24 @@ if (isPro) {
     await UserRole.create({ rid: 1, uid: 1 });
     await UserRole.create({ rid: 2, uid: 2 });
 
-    let index = 0;
-    console.log('正在增加一些测试用的翻页数据');
-    while (++index < 10) {
-      await new Promise(res => setTimeout(res, 2000));
-      await Game.create({
-        name: '游戏名' + index,
-        additionName: '[附加]' + index,
-        hot: index,
-        openTime: `预计明天${index}开放`,
-        des: '游戏描述游戏描述游戏描述游戏描述游戏描述' + index,
-        href: '下载地址下载地址下载' + index,
-      });
-      await New.create({
-        title: '新闻标题标题标题标题标题' + index,
-        href: '/',
-        type: '公告',
-      });
-    }
+    // let index = 0;
+    // console.log('正在增加一些测试用的翻页数据');
+    // while (++index < 10) {
+    //   await new Promise(res => setTimeout(res, 2000));
+    //   await Game.create({
+    //     name: '游戏名' + index,
+    //     additionName: '[附加]' + index,
+    //     hot: index,
+    //     openTime: `预计明天${index}开放`,
+    //     des: '游戏描述游戏描述游戏描述游戏描述游戏描述' + index,
+    //     href: '下载地址下载地址下载' + index,
+    //   });
+    //   await New.create({
+    //     title: '新闻标题标题标题标题标题' + index,
+    //     href: '/',
+    //     type: '公告',
+    //   });
+    // }
     console.log('完成 请用ctrl + c 结束');
     process.exit(0);
   });
