@@ -1,16 +1,34 @@
 const Sequelize = require('sequelize');
 const md5 = require('md5');
+const isPro = process.env.NODE_ENV === 'production';
 
-const sequelize = new Sequelize(
-  'gameadmin_dev', // 数据库名
-  'root', // 用户名
-  '123456', // 用户密码
-  {
-    dialect: 'mysql', // 数据库使用mysql
-    host: 'localhost', // 数据库服务器ip
-    port: 3306, // 数据库服务器端口
-  }
-);
+let sequelize;
+if (isPro) {
+  console.log('生产环境');
+  console.log(process.env.DB_NAME);
+  sequelize = new Sequelize(
+    process.env.DB_NAME, // 数据库名
+    process.env.DB_USER, // 用户名
+    process.env.DB_PASS, // 用户密码
+    {
+      dialect: 'mysql', // 数据库使用mysql
+      host: '127.0.0.1', // 数据库服务器ip
+      // host: `${process.env.PROJECT_NAME}_mysql`, // 数据库服务器ip
+      port: 3306, // 数据库服务器端口
+    }
+  );
+} else {
+  sequelize = new Sequelize(
+    'gameadmin_dev', // 数据库名
+    'root', // 用户名
+    '123456', // 用户密码
+    {
+      dialect: 'mysql', // 数据库使用mysql
+      host: 'localhost', // 数据库服务器ip
+      port: 3306, // 数据库服务器端口
+    }
+  );
+}
 
 const {
   STRING,
@@ -78,7 +96,6 @@ const Role = sequelize.define('role', {
 
 const Game = sequelize.define('game', {
   id: { type: INTEGER, primaryKey: true, autoIncrement: true },
-  // type: INTEGER, // type 1 端游 type 2 手游
   sortTop: { type: INTEGER, defaultValue: 0 }, // 从小到大进行排序, 1即第一位显示
   sortPCLeft: { type: INTEGER, defaultValue: 0 }, // 从小到大进行排序, 1即第一位显示
   sortMBLeft: { type: INTEGER, defaultValue: 0 }, // 从小到大进行排序, 1即第一位显示
@@ -115,45 +132,65 @@ const Static = sequelize.define('static', {
   freezeTableName: true, // 也可以手动定义tableName
 });
 
+if (isPro) {
+  sequelize.sync().then(async () => {
+    console.log('生产环境');
+    await Static.create({ title: 'about' });
+    await Static.create({ title: 'customer' });
+    await Static.create({ title: 'zzsq' });
+    await Static.create({ title: 'lyhz' });
 
-sequelize.sync({
-  force: true,
-}).then(async result => {
-  await Static.create({ title: 'about' });
-  await Static.create({ title: 'customer' });
-  await Static.create({ title: 'zzsq' });
-  await Static.create({ title: 'lyhz' });
+    const role = await Role.create({ title: '管理员' });
+    await Role.create({ title: '普通用户' });
+    console.log('生成了一个role');
+    console.log(JSON.stringify(role));
+    const password = await md5('123');
+    const user = await User.create({ username: 'admin', password, isSuper: 1 });
+    await User.create({ username: 'user1', password, isSuper: 0 });
+    console.log('生成了一个user admin 密码 123');
+    console.log(JSON.stringify(user));
+    await UserRole.create({ rid: 1, uid: 1 });
+    await UserRole.create({ rid: 2, uid: 2 });
+    process.exit(0);
+  });
+} else {
+  sequelize.sync().then(async () => {
+    await Static.create({ title: 'about' });
+    await Static.create({ title: 'customer' });
+    await Static.create({ title: 'zzsq' });
+    await Static.create({ title: 'lyhz' });
 
-  const role = await Role.create({ title: '管理员' });
-  await Role.create({ title: '普通用户' });
-  console.log('生成了一个role');
-  console.log(JSON.stringify(role));
-  const password = await md5('123');
-  const user = await User.create({ username: 'admin', password, isSuper: 1 });
-  await User.create({ username: 'user1', password, isSuper: 0 });
-  console.log('生成了一个user admin 密码 123');
-  console.log(JSON.stringify(user));
-  await UserRole.create({ rid: 1, uid: 1 });
-  await UserRole.create({ rid: 2, uid: 2 });
+    const role = await Role.create({ title: '管理员' });
+    await Role.create({ title: '普通用户' });
+    console.log('生成了一个role');
+    console.log(JSON.stringify(role));
+    const password = await md5('123');
+    const user = await User.create({ username: 'admin', password, isSuper: 1 });
+    await User.create({ username: 'user1', password, isSuper: 0 });
+    console.log('生成了一个user admin 密码 123');
+    console.log(JSON.stringify(user));
+    await UserRole.create({ rid: 1, uid: 1 });
+    await UserRole.create({ rid: 2, uid: 2 });
 
-  let index = 0;
-  console.log('正在增加一些测试用的翻页数据');
-  while (++index < 10) {
-    await new Promise(res => setTimeout(res, 2000));
-    await Game.create({
-      name: '游戏名' + index,
-      additionName: '[附加]' + index,
-      hot: index,
-      openTime: `预计明天${index}开放`,
-      des: '游戏描述游戏描述游戏描述游戏描述游戏描述' + index,
-      href: '下载地址下载地址下载' + index,
-    });
-    await New.create({
-      title: '新闻标题标题标题标题标题' + index,
-      href: '/',
-      type: '公告',
-    });
-  }
-  console.log('完成 请用ctrl + c 结束');
-});
-
+    let index = 0;
+    console.log('正在增加一些测试用的翻页数据');
+    while (++index < 10) {
+      await new Promise(res => setTimeout(res, 2000));
+      await Game.create({
+        name: '游戏名' + index,
+        additionName: '[附加]' + index,
+        hot: index,
+        openTime: `预计明天${index}开放`,
+        des: '游戏描述游戏描述游戏描述游戏描述游戏描述' + index,
+        href: '下载地址下载地址下载' + index,
+      });
+      await New.create({
+        title: '新闻标题标题标题标题标题' + index,
+        href: '/',
+        type: '公告',
+      });
+    }
+    console.log('完成 请用ctrl + c 结束');
+    process.exit(0);
+  });
+}

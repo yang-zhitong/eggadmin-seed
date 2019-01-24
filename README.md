@@ -81,3 +81,29 @@ todo: 引入定义好的模型, 现在是在model里写一遍, 又在database里
 
 5. 比如给表bbb增加一个整型testKey字段 `alter table bbb add testKey ini;`
 
+### 上线前
+
+`docker exec -it 6108 mysqldump --opt -d -uroot -p123456 gameadmin_dev >./database/sql.sql`
+
+networks:
+  default:
+    name: ${PROJECT_NAME}-network
+    driver: bridge
+
+
+  node:
+    image: node:alpine
+    restart: always
+    container_name: ${PROJECT_NAME}_node
+    environment:
+      PORT: ${PORT}
+      DB_NAME: ${DB_NAME}
+      DB_PASS: ${DB_PASS}
+    ports:
+      - ${PORT}:7001
+    volumes:
+      - '.:/data'
+    working_dir: /data
+    command: sh -c "yarn && npm run sql:init"
+    depends_on:
+      - mysql

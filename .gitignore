@@ -4,10 +4,10 @@ yarn-error.log
 node_modules/
 egg-multipart-tmp/
 package-lock.json
-yarn.lock
 coverage/
 .idea/
 run/
+data/
 .DS_Store
 *.sw*
 *.un~
