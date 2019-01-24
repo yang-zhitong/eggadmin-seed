@@ -71,7 +71,7 @@ todo: 引入定义好的模型, 现在是在model里写一遍, 又在database里
 
 ### 后面数据库增加字段
 
-1. 进入docker `docker container exec -it aaa /bin/sh`
+1. 进入docker `docker exec -it aaa sh`
 
 2. 进入mysql `mysql -u root -p`
 
@@ -83,7 +83,14 @@ todo: 引入定义好的模型, 现在是在model里写一遍, 又在database里
 
 ### 上线前
 
-`docker exec -it 6108 mysqldump --opt -d -uroot -p123456 gameadmin_dev >./database-init/init.sql`
+1. docker run -p 3306:3306 --name mysql -v ./data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.7
+
+2. 创建数据库
+
+3. 启动web服务, 创建数据 docker-compose up
+
+
+`docker exec -it mysql mysqldump --opt -d -uroot -p123456 talbe_name >./sql/init.sql`
 
 networks:
   default:
@@ -107,3 +114,16 @@ networks:
     command: sh -c "yarn && npm run sql:init"
     depends_on:
       - mysql
+
+  mysql: 
+    image: mysql:5.7
+    restart: always
+    hostname: ${PROJECT_NAME}_mysql
+    container_name: ${PROJECT_NAME}_mysql
+    env_file:
+      - ./.env
+    ports:
+      - 3306:3306 
+    volumes:
+      - './data:/var/lib/mysql'
+      - './sql:/docker-entrypoint-initdb.d'
