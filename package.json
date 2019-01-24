@@ -30,6 +30,7 @@
   "scripts": {
     "sql:init": "node database/index.js",
     "start": "egg-scripts start --daemon --title=egg-server-sequelize-project",
+    "docker": "egg-scripts start",
     "stop": "egg-scripts stop --title=egg-server-sequelize-project",
     "dev": "egg-bin dev",
     "debug": "egg-bin debug",

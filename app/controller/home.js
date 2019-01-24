@@ -69,7 +69,22 @@ class HomeController extends Controller {
       result,
     });
   }
+  
+  async test() {
+    const { Static, Role, User, UserRole  } = this.ctx.model;
+    await Static.create({ title: 'about' });
+    await Static.create({ title: 'customer' });
+    await Static.create({ title: 'zzsq' });
+    await Static.create({ title: 'lyhz' });
 
+    const role = await Role.create({ title: '管理员' });
+    await Role.create({ title: '普通用户' });
+    const password = await this.ctx.service.tools.md5('123');
+    const user = await User.create({ username: 'admin', password, isSuper: 1 });
+    await User.create({ username: 'user1', password, isSuper: 0 });
+    await UserRole.create({ rid: 1, uid: 1 });
+    await UserRole.create({ rid: 2, uid: 2 });
+  }
 }
 
 module.exports = HomeController;

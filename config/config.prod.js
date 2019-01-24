@@ -6,7 +6,7 @@ module.exports = () => {
     username: process.env.DB_USER,
     password: process.env.DB_PASS,
     database: process.env.DB_NAME,
-    host: 'mysql',
+    host: process.env.DB_HOST || '0.0.0.0',
     dialect: 'mysql',
     define: {
       underscored: false, // 统一用驼峰命名..好记

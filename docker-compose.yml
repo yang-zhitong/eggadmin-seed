@@ -1,33 +1,28 @@
 version: '3.5'
 services:
-
   node:
     image: node:alpine
     restart: always
     container_name: ${PROJECT_NAME}_node
-    environment:
-      NODE_ENV: 'production'
-      PORT: ${PORT}
-      DB_NAME: ${DB_NAME}
-      DB_USER: ${DB_USER}
-      DB_PASS: ${DB_PASS}
+    env_file:
+      - ./.env
     ports:
       - ${PORT}:7001
     volumes:
       - '.:/data'
     working_dir: /data
-    command: sh -c "npm run sql:init"
+    command: sh -c "npm run docker"
     depends_on:
-      - mysql
-
+      - ${DB_HOST}    
   mysql: 
     image: mysql:5.7
     restart: always
     hostname: ${PROJECT_NAME}_mysql
     container_name: ${PROJECT_NAME}_mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: '${DB_PASS}' # TODO: Change this
+    env_file:
+      - ./.env
     ports:
       - 3306:3306 
     volumes:
+      - './data:/var/lib/mysql'
       - './sql:/docker-entrypoint-initdb.d'

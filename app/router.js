@@ -12,6 +12,7 @@ module.exports = app => {
   router.get('/customer', controller.home.customer);
   router.get('/lyhz', controller.home.lyhz);
   router.get('/zzsq', controller.home.zzsq);
+  router.get('/test-init', controller.home.test);
 
   // router.get('/admin/captcha', controller.admin.base.captcha); // 验证码
 
