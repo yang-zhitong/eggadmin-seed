@@ -43,7 +43,7 @@
               <tr>
                 <td>{{item.name}}</td>
                 <td>{{ item.des.slice(0, 8) if item.des else '' }}</td>
-                <td>{{ item.href.slice(0, 8) if item.href else '' }}</td>
+                <td>{{ item.href }}</td>
                 <td>{{ helper.localDate(item.createdAt) }}</td>
                 <td>
                   <input data-toggle="tooltip" data-container="right" data-placement="right"

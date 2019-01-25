@@ -2,7 +2,23 @@
 
 const Controller = require('egg').Controller;
 
+// 匹配资源的正则
+const RE = {
+  script: new RegExp('<script[^>]+src="(?=\\/\\w)([^"]+)\\.js', 'gi'), // 匹配 js
+  link: new RegExp('<link[^>]+href="(?=\\/\\w)([^"]+)\\.css', 'gi'), // 匹配 css
+  img: new RegExp('src\s*=\s*"(.+?)"', 'gi'), // 匹配 img
+};
+
 class HomeController extends Controller {
+
+  async render(path, data) {
+    const html = await this.ctx.renderView(path, data);
+    const replaceHtml = html
+      .replace(RE.link, `<link rel="stylesheet" href="$1.css?${this.config.staticVersion}"`)
+      .replace(RE.img, `src="$1?${this.config.staticVersion}"`);
+    this.ctx.body = replaceHtml;
+  }
+
   async index() {
     const [ mbLeft, pcLeft, pcTop, { rows: newList }] = await Promise.all([
       this.ctx.service.admin.gameService.findSorted('sortMBLeft'),
@@ -10,7 +26,7 @@ class HomeController extends Controller {
       this.ctx.service.admin.gameService.findSorted('sortTop'),
       this.ctx.service.admin.newService.index(1, { pageSize: 7 }),
     ]);
-    await this.ctx.render('/index', {
+    await this.render('/index.html', {
       mbLeft,
       pcLeft,
       pcTop,
@@ -19,14 +35,14 @@ class HomeController extends Controller {
   }
 
   async news() {
-    await this.ctx.render('/news', {
+    await this.render('/news.html', {
     });
   }
 
   async newsDetail() {
     const { id } = this.ctx.params;
     const queryNew = await this.ctx.service.admin.newService.findOne(id);
-    await this.ctx.render('/newsDetail', {
+    await this.render('/newsDetail.html', {
       queryNew,
     });
   }
@@ -36,7 +52,7 @@ class HomeController extends Controller {
       where: { title: 'about' },
       raw: true,
     });
-    await this.ctx.render('/about', {
+    await this.render('/about.html', {
       result,
     });
   }
@@ -46,7 +62,7 @@ class HomeController extends Controller {
       where: { title: 'customer' },
       raw: true,
     });
-    await this.ctx.render('/customer', {
+    await this.render('/customer.html', {
       result,
     });
   }
@@ -55,7 +71,7 @@ class HomeController extends Controller {
       where: { title: 'zzsq' },
       raw: true,
     });
-    await this.ctx.render('/zzsq', {
+    await this.render('/zzsq.html', {
       result,
     });
   }
@@ -65,13 +81,13 @@ class HomeController extends Controller {
       where: { title: 'lyhz' },
       raw: true,
     });
-    await this.ctx.render('/lyhz', {
+    await this.render('/lyhz.html', {
       result,
     });
   }
 
   async test() {
-    const { Static, Role, User, UserRole  } = this.ctx.model;
+    const { Static, Role, User, UserRole } = this.ctx.model;
     await Static.create({ title: 'about' });
     await Static.create({ title: 'customer' });
     await Static.create({ title: 'zzsq' });

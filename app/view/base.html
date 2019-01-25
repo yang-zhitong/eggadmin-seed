@@ -19,11 +19,15 @@
     <!--[if lt IE 9]>
       <script src="http://lib.baomitu.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
-    <link rel="stylesheet" href="/public/pages/index.css?v4" />
+    <link rel="stylesheet" href="/public/pages/index.css" />
     <script>
       $(function() {
         $('.J_scroll').on('click', function() {
           $( "html, body" ).animate({scrollTop: 3000 });
+        });
+        $(".J_alertTip").on('click', function(e) {
+          e.preventDefault();
+          alert('请进入游戏查询');
         });
       });
     </script>
@@ -33,7 +37,7 @@
     <header>
       <div class="lt-header">
         <div class="width-1280">
-          <a href="http://www.ccxst.com" target="_blank" class="header-link">
+          <a href="https://www.st123.com" target="_blank" class="header-link">
             <i class="icon icon1"></i> <span>开服列表</span>
           </a>
           <a href="" class="header-link">
@@ -59,7 +63,7 @@
           <img src="/public/assets/logo_text.png" class="ib logo-text" alt="天心神途">
           <nav class="nav fr">
             <a href="/" class="nav-item">首页</a>
-            <a href="http://www.ccxst.com" target="_blank" class="nav-item">开服列表</a>
+            <a href="https://www.st123.com" target="_blank" class="nav-item">开服列表</a>
             <a href="/zzsq" class="nav-item">资质授权</a>
             <a href="/lyhz" class="nav-item">联运合作</a>
             <a href="/about" class="nav-item">关于我们</a>
@@ -106,4 +110,5 @@
     </footer>
     {%- block script %}{% endblock -%}
   </body>
+  <script type="text/javascript" src="//js.users.51.la/19865803.js"></script> 
 </html>

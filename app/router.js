@@ -36,6 +36,8 @@ module.exports = app => {
   router.post('/admin/zzsq', controller.admin.static.editzzsq);
   router.get('/admin/lyhz', controller.admin.static.lyhz);
   router.post('/admin/lyhz', controller.admin.static.editlyhz);
+  router.get('/admin/menu', controller.admin.static.menu);
+  router.get('/admin/doRefresh', controller.admin.static.doRefresh);
 
   // 用户
   router.get('/admin/manage', controller.admin.manage.index);
@@ -75,4 +77,5 @@ module.exports = app => {
   router.post('/admin/new/:id/edit', controller.admin.new.doEdit); //
   router.post('/admin/new/:id/sort', controller.admin.new.doSort); //
   router.get('/admin/new/:id/delete', controller.admin.new.delete); //
+
 };

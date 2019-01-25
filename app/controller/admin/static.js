@@ -7,6 +7,15 @@ class StaticServer extends BaseController {
   //   super(ctx);
   // }
 
+  async menu() {
+    await this.render('/admin/static/menu');
+  }
+
+  async doRefresh() {
+    this.config.staticVersion = Math.floor(Date.now() / 1000);
+    this.successRender('编辑成功', '/admin/menu');
+  }
+
   async about() {
     const result = await this.ctx.model.Static.findOne({
       where: { title: 'about' },

@@ -11,7 +11,7 @@ services:
     volumes:
       - '.:/data'
     working_dir: /data
-    command: sh -c "npm run docker"
+    command: sh -c "yarn && npm run docker"
     depends_on:
       - ${DB_HOST}
   mysql: 
@@ -22,7 +22,7 @@ services:
     env_file:
       - ./.env
     ports:
-      - 3306:3306 
+      - ${DB_PORT}:3306 
     volumes:
       - './data:/var/lib/mysql'
       - './mysql:/docker-entrypoint-initdb.d'

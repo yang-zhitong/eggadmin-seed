@@ -39,12 +39,14 @@ module.exports = appInfo => {
   };
 
   config.pageSize = 10;
+  config.staticVersion = Math.floor(Date.now() / 1000);
 
   config.sequelize = {
     username: 'root',
     password: '123456',
     database: 'shen_tu',
     host: '127.0.0.1',
+    port: 3306,
     dialect: 'mysql',
     define: {
       underscored: false, // 统一用驼峰命名..好记
