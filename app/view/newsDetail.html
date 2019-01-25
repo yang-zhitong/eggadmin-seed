@@ -3,9 +3,11 @@
 
 {% block main %}
 <main class="width-1280 main">
+    <div class="wrap">
   <p class="page-box-title">新闻详情</p>
   标题: {{ queryNew.title }}
 
   {{ queryNew.content | safe }}
+  </div>
 </main>
 {% endblock %}
