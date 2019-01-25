@@ -1,124 +1,87 @@
-# sequelize-project
+# 一个基于docker的egg, mysql, nginx(todo)的后台小项目模板
 
+面对不确定的服务器环境和nginx, node, mysql版本, 还是要用docker来简单部署的
 
+按如下步骤配置好自己的项目, 到服务器上用`docker-compose up -d`起来就可以了
 
-## 快速入门
+### 本地开发前配置mysql
 
-<!-- 在此次添加使用文档 -->
+1. 下载docker镜像 `docker pull mysql:5.7`
 
-如需进一步了解，参见 [egg 文档][egg]。
+2. 启动mysql服务并运行初始化sql(如创建database)
 
-### 本地开发
+`docker run -p 3306:3306 --name mysql -v ${PWD}/mysql:/docker-entrypoint-initdb.d -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.7`
 
-```bash
-$ npm i
-$ npm run dev
-$ open http://localhost:7001/
+当然, 这里需要先有一份初始化的sql如 `mysql/init.sql` 文件
+
+`CREATE DATABASE IF NOT EXISTS `shen_tu` DEFAULT CHARSET utf8 COLLATE utf8_general_ci;`
+
+本地小项目测试, 目前感觉不是很需要把数据暴露到宿主机
+
+3. 进入数据库观察结果是否正确
+
+4. 如果不正确, 请去掉-d观察错误log
+
+### 再次开发
+
+启动之前停止的mysql服务 `docker start mysql`
+
+### 表定义与测试数据添加
+
+开发时数据库定义写在mysql/index.js中
+
+可以方便的添加测试数据
+
+只需要 `node mysql/index.js` 即可
+
+todo: 定义一份模型, 现在在app的model里写一遍, 又在初始化的时候定义(复制)一遍
+
+### 开始开发
+
+`npm run dev`
+
+### 完成开发
+
+1. 把开发好的数据库表结构导出给部署用
+
+`docker exec -it mysql mysqldump --opt -d -uroot -p123456 talbe_name >./mysql/init.sql`
+
+2. 创建.env写环境变量
+
+```js
+PROJECT_NAME=xxxxx
+EGG_SERVER_ENV=prod
+NODE_ENV=production
+PORT=7001
+DB_NAME=db_name
+DB_USER=root
+DB_PASS=123456
+DB_HOST=mysql
+MYSQL_ROOT_PASSWORD=123456
 ```
 
-### 部署
+3. 写好compose.yml配置
 
-```bash
-$ npm start
-$ npm stop
-```
-
-### 单元测试
-
-- [egg-bin] 内置了 [mocha], [thunk-mocha], [power-assert], [istanbul] 等框架，让你可以专注于写单元测试，无需理会配套工具。
-- 断言库非常推荐使用 [power-assert]。
-- 具体参见 [egg 文档 - 单元测试](https://eggjs.org/zh-cn/core/unittest)。
-
-### 内置指令
-
-- 使用 `npm run lint` 来做代码风格检查。
-- 使用 `npm test` 来执行单元测试。
-- 使用 `npm run autod` 来自动检测依赖更新，详细参见 [autod](https://www.npmjs.com/package/autod) 。
-
-
-[egg]: https://eggjs.org
-
-### 配置mysql
-
-1. 下载docker镜像 `docker pull mysql:5.6`
-
-2. 启动
-
-```sh
-docker run -p 3306:3306 --name mymysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.7
-```
-
-3. `docker container exec -it mymysql /bin/sh`
-
-4.  `mysql -uroot -p`
-
-5. `CREATE DATABASE IF NOT EXISTS aaa  DEFAULT CHARSET utf8 COLLATE utf8_general_ci;`
-
-6. ctrl + p + q 退出docker
-
-
-### 初始化
-
-```
-npm run sql:init
-```
-
-会运行 database里面index.js, 进行drop表再创建表
-
-在这里面已经创建好了一个admin用户, 开始写路由吧
-
-todo: 引入定义好的模型, 现在是在model里写一遍, 又在database里复制过去一遍
-
-### 后面数据库增加字段
-
-1. 进入docker `docker exec -it aaa sh`
-
-2. 进入mysql `mysql -u root -p`
-
-3. 输入密码后
-
-4. 使用某一个数据库`use aaa;`
-
-5. 比如给表bbb增加一个整型testKey字段 `alter table bbb add testKey ini;`
-
-### 上线前
-
-1. docker run -p 3306:3306 --name mysql -v ./data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.7
-
-2. 创建数据库
-
-3. 启动web服务, 创建数据 docker-compose up
-
-
-`docker exec -it mysql mysqldump --opt -d -uroot -p123456 talbe_name >./sql/init.sql`
-
-networks:
-  default:
-    name: ${PROJECT_NAME}-network
-    driver: bridge
-
-
+```yml
+version: '3.5'
+services:
   node:
     image: node:alpine
     restart: always
     container_name: ${PROJECT_NAME}_node
-    environment:
-      PORT: ${PORT}
-      DB_NAME: ${DB_NAME}
-      DB_PASS: ${DB_PASS}
+    env_file:
+      - ./.env
     ports:
       - ${PORT}:7001
     volumes:
       - '.:/data'
     working_dir: /data
-    command: sh -c "yarn && npm run sql:init"
+    command: sh -c "npm run docker"
     depends_on:
-      - mysql
-
+      - ${DB_HOST}    
   mysql: 
     image: mysql:5.7
     restart: always
-    hostname: ${PROJECT_NAME}_mysql
     container_name: ${PROJECT_NAME}_mysql
     env_file:
       - ./.env
@@ -127,3 +90,10 @@ networks:
     volumes:
       - './data:/var/lib/mysql'
       - './sql:/docker-entrypoint-initdb.d'
+```
+
+4. 代码里增加对应的prod环境配置, 即使用环境变量里的host, 密码等
+
+5. 放到服务器上, 启动
+
+`docker-compose up -d` 
