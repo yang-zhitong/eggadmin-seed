@@ -71,17 +71,37 @@
               <label for="fileInput" class="input-group-btn">
                   <span class="btn btn-primary">
                       <i class="glyphicon glyphicon-folder-open"></i>  
-                      缩略图 <input type="file" name="file" id="fileInput" style="display: none;">
+                      PC缩略图 <input type="file" name="filepc" id="fileInput" style="display: none;">
                   </span>
               </label>
-              <p id="helpBlock" class="help-block"></p>
+              <p id="J_helpBlock" class="help-block"></p>
             </div>
-
+            
             {% if queryGame.img %}
             <div class="form-group">
-              <label>原图(图片比例仅作展示, 点击查看原图)</label>
+              <label>pc端原图(图片比例仅作展示, 点击查看原图)</label>
               <a href="{{queryGame.img}}" target="_blank" class="thumbnail">
                 <img width="180" height="180" alt="100%x180" src="{{queryGame.img}}" data-holder-rendered="true">
+              </a>
+            </div>
+            {% endif %}
+
+            <div class="form-group">
+              <label for="fileInput2" class="input-group-btn">
+                  <span class="btn btn-primary">
+                      <i class="glyphicon glyphicon-folder-open"></i>  
+                      手机缩略图 <input type="file" name="filemb" id="fileInput2" style="display: none;">
+                  </span>
+              </label>
+              <p id="J_helpBlock2" class="help-block"></p>
+            </div>
+
+
+            {% if queryGame.imgMobile %}
+            <div class="form-group">
+              <label>手机端原图(图片比例仅作展示, 点击查看原图)</label>
+              <a href="{{queryGame.imgMobile}}" target="_blank" class="thumbnail">
+                <img width="180" height="180" alt="100%x180" src="{{queryGame.imgMobile}}" data-holder-rendered="true">
               </a>
             </div>
             {% endif %}
@@ -123,18 +143,41 @@
 
   <script>
     $(function() {
-      var file;
+      var file, file2;
+
       $("#fileInput").on('change', function(e) {
+        console.log(e.target.files);
         if (e.target.files.length > 1) {
           return false;
         }
         file = e.target.files[0];
-        $("#helpBlock").text('上传图片名: ' + file.name);
+       $('#J_helpBlock').text('上传图片名: ' + file.name);
       });
+
+      $("#fileInput2").on('change', function(e) {
+        console.log(e.target.files);
+        if (e.target.files.length > 1) {
+          return false;
+        }
+        file2 = e.target.files[0];
+        $('#J_helpBlock2').text('上传图片名: ' + file2.name);
+      });
+
       $('form').on('submit', function() {
         if (file) {
           var size = file.size / 1024 | 0;
           if (!/image/.test(file.type)) {
+            alert('图片格式不对');
+            return false;
+          }
+          if (size > 2000) {
+            alert('图片太大了');
+            return false;
+          }
+        }
+        if (file2) {
+          var size = file2.size / 1024 | 0;
+          if (!/image/.test(file2.type)) {
             alert('图片格式不对');
             return false;
           }

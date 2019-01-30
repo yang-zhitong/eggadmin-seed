@@ -15,6 +15,7 @@ module.exports = app => {
     href: STRING(255), // 官网地址
     openTime: STRING, // 开服时间
     img: STRING(255), // 缩略图地址
+    imgMobile: STRING(255), // 手机缩略图地址
     iconPC: INTEGER, // 是否展示这个图标
     iconAD: INTEGER, // 是否展示这个图标
     iconIOS: INTEGER, // 是否展示这个图标

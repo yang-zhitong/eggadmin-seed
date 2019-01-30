@@ -47,6 +47,24 @@ class GameController extends BaseController {
     });
   }
 
+  async handleImg(file, id) {
+    let relativePath = '';
+    if (file) {
+      const basename = path.basename(file.filepath).replace(/-/g, '').slice(-13);
+      relativePath = path.join('/public/upload', basename);
+      const newpath = path.join(this.config.baseDir, 'app', relativePath);
+      await renameAsnyc(file.filepath, newpath);
+      if (id) {
+        const { img: oldImg = '' } = await this.ctx.service.admin.gameService.findOne(id);
+        if (oldImg) {
+          const oldpath = path.join(this.config.baseDir, 'app', oldImg);
+          await unlinkAsnyc(oldpath).catch(e => e);
+        }
+      }
+    }
+    return relativePath;
+  }
+
   // post 增加游戏
   async doAdd() {
     const {
@@ -54,24 +72,20 @@ class GameController extends BaseController {
       iconPC, iconAD, iconIOS, hot,
     } = this.ctx.request.body;
     try {
-      const file = this.ctx.request.files[0];
-      let relativePath;
-      // 可能没上传文件
-      if (file) {
-        const basename = path.basename(file.filepath).replace(/-/g, '').slice(-13);
-        relativePath = path.join('/public/upload', basename);
-        const newpath = path.join(this.config.baseDir, 'app', relativePath);
-        await renameAsnyc(file.filepath, newpath);
-      }
+      const filePc = this.ctx.request.files.find(file => file.field === 'filepc');
+      const fileMb = this.ctx.request.files.find(file => file.field === 'filemb');
+      const imgPc = await this.handleImg(filePc);
+      const imgMb = await this.handleImg(fileMb);
       await this.ctx.service.admin.gameService.addOne({
         name, des, href, openTime, additionName,
         iconPC: iconPC === 'on' ? 1 : 0,
         iconAD: iconAD === 'on' ? 1 : 0,
         iconIOS: iconIOS === 'on' ? 1 : 0,
-        hot: +hot,
-        img: relativePath,
+        hot: Number.isNaN(+hot) ? 0 : hot, // 如果是非数字
+        img: imgPc || undefined,
+        imgMobile: imgMb || undefined,
       });
-      this.successRender('添加成功', '/admin/game');
+      this.successRender(Number.isNaN(+hot) ? '人气添加了非数字， 已经自动变成0' : '添加成功', '/admin/game');
     } catch (error) {
       this.failRender(JSON.stringify(error), '/admin/game/add');
     }
@@ -84,28 +98,20 @@ class GameController extends BaseController {
       iconPC, iconAD, iconIOS, hot,
     } = this.ctx.request.body;
     try {
-      const file = this.ctx.request.files[0];
-      let relativePath;
-      if (file) {
-        const basename = path.basename(file.filepath).replace(/-/g, '').slice(-13);
-        relativePath = path.join('/public/upload', basename);
-        const newpath = path.join(this.config.baseDir, 'app', relativePath);
-        await renameAsnyc(file.filepath, newpath);
-        const { img: oldImg = '' } = await this.ctx.service.admin.gameService.findOne(id);
-        if (oldImg) {
-          const oldpath = path.join(this.config.baseDir, 'app', oldImg);
-          await unlinkAsnyc(oldpath).catch(e => e);
-        }
-      }
+      const filePc = this.ctx.request.files.find(file => file.field === 'filepc');
+      const fileMb = this.ctx.request.files.find(file => file.field === 'filemb');
+      const imgPc = await this.handleImg(filePc);
+      const imgMb = await this.handleImg(fileMb);
       await this.ctx.service.admin.gameService.editOne(id, {
         name, des, href, openTime, additionName,
         iconPC: iconPC === 'on' ? 1 : 0,
         iconAD: iconAD === 'on' ? 1 : 0,
         iconIOS: iconIOS === 'on' ? 1 : 0,
-        hot: +hot,
-        img: relativePath,
+        hot: Number.isNaN(+hot) ? 0 : hot, // 如果是非数字
+        img: imgPc || undefined,
+        imgMobile: imgMb || undefined,
       });
-      this.successRender('编辑成功', '/admin/game');
+      this.successRender(Number.isNaN(+hot) ? '人气添加了非数字， 已经自动变成0' : '编辑成功', '/admin/game');
     } catch (error) {
       this.failRender(JSON.stringify(error), '/admin/game/add');
     }

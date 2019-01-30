@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS `game` (
   `href` varchar(255) DEFAULT NULL,
   `openTime` varchar(255) DEFAULT NULL,
   `img` varchar(255) DEFAULT NULL,
+  `imgMobile` varchar(255) DEFAULT NULL,
   `iconPC` int(11) DEFAULT NULL,
   `iconAD` int(11) DEFAULT NULL,
   `iconIOS` int(11) DEFAULT NULL,
