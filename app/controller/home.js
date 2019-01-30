@@ -34,6 +34,11 @@ class HomeController extends Controller {
     });
   }
 
+  async mobile() {
+    const res = await this.ctx.service.admin.gameService.findSorted('sortTop');
+    await this.render('/mobile.html', { res });
+  }
+
   async news() {
     await this.render('/news.html', {
     });

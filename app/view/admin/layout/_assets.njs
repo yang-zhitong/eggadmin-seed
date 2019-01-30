@@ -5,9 +5,9 @@
   <script src="/public/bootstrap/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="/public/bootstrap/css/bootstrap.min.css">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link crossorigin="anonymous" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" href="https://lib.baomitu.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <link crossorigin="anonymous" integrity="sha384-gOaRlqAhqPUMlR/5HfjaLm+COAJ+Ka0Am9GCueJAWwFluNWKDUZJ8GUGhBJ1r+J/" href="https://lib.baomitu.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
   <!-- Theme style -->
   <link rel="stylesheet" href="/public/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins

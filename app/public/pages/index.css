@@ -96,7 +96,8 @@ body {
   float: right;
 }
 * {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .width-1280 {
@@ -104,6 +105,23 @@ body {
   position: relative;
   margin: 0 auto;
 }
+
+.main.width-1280 {
+  background: #fff;
+  min-height: 620px;
+}
+
+
+.wrap {
+  padding: 0 35px 40px 35px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 1280px;
+  background: #fff;
+  margin: -238px auto 0 auto;
+  display: block;
+}
+
 
 img[src=""] {
   opacity: 0;
@@ -222,7 +240,8 @@ header .nav-header .nav-item:hover::after {
 footer {
   width: 100%;
   height: 187px;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding-top: 30px;
   background: url(/public/assets/footer.jpg) no-repeat center;
   text-align: center;
@@ -275,13 +294,6 @@ footer .copyright {
   border: 1px solid #d8d8d8; 
 }
 
-.main.width-1280 {
-  padding: 0 35px 40px 35px;
-  margin-top: -238px;
-  box-sizing: border-box;
-  background: #fff;
-  min-height: 620px;
-}
 
 .shadow {
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFEAAAEUCAIAAADcD00KAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABB5JREFUeNrsnUtu4zAQRCkh5/H9Dze2J4gAwTOSaFLyInyvtAgMIwhSYrO7+j89n8/yK5/lH1t+Ph6P5efz53m8PPf7ff2wPn9+nu8Pt9tt+5fn4nt+O+ZpmnY/MzFvEX5L9fbL3RexfHn0juYhDrmOoQJ7SNm+Ihd8zAvs5RFhbjz5GQmvftqxzwPeXhHmClqmDrtIyAj3eZefViR/xgBuv95MvV0HPzPwdFHu2XbIZE6i42G0+3ydmcWvio8xyknuRo6iw6Dcc5eNAv3ndpzRYdBrTNBh7WpZyrcHzt181p2KX2Vyngsj7tkb6J5HR1vxKBV+lSXu2ZWI5+uw2GecX4X1n+vaWO1XvX01iXsOi43Mwz5y52OrQIYqtVIgzHXtFb8qeht5wnAd1h76Hhhz472F5+hoturiqVpslatmXREPO3GrU/voOO15aEjr9/9199YbrSD+sy42tPoVXr+KpsPaZZjDSbomEUB02Ee4N6QHxcXDXNyzXkxSDP3P0pr19A4KuKdFb9fRonRYy8EmLzks5rfHO708Cr2ti28z4yRHNMuec3+FGr2N86t6S7iZfe6xVZr7jNVhrllaFfDpERVgbuFn4ST0m8y/zxzMR6Wd25usm71D02GnJ3vCbZWLh9EwdwXxmbXM51pjx5bt3fISeHxb7UuWxEn4PsaRm+HinoreBHXPt86vUscM4lc5OIl3D4pIh5HzGI2ZVw5mdTzs6KghOqy35JGgw9qbbha0R78/5Dl75xmcfiPYXiMUD7u+1JfcUzb2fe6VZ9G+m5K9CWTMu+FeRR2gKI/Ru/y5JE5icaET3wa50OTdqeEkLL19ZcAQ85y9uVhdXrJ9CU7mGTgknDbPQGGfdX7VOSv9NTTmStw3/ZJDYb4+IQ3OPXXxbdfOrt0qKVHMQMo9gZgz61LjY7wlZ0xbdcW1+uJJ9ULCyXW93r0J0rhn+ui4mOtlFJnhMCbm9iqx1IdFhwUzTbCxdUPMPEZjT410h4DXx5DOQERh7vIZUxNHl20R335dQwjPP3c1xRbqLC3yfRbtfimpce19C4mHhZOEk4waPwBi7iUkBVlbsRIV3Y4fpmynd1AcA7TM9zxS3YTZO72vIPWewaxyJMvo/VUV+5R81YCYP9uJkp1dkW1q2CB1vY4DZ/YmSM+ZgLklJCCaW5FaZjcPA2I2xj1fbVLXyGaIbK/43yYxOLJtPGcmJzkBNfY59pknvYkZaO6zJWbgnV2rsFXtG8pin4N5dO3lnS3Pwdwb8QsnYWHepi9EO7tcsk3OY1wstYitQog3lm+np0yD+fRIwPCwyDbV6yDEens3i5Jn4+U+4zBnvmd8yXCSApvLXP4dRWPU25njGvsczMEczMEczMEczMEczMEczMEczMEczMEczKX8FWAAQO2EyZNr9U0AAAAASUVORK5CYII=) no-repeat 0 0;
@@ -293,7 +305,8 @@ footer .copyright {
   top: 786px;
 }
 .shadow.mirror {
-  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
   right: -74px;
   left: auto;
 }
@@ -310,7 +323,8 @@ footer .copyright {
 /* 内容 */
 .hot-box {
   background: #fff;
-  margin-bottom: 15px;
+  width: 1210px;
+  margin: 0 auto 15px auto;
 }
 
 .hot-box .games-wrap {
@@ -342,7 +356,8 @@ footer .copyright {
   line-height: 48px;
   display: block;
     width: 260px;
-    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+       text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
 }
@@ -353,7 +368,8 @@ footer .copyright {
   color: #888888;
   font-size: 12px;
   width: 240px;
-  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
@@ -446,7 +462,8 @@ footer .copyright {
 }
 
 .ellipsis {
-  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
@@ -457,7 +474,8 @@ footer .copyright {
   height: 39px;
   line-height: 39px;
   padding: 0 6px;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .server-list .normal-show .name {
@@ -483,7 +501,8 @@ footer .copyright {
   height: 78px;
   font-size: 12px;
   display: none;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .server-list .bd .item:hover .hover-show,
@@ -516,7 +535,8 @@ footer .copyright {
 .server-list .hover-show .open {
   overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
 }
 
 .server-list .hover-show .start-link {
@@ -662,7 +682,8 @@ footer .copyright {
   color: #626262;
   font-size: 14px;
   border-bottom: 1px dashed #d8d8d8;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .news-list .item:last-child {
