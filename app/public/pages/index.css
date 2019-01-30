@@ -233,9 +233,13 @@ footer .footer-line {
   line-height: 22px;
   color: #fff;
 }
-footer .company-logo {
-  display: block;
+footer .logo-line {
   margin: 10px auto;
+  text-align: center;
+}
+footer .logo-line img {
+  margin: 0 10px;
+  vertical-align: middle;
 }
 
 footer .copyright {
