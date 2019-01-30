@@ -20,6 +20,11 @@ class HomeController extends Controller {
   }
 
   async index() {
+    const ua = this.ctx.request.headers['user-agent'];
+    if (ua.match(/Android/i) || ua.match(/webOS/i) || ua.match(/iPhone/i) || ua.match(/BlackBerry/i) || ua.match(/Windows Phone/i)) {
+      return this.mobile();
+    }
+
     const [ mbLeft, pcLeft, pcTop, { rows: newList }] = await Promise.all([
       this.ctx.service.admin.gameService.findSorted('sortMBLeft'),
       this.ctx.service.admin.gameService.findSorted('sortPCLeft'),
