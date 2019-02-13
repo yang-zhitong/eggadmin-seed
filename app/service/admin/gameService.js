@@ -38,6 +38,15 @@ class GameService extends Service {
     return result;
   }
 
+  // 某游戏点击增加人气
+  async addHot(id) {
+    if (Number.isNaN(+id)) {
+      return false;
+    }
+    const result = await this.app.model.Game.increment('hot', { where: { id } });
+    return result;
+  }
+
 
   // 根据id 删除一个角色
   async deleteOne(id) {

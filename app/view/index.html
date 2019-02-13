@@ -8,7 +8,7 @@
     <div class="hot-box">
       <div class="games-wrap">
         {% for item in pcTop %}
-        <div class="game-box">
+        <div class="game-box" data-id="{{item.id}}" data-hot="{{item.hot}}">
           <a target="_blank" href="{{item.href}}"><img src="{{item.img}}" alt="" class="thumbnail" /></a>
           <a target="_blank" href="{{item.href}}" class="name">{{item.name}}{{item.additionName}}</a>
           <p class="des">{{item.des}}</p>
@@ -178,6 +178,13 @@
         .addClass('hover')
         .siblings('.item')
         .removeClass('hover');
+    });
+    $(document).on('click', '[data-id]', function() {
+      var id = $(this).data('id');
+      var hot = $(this).data('hot');
+      if (hot > 0) {
+        $.get('/click?id=' + id);
+      }
     });
   });
 </script>

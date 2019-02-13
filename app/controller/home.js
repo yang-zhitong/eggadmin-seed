@@ -39,6 +39,12 @@ class HomeController extends Controller {
     });
   }
 
+  async click() {
+    const { id } = this.ctx.query;
+    const res = await this.ctx.service.admin.gameService.addHot(id);
+    this.ctx.body = res;
+  }
+
   async mobile() {
     const res = await this.ctx.service.admin.gameService.findSorted('sortTop');
     await this.render('/mobile.html', { res });
