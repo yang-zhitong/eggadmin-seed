@@ -320,6 +320,18 @@ footer .copyright {
   height: 99px;
 }
 
+.left-content {
+  width: 382px;
+  display: inline-block;
+  vertical-align: top;
+}
+.right-content {
+  margin-left: 24px;
+  width: 800px;
+  display: inline-block;
+  vertical-align: top;
+}
+
 /* 内容 */
 .hot-box {
   background: #fff;
@@ -416,12 +428,9 @@ footer .copyright {
     color: #ff6633;
 }
 
-
 .server-list {
-  width: 382px;
-  float: left;
+  margin-bottom: 30px;
 }
-
 
 .server-list .hd {
   font-size: 16px;
@@ -555,8 +564,6 @@ footer .copyright {
 
 
 .quickway {
-  float: left;
-  width: 382px;
   font-size: 14px;
 }
 
@@ -667,9 +674,9 @@ footer .copyright {
 }
 
 .news-list {
-  margin-left: 410px;
   margin-bottom: 30px;
 }
+
 .news-list .common-bd {
   min-height: 289px;
 }
@@ -698,7 +705,6 @@ footer .copyright {
 
 .sub-us {
   height: 350px;
-  margin-left: 410px;
 }
 .sub-us .bd {
   border-top: 1px solid #d8d8d8;
