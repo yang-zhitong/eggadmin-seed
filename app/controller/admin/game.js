@@ -151,12 +151,12 @@ class GameController extends BaseController {
     }
 
     // 如果是对广告进行左侧展示, 就判断是不是超过6个了
-    if (key !== 'sortTop' && isShow === 1) {
-      const sortList = await this.ctx.service.admin.gameService.findSorted(key);
-      if (sortList.length >= 6) {
-        return this.fail('首页左侧列表最多显示6个广告', '/admin/game');
-      }
-    }
+    // if (key !== 'sortTop' && isShow === 1) {
+    // const sortList = await this.ctx.service.admin.gameService.findSorted(key);
+    // if (sortList.length >= 6) {
+    //   return this.fail('首页左侧列表最多显示6个广告', '/admin/game');
+    // }
+    // }
 
     const result = await this.ctx.service.admin.gameService.show(id, key, isShow);
     if (result) {
