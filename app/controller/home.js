@@ -48,6 +48,15 @@ class HomeController extends Controller {
   async mobile() {
     const res = await this.ctx.service.admin.gameService.findSorted('sortTop');
     const topThree = res.sort((a, b) => (b.hot - a.hot)).slice(0, 3);
+    // const res = [
+    //   {openTime: "今日新区：10:00 21:00 []"},
+    //   {openTime: "今日新区：12:00 []"},
+    //   {openTime: "今日新区：13:00 []"},
+    //   {openTime: "今日新区：14:00 []"},
+    //   {openTime: "今日新区：15:00 []"},
+    //   {openTime: "今日新区：17:00 23:00 []"},
+    //   {openTime: "今日新区：19:00 []"}
+    // ];
     const now = new Date().getHours();
     res.forEach(game => {
       // 先拿到这个游戏所有的开服时间
@@ -62,9 +71,9 @@ class HomeController extends Controller {
       game.gap = minGap;
       // 如果最小的gap是50, 说明已经开放过了
       // 如果最小的gap还是>=0, 说明还有即将开放的, 如果是
-      if (minGap === 50) {
+      if (minGap === 50 || minGap === 0) {
         game.openText = '火爆开放';
-      } else if (minGap >= 0 && minGap <= 24) {
+      } else {
         game.openText = '即将开放';
       }
     });
