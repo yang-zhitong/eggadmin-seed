@@ -47,7 +47,29 @@ class HomeController extends Controller {
 
   async mobile() {
     const res = await this.ctx.service.admin.gameService.findSorted('sortTop');
-    await this.render('/mobile.html', { res });
+    const topThree = res.sort((a, b) => (b.hot - a.hot)).slice(0, 3);
+    const now = new Date().getHours();
+    res.forEach(game => {
+      // 先拿到这个游戏所有的开服时间
+      const hours = game.openTime.match(/(\d\d?)(:|：)\d+/g);
+      // 循环开服时间, 有可能是都开过的, 有可能是一半开了, 一半没开, 有可能是全都没开
+      // 把开服时间变成和现在相差几小时, 如果是开过的, 就变成50
+      const gaps = hours.map(hour => {
+        const gap = +hour.replace(/(\d\d?)(:|：)\d+/, '$1') - now;
+        return gap < 0 ? 50 : gap;
+      });
+      const minGap = Math.min(...gaps); // 然后判断这个最小的gap
+      game.gap = minGap;
+      // 如果最小的gap是50, 说明已经开放过了
+      // 如果最小的gap还是>=0, 说明还有即将开放的, 如果是
+      if (minGap === 50) {
+        game.openText = '火爆开放';
+      } else if (minGap >= 0 && minGap <= 24) {
+        game.openText = '即将开放';
+      }
+    });
+    res.sort((a, b) => (a.gap - b.gap)); // 升序
+    await this.render('/mobile.html', { topThree, res });
   }
 
   async news() {

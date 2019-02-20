@@ -122,6 +122,9 @@
   font-size: 0.2rem;
   color: #898989;
 }
+.y-card0h-infobox .middle-layer.special {
+  margin-top: 0.12rem;
+}
 .y-card0h-infobox .middle-layer * {
   vertical-align: middle;
 }

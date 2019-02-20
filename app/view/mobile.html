@@ -95,7 +95,7 @@
           </tbody>
         </table>
       </nav>
-      {% for item in res.slice(0, 3) %}
+      {% for item in topThree %}
       <div class="rank{{loop.index}} android-show">
         <a href="{{item.href}}">
           <img
@@ -131,13 +131,19 @@
                   <div class="prefix">{{loop.index}}</div>
                   <div class="title">{{item.name}}</div>
                 </div>
-                <div class="middle-layer">
+                <div class="middle-layer special">
                   <span class="slot-lft"> {{item.additionName}} </span>
                   <!-- <span class="slot-lft">{{item.hot}}次下载</span> -->
                   {% if item.hot > 0 %}
                   <span class="red">{{item.hot}}</span>
                   <span>人气</span>
                   {% endif %}
+                </div>
+                <div class="low-layer">
+                  <span class="red">
+                    {{item.openTime}}
+                    [{{item.openText}}]
+                  </span>
                 </div>
               </div>
             </a>
