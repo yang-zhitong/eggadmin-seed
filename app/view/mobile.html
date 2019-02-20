@@ -140,10 +140,16 @@
                   {% endif %}
                 </div>
                 <div class="low-layer">
-                  <span class="red">
+                  <span>
                     {{item.openTime}}
-                    [{{item.openText}}]
                   </span>
+                  {% if item.gap === 50 %}
+                  <span class="hot-icon"></span>
+                  {% elif item.gap === 0 %}
+                  <span class="hot-icon"></span>
+                  {% else %}
+                  <span class="new-icon"></span>
+                  {% endif %}
                 </div>
               </div>
             </a>
