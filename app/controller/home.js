@@ -78,7 +78,7 @@ class HomeController extends Controller {
       }
     });
     res.sort((a, b) => (a.gap - b.gap)); // 升序
-    await this.render('/mobile.html', { topThree, res });
+    await this.render('/mobile.html', { topThree, res, text: JSON.stringify(res) });
   }
 
   async news() {
