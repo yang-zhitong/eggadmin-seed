@@ -57,7 +57,8 @@ class HomeController extends Controller {
     //   {openTime: "今日新区：17:00 23:00 []"},
     //   {openTime: "今日新区：19:00 []"}
     // ];
-    const now = new Date().getHours();
+    const asiaTime = new Date().toLocaleString('en-US', { timeZone: 'Asia/Shanghai' });
+    const now = new Date(asiaTime).getHours();
     res.forEach(game => {
       // 先拿到这个游戏所有的开服时间
       const hours = game.openTime.match(/(\d\d?)(:|：)\d+/g);
@@ -78,7 +79,7 @@ class HomeController extends Controller {
       }
     });
     res.sort((a, b) => (a.gap - b.gap)); // 升序
-    await this.render('/mobile.html', { topThree, res, text: JSON.stringify(res) });
+    await this.render('/mobile.html', { topThree, res });
   }
 
   async news() {
