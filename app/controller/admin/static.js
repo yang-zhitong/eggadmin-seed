@@ -82,6 +82,46 @@ class StaticServer extends BaseController {
       { where: { title: 'lyhz' } });
     this.successRender('编辑成功', '/admin/lyhz');
   }
+
+  async friend() {
+    const list = await this.ctx.model.Friendship.findAll();
+    await this.render('/admin/friend/index', {
+      list,
+    });
+  }
+
+  async editFriend() {
+    const { id } = this.ctx.params;
+    let queryItem;
+    if (+id > 0) {
+      queryItem = await this.ctx.model.Friendship.findOne({
+        where: { id },
+        raw: true,
+      });
+    }
+    await this.render('/admin/friend/edit', {
+      queryItem,
+    });
+  }
+
+  async doEditFriend() {
+    const { id } = this.ctx.params;
+    const { title, href } = this.ctx.request.body;
+    if (+id > 0) {
+      await this.app.model.Friendship.update(
+        { title, href },
+        { where: { id } });
+      this.successRender('编辑成功', '/admin/friend');
+    } else {
+      await this.app.model.Friendship.create({ title, href });
+      this.successRender('新增成功', '/admin/friend');
+    }
+  }
+  async deleteFriend() {
+    const { id } = this.ctx.params;
+    await this.app.model.Friendship.destroy({ where: { id } });
+    this.successRender('删除成功', '/admin/friend');
+  }
 }
 
 module.exports = StaticServer;

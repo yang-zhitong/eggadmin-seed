@@ -41,6 +41,12 @@ module.exports = app => {
   router.get('/admin/menu', controller.admin.static.menu);
   router.get('/admin/doRefresh', controller.admin.static.doRefresh);
 
+  // 友情链接
+  router.get('/admin/friend', controller.admin.static.friend);
+  router.get('/admin/friend/:id', controller.admin.static.editFriend);
+  router.post('/admin/friend/:id', controller.admin.static.doEditFriend);
+  router.get('/admin/friend/delete/:id', controller.admin.static.deleteFriend);
+
   // 用户
   router.get('/admin/manage', controller.admin.manage.index);
   router.get('/admin/manage/add', controller.admin.manage.add); // 表单页面
