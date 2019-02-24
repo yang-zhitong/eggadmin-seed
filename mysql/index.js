@@ -139,6 +139,7 @@ const friendship = sequelize.define('friendship', {
   id: { type: INTEGER, primaryKey: true, autoIncrement: true },
   title: STRING,
   href: STRING,
+  sort: INTEGER,
 }, {
   freezeTableName: true, // 也可以手动定义tableName
 });
