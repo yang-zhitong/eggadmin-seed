@@ -1,0 +1,107 @@
+{% extends './base.html' %} {% block main %}
+<div class="sec-top">
+  <nav class="y-nav0">
+    <table>
+      <tbody>
+        <tr>
+          <!-- <td class=""><a href="/">热门榜</a></td>
+
+            <td class="selected"><a href="/new/">最新榜</a></td>
+            <td class=""><a href="/android/">安卓榜</a></td> -->
+          <td class=""><a>热门游戏</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </nav>
+  {% for item in topThree %}
+  <div class="rank{{ loop.index }} android-show">
+    <a href="{{ item.href }}">
+      <img
+        class="ic img-wrapper"
+        src="{{ item.imgMobile }}"
+        alt="{{ item.name }}"
+      />
+      <p class="high-layer">{{ item.name }}</p>
+      <p class="middle-layer">{{ item.hot }}人气</p>
+    </a>
+
+    <a class="btn-download" href="{{ item.href }}">下载</a>
+  </div>
+  {% endfor %}
+</div>
+<div class="main">
+  <ul class="android-show list">
+    {% for item in res %}
+    <li>
+      <div class="y-card0h">
+        <a href="{{ item.href }}">
+          <div class="y-card0h-iconbox img-wrapper">
+            <img src="{{ item.imgMobile }}" alt="{{ item.name }}" />
+          </div>
+          <div class="y-card0h-infobox">
+            <div class="high-layer">
+              <div class="prefix">{{ loop.index }}</div>
+              <div class="title">{{ item.name }}</div>
+            </div>
+            <div class="middle-layer special">
+              <span class="slot-lft"> {{ item.additionName }} </span>
+              <!-- <span class="slot-lft">{{item.hot}}次下载</span> -->
+              {% if item.hot > 0 %}
+              <span class="red">{{ item.hot }}</span>
+              <span>人气</span>
+              {% endif %}
+            </div>
+            <div class="low-layer">
+              <span>
+                {{ item.openTime }}
+              </span>
+              {% if item.gap === 50 %}
+              <span class="hot-icon"></span>
+              {% elif item.gap === 0 %}
+              <span class="hot-icon"></span>
+              {% else %}
+              <span class="new-icon"></span>
+              {% endif %}
+            </div>
+          </div>
+        </a>
+
+        <a class="y-card0h-actionbox" href="{{ item.href }}">
+          <div class="ic-wrapper">
+            <svg class="icon yic-arrow4"></svg>
+            <svg class="svg-arrow" viewBox="0 0 1024 1024">
+              <path
+                d="M576 599.04l250.112-250.176c28.608-28.544 75.52-27.84 104.96 1.536 29.44 29.44 30.08 76.416 1.536 104.96l-362.048 362.048a71.872 71.872 0 0 1-52.16 20.992 76.16 76.16 0 0 1-52.8-22.464L92.928 443.2c-29.44-29.44-30.08-76.416-1.536-104.96 28.544-28.544 75.52-27.904 104.96 1.536L448 591.36V64a64 64 0 1 1 128 0v535.04zM64 896h896a64 64 0 0 1 0 128H64a64 64 0 0 1 0-128z"
+              ></path>
+            </svg>
+          </div>
+          <p>秒装</p>
+        </a>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+
+  <div class="game-news-box">
+    <h3>
+      <span class="span-left">新闻</span><span class="span-right">动态</span>
+    </h3>
+    <ul class="game-news-ul">
+      {% for item in newList %}
+      <li>
+          <a
+            title="{{item.title}}"
+            {% if item.href %}
+            href="{{item.href}}"
+            {% else %}
+            href="/news/{{item.id}}"
+            {% endif %}
+            ><p>{{item.title}}</p>
+            <span>{{ helper.newsMobileData(item.createdAt) }}</span></a
+          >
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

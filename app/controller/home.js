@@ -9,6 +9,11 @@ const RE = {
   img: new RegExp('src\s*=\s*"(.+?)"', 'gi'), // 匹配 img
 };
 
+const isMobile = headers => {
+  const ua = headers['user-agent'];
+  return (ua.match(/Android/i) || ua.match(/webOS/i) || ua.match(/iPhone/i) || ua.match(/BlackBerry/i) || ua.match(/Windows Phone/i));
+};
+
 class HomeController extends Controller {
 
   async render(path, data) {
@@ -20,8 +25,7 @@ class HomeController extends Controller {
   }
 
   async index() {
-    const ua = this.ctx.request.headers['user-agent'];
-    if (ua.match(/Android/i) || ua.match(/webOS/i) || ua.match(/iPhone/i) || ua.match(/BlackBerry/i) || ua.match(/Windows Phone/i)) {
+    if (isMobile(this.ctx.request.headers)) {
       return this.mobile();
     }
 
@@ -46,7 +50,11 @@ class HomeController extends Controller {
   }
 
   async mobile() {
-    const res = await this.ctx.service.admin.gameService.findSorted('sortTop');
+    // const res = await this.ctx.service.admin.gameService.findSorted('sortTop');
+    const [ res, { rows: newList }] = await Promise.all([
+      this.ctx.service.admin.gameService.findSorted('sortTop'),
+      this.ctx.service.admin.newService.index(1, { pageSize: 7 }),
+    ]);
     const topThree = res.sort((a, b) => (b.hot - a.hot)).slice(0, 3);
     // const res = [
     //   {openTime: "今日新区：10:00 21:00 []"},
@@ -79,7 +87,7 @@ class HomeController extends Controller {
       }
     });
     res.sort((a, b) => (a.gap - b.gap)); // 升序
-    await this.render('/mobile.html', { topThree, res });
+    await this.render('/mobile/mobile.html', { topThree, res, newList });
   }
 
   async news() {
@@ -90,9 +98,14 @@ class HomeController extends Controller {
   async newsDetail() {
     const { id } = this.ctx.params;
     const queryNew = await this.ctx.service.admin.newService.findOne(id);
-    await this.render('/newsDetail.html', {
+    let view = '/newsDetail.html';
+    if (isMobile(this.ctx.request.headers)) {
+      view = '/mobile/newsDetail.html';
+    }
+    await this.render(view, {
       queryNew,
     });
+
   }
 
   async about() {

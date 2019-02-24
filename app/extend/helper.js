@@ -8,3 +8,7 @@ exports.newsFormateDate = (date = null) => {
   date = new Date(date);
   return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 };
+exports.newsMobileData = (date = null) => {
+  date = new Date(date);
+  return `${date.getMonth() + 1}/${date.getDate()}`;
+};

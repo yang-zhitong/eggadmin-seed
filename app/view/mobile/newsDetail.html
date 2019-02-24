@@ -1,0 +1,18 @@
+{% extends './base.html' %} {% block main %}
+<div
+  class="menubar"
+  style="height: 0.89rem;"
+>
+  <a class="back" href="/">首页</a>
+</div>
+
+<div class="newspagelist">
+  <div class="newstitle">
+    <h1><strong>{{ queryNew.title }}</strong></h1>
+  </div>
+  <div class="newsinfo"><span>发布时间：{{ helper.newsFormateDate(queryNew.createdAt) }}</span></div>
+  <div class="newscontent">
+    {{ queryNew.content | safe }}
+  </div>
+</div>
+{% endblock %}

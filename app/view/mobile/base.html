@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="wap-font-scale" content="no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>天心神途</title>
+    <meta name="description" content="天心神途官网, 好玩版本, 一网打尽" />
+    <meta name="keywords" content="天心神途" />
+    <link href="/public/pages/mobile-common.css" rel="stylesheet" />
+    <link href="/public/pages/mobile-index.css" rel="stylesheet" />
+    <script>
+      (function(designWidth, maxWidth) {
+        var doc = document,
+          win = window,
+          docEl = doc.documentElement,
+          remStyle = document.createElement("style"),
+          tid;
+
+        function refreshRem() {
+          var width = docEl.getBoundingClientRect().width;
+          maxWidth = maxWidth || 540;
+          width > maxWidth && (width = maxWidth);
+          var rem = (width * 100) / designWidth;
+          remStyle.innerHTML = "html{font-size:" + rem + "px;}";
+        }
+
+        if (docEl.firstElementChild) {
+          docEl.firstElementChild.appendChild(remStyle);
+        } else {
+          var wrap = doc.createElement("div");
+          wrap.appendChild(remStyle);
+          doc.write(wrap.innerHTML);
+          wrap = null;
+        }
+        //要等 wiewport 设置好后才能执行 refreshRem，不然 refreshRem 会执行2次；
+        refreshRem();
+
+        win.addEventListener(
+          "resize",
+          function() {
+            clearTimeout(tid); //防止执行两次
+            tid = setTimeout(refreshRem, 300);
+          },
+          false
+        );
+
+        win.addEventListener(
+          "pageshow",
+          function(e) {
+            if (e.persisted) {
+              // 浏览器后退的时候重新计算
+              clearTimeout(tid);
+              tid = setTimeout(refreshRem, 300);
+            }
+          },
+          false
+        );
+
+        if (doc.readyState === "complete") {
+          doc.body.style.fontSize = "16px";
+        } else {
+          doc.addEventListener(
+            "DOMContentLoaded",
+            function(e) {
+              doc.body.style.fontSize = "16px";
+            },
+            false
+          );
+        }
+      })(750, 750);
+    </script>
+  </head>
+  <body>
+    <header class="y-header0">
+      <div class="top">
+        <a class="logo-wrapper" href="/">
+          <img src="/public/assets/logo.png" />
+        </a>
+        <a class="logo-wrapper" href="/" style="width:2rem;">
+          <img src="/public/assets/logo_text.png" />
+        </a>
+      </div>
+    </header>
+    {%- block main %}{% endblock -%}
+
+
+    <footer>
+      <div class="width-1280">
+        <p>文网游备字[2011]C-RPG152号</p>
+        <p>网络文化经营许可证:皖网文〔2018〕10415-261号</p>
+        <p>增值电信业务经营许可证:浙B2-20110064</p>
+        <p>《互联网文化管理暂行规定》|《网络游戏管理暂行办法》</p>
+        <p>赣ICP备18015084号-2 适龄提示：本游戏适合18岁以上的成年人进入</p>
+        <div class="logo-line">
+          <a
+            target="cyxyv"
+            href="https://v.yunaq.com/certificate?domain=www.2tx.com&amp;from=label&amp;code=90030"
+            ><img
+              src="https://aqyzmedia.yunaq.com/labels/label_sm_90030.png?1550141801"
+          /></a>
+        </div>
+        <p class="">CopyRight 2018-2019 江西搜搜信息科技有限公司</p>
+        <script type="text/javascript">
+          var cnzz_protocol =
+            "https:" == document.location.protocol ? "https://" : "http://";
+          document.write(
+            unescape(
+              "%3Cspan id='cnzz_stat_icon_1275933496'%3E%3C/span%3E%3Cscript src='" +
+                cnzz_protocol +
+                "s23.cnzz.com/stat.php%3Fid%3D1275933496%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"
+            )
+          );
+        </script>
+      </div>
+    </footer>
+    {%- block script %}{% endblock -%}
+  </body>
+</html>

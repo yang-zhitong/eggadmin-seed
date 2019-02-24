@@ -111,7 +111,7 @@
       <!-- 快速通道 end -->
     </div>
     <div class="right-content">
-      <!-- 游戏咨询 start -->
+      <!-- 游戏资讯 start -->
       <div class="news-list">
         <div class="common-hd">
           <p class="common-title">游戏资讯</p>
@@ -119,14 +119,17 @@
         </div>
         <div class="common-bd">
           {% for item in newList %}
-          <div class="item">
-            <a target="_blank" href="{{item.href}}" class="title">{{item.title}}</a>
-            <span class="time fr">{{ helper.newsFormateDate(item.createdAt) }}</span>
-          </div>
+            {% if item.href %}
+            <div class="item">
+                <a target="_blank" href="{{item.href}}" class="title">{{item.title}}</a>
+                <!-- <a target="_blank" href="/news/{{item.id}}" class="title">{{item.title}}</a> -->
+                <span class="time fr">{{ helper.newsFormateDate(item.createdAt) }}</span>
+            </div>
+            {% endif %}
           {% endfor %}
         </div>
       </div>
-      <!-- 游戏咨询 end -->
+      <!-- 游戏资讯 end -->
 
       <!-- 关注我们 start -->
       <div class="sub-us">
