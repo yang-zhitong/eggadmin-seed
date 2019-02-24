@@ -119,13 +119,11 @@
         </div>
         <div class="common-bd">
           {% for item in newList %}
-            {% if item.href %}
             <div class="item">
                 <a target="_blank" href="{{item.href}}" class="title">{{item.title}}</a>
                 <!-- <a target="_blank" href="/news/{{item.id}}" class="title">{{item.title}}</a> -->
                 <span class="time fr">{{ helper.newsFormateDate(item.createdAt) }}</span>
             </div>
-            {% endif %}
           {% endfor %}
         </div>
       </div>

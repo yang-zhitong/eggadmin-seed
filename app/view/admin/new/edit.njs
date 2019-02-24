@@ -26,7 +26,7 @@
               <input type="text" class="form-control" id="input1" name="title" placeholder="新闻名称" value="{{queryNew.title}}">
             </div>
             <div class="form-group">
-              <label for="input3">新闻地址(如果没有新闻地址为空， 则PC页面上不会显示）</label>
+              <label for="input3">新闻地址(这里为空， 手机页面上才会显示）</label>
               <input type="text" class="form-control" id="input3" name="href" value="{{queryNew.href}}">
             </div>
             <!-- <div class="form-group">
