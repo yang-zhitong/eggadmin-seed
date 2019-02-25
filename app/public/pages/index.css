@@ -730,7 +730,9 @@ footer .copyright {
 .sub-us .sub-way:last-child {
   margin-right: 0;
 }
-
+.friendship {
+  margin-top: 20px;
+}
 .friendship .bd {
   padding-top: 25px;
   font-size: 14px;
