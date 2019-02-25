@@ -270,3 +270,18 @@ footer p {
   margin-right: 0.1rem;
   line-height: 0.8rem;
 }
+.friendship {
+  width: 7.13rem;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.friendship a {
+  min-width: 25%;
+  float: left;
+  height: .32rem;
+  box-sizing: border-box;
+  line-height: .32rem;
+  color: #443c41;
+  font-size: .25rem;
+  margin-bottom: .2rem;
+}

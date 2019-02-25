@@ -29,17 +29,19 @@ class HomeController extends Controller {
       return this.mobile();
     }
 
-    const [ mbLeft, pcLeft, pcTop, { rows: newList }] = await Promise.all([
+    const [ mbLeft, pcLeft, pcTop, { rows: newList }, friendList ] = await Promise.all([
       this.ctx.service.admin.gameService.findSorted('sortMBLeft'),
       this.ctx.service.admin.gameService.findSorted('sortPCLeft'),
       this.ctx.service.admin.gameService.findSorted('sortTop'),
       this.ctx.service.admin.newService.index(1, { pageSize: 7 }),
+      this.ctx.model.Friendship.findAll(),
     ]);
     await this.render('/index.html', {
       mbLeft,
       pcLeft,
       pcTop,
       newList,
+      friendList,
     });
   }
 
@@ -51,9 +53,10 @@ class HomeController extends Controller {
 
   async mobile() {
     // const res = await this.ctx.service.admin.gameService.findSorted('sortTop');
-    const [ res, { rows: newList }] = await Promise.all([
+    const [ res, { rows: newList }, friendList ] = await Promise.all([
       this.ctx.service.admin.gameService.findSorted('sortTop'),
       this.ctx.service.admin.newService.index(1, { pageSize: 7 }),
+      this.ctx.model.Friendship.findAll(),
     ]);
     const topThree = res.sort((a, b) => (b.hot - a.hot)).slice(0, 3);
     // const res = [
@@ -87,7 +90,7 @@ class HomeController extends Controller {
       }
     });
     res.sort((a, b) => (a.gap - b.gap)); // 升序
-    await this.render('/mobile/mobile.html', { topThree, res, newList });
+    await this.render('/mobile/mobile.html', { topThree, res, newList, friendList });
   }
 
   async news() {

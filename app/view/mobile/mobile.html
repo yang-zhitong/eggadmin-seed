@@ -103,5 +103,16 @@
       {% endfor %}
     </ul>
   </div>
+
+  <div class="game-news-box">
+    <h3>
+      <span class="span-left">友情</span><span class="span-right">链接</span>
+    </h3>
+    <div class="friendship">
+      {% for item in friendList %}
+      <a href="{{item.href}}" target="_blank" >{{item.title}}</a>
+      {% endfor %}
+    </div>
+  </div>
 </div>
 {% endblock %}

@@ -156,13 +156,16 @@
       <!-- 关注我们 end -->
     </div>
 
-    <!-- <div class="friendship">
+    <div class="friendship">
       <div class="common-hd">
         <span class="common-title">友情链接</span>
       </div>
       <div class="bd">
+        {% for item in friendList %}
+        <a href="{{item.href}}" target="_blank" >{{item.title}}</a>
+        {% endfor %}
       </div>
-    </div> -->
+    </div>
 
   </div>
 </main>

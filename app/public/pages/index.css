@@ -735,7 +735,8 @@ footer .copyright {
   padding-top: 25px;
   font-size: 14px;
 }
-.friendship p {
+.friendship a {
   display: inline-block;
   margin: 0 10px 10px 0;
+  color: #333;
 }
