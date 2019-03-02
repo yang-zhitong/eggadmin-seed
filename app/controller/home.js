@@ -29,12 +29,13 @@ class HomeController extends Controller {
       return this.mobile();
     }
 
-    const [ mbLeft, pcLeft, pcTop, { rows: newList }, friendList ] = await Promise.all([
+    const [ mbLeft, pcLeft, pcTop, { rows: newList }, friendList, picList ] = await Promise.all([
       this.ctx.service.admin.gameService.findSorted('sortMBLeft'),
       this.ctx.service.admin.gameService.findSorted('sortPCLeft'),
       this.ctx.service.admin.gameService.findSorted('sortTop'),
       this.ctx.service.admin.newService.index(1, { pageSize: 7 }),
       this.ctx.model.Friendship.findAll(),
+      this.ctx.model.Pics.findAll({ raw: true }),
     ]);
     await this.render('/index.html', {
       mbLeft,
@@ -42,6 +43,7 @@ class HomeController extends Controller {
       pcTop,
       newList,
       friendList,
+      picList,
     });
   }
 

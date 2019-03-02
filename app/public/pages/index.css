@@ -742,3 +742,51 @@ footer .copyright {
   margin: 0 10px 10px 0;
   color: #333;
 }
+.pics-box .slide-pics {
+  padding: 24px 0;
+  border-top: 1px solid #d8d8d8;
+  position: relative;
+}
+
+.pics-box .pic-a {
+  width: 175px;
+  height: 175px;
+  overflow: hidden;
+  margin-right: 29px;
+}
+
+.pics-box .pic-a.sm {
+  width: 175px;
+  height: 175px;
+  margin-right: 27px;
+}
+.pics-box .pic-a:last-child {
+  margin-right: 0;
+}
+
+.pics-box .prev, .pics-box .next {
+  width: 35px;
+  height: 70px;
+  margin: -40px 0 0;
+  /* display: none; */
+  background: url(/public/assets/prev_next.png) no-repeat 0 0;
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+  cursor: pointer;
+  text-indent: -9999px;
+  opacity: 0;
+  transition: all .5s;
+}
+.pics-box .prev {
+  left: 0;
+  background-position: -6px -3px;
+}
+.pics-box .next {
+  right: 0;    background-position: -18px -95px;
+}
+.pics-box:hover .prev,
+.pics-box:hover .next {
+  display: block;
+  opacity: 0.5;
+}

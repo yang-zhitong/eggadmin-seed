@@ -86,4 +86,9 @@ module.exports = app => {
   router.post('/admin/new/:id/sort', controller.admin.new.doSort); //
   router.get('/admin/new/:id/delete', controller.admin.new.delete); //
 
+  // 图片
+  router.get('/admin/pics', controller.admin.pics.index);
+  router.get('/admin/pics/edit/:id?', controller.admin.pics.editPics);
+  router.post('/admin/pics/edit/:id?', controller.admin.pics.doEditPics);
+  router.get('/admin/pics/delete/:id', controller.admin.pics.deletePics);
 };

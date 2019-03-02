@@ -270,7 +270,7 @@
 }
 .y-header0 {
   position: relative;
-  padding: 0.28rem 0;
+  padding: 0.1rem 0;
   background-image: linear-gradient(180deg, #cf1e32 0, #7c000e);
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
   text-align: center;
@@ -287,10 +287,8 @@
 .y-header0 .logo-wrapper {
   display: inline-block;
   /* margin: 0 auto; */
-  /* width: 3.16rem;
-  height: 0.78rem; */
-  width: 1.47rem;
-  height: .73rem;
+  width: 5rem;
+  height: 1rem;
 }
 .y-header0 .logo-wrapper img {
   width: 100%;

@@ -1,6 +1,10 @@
 'use strict';
 
 const Controller = require('egg').Controller;
+const path = require('path');
+const { rename } = require('fs');
+const { promisify } = require('util');
+const renameAsnyc = promisify(rename);
 
 class BaseController extends Controller {
   constructor(ctx) {
@@ -16,15 +20,18 @@ class BaseController extends Controller {
         { name: '左侧手游', url: '/admin/sort/mbleft' },
       ] },
       { name: '新闻', url: '/admin/new' },
-      { name: '关于我们', url: '/admin/about' },
-      { name: '客服中心', url: '/admin/customer' },
-      { name: '资质授权', url: '/admin/zzsq' },
-      { name: '联运合作', url: '/admin/lyhz' },
+      { name: '几个静态页面', children: [
+        { name: '关于我们', url: '/admin/about' },
+        { name: '客服中心', url: '/admin/customer' },
+        { name: '资质授权', url: '/admin/zzsq' },
+        { name: '联运合作', url: '/admin/lyhz' },
+      ] },
       { name: '友情链接', url: '/admin/friend' },
+      { name: '游戏/玩家图片', url: '/admin/pics' },
       // { name: '网站刷新', url: '/admin/menu' },
     ]; // 菜单栏
     if (ctx.locals.userInfo.isSuper) {
-      ctx.locals.userMenu.push({ name: '图片管理', url: '/admin/ue/images' });
+      ctx.locals.userMenu.push({ name: '静态页图片管理', url: '/admin/ue/images' });
       ctx.locals.userMenu.push({ name: '用户管理', url: '/admin/manage' });
     }
   }
@@ -75,6 +82,19 @@ class BaseController extends Controller {
     const page = Math.ceil(count / size);
     return page;
   }
+
+  async handleImg(file) {
+    let relativePath;
+    if (file) {
+      const basename = path.basename(file.filepath).replace(/-/g, '').slice(-13);
+      relativePath = path.join('/public/upload', basename);
+      const newpath = path.join(this.config.baseDir, 'app', relativePath);
+      await renameAsnyc(file.filepath, newpath);
+    }
+    return relativePath;
+  }
+
+
   // async index() {
   //   await this.ctx.render('/admin/index.html');
   // }

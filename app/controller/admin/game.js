@@ -2,11 +2,9 @@
 
 const BaseController = require('./base');
 const path = require('path');
-const { rename, unlink } = require('fs');
+const { unlink } = require('fs');
 const { promisify } = require('util');
-const renameAsnyc = promisify(rename);
 const unlinkAsnyc = promisify(unlink);
-
 class GameController extends BaseController {
 
   // constructor(ctx) {
@@ -47,24 +45,6 @@ class GameController extends BaseController {
     });
   }
 
-  async handleImg(file, id) {
-    let relativePath = '';
-    if (file) {
-      const basename = path.basename(file.filepath).replace(/-/g, '').slice(-13);
-      relativePath = path.join('/public/upload', basename);
-      const newpath = path.join(this.config.baseDir, 'app', relativePath);
-      await renameAsnyc(file.filepath, newpath);
-      if (id) {
-        const { img: oldImg = '' } = await this.ctx.service.admin.gameService.findOne(id);
-        if (oldImg) {
-          const oldpath = path.join(this.config.baseDir, 'app', oldImg);
-          await unlinkAsnyc(oldpath).catch(e => e);
-        }
-      }
-    }
-    return relativePath;
-  }
-
   // post 增加游戏
   async doAdd() {
     const {
@@ -90,6 +70,17 @@ class GameController extends BaseController {
       this.failRender(JSON.stringify(error), '/admin/game/add');
     }
   }
+
+  async handleDelete(id, key) {
+    if (id) {
+      const { [key]: img } = await this.ctx.service.admin.gameService.findOne(id);
+      if (img) {
+        const oldpath = path.join(this.config.baseDir, 'app', img);
+        await unlinkAsnyc(oldpath).catch(e => e);
+      }
+    }
+  }
+
   // 编辑的时候最好把原来的图片删掉
   async doEdit() {
     const { id } = this.ctx.params;
@@ -102,6 +93,14 @@ class GameController extends BaseController {
       const fileMb = this.ctx.request.files.find(file => file.field === 'filemb');
       const imgPc = await this.handleImg(filePc);
       const imgMb = await this.handleImg(fileMb);
+      console.log('delete imgPc--------------------------', imgPc);
+      console.log('delete imgMb--------------------------', imgMb);
+      if (imgPc) {
+        await this.handleDelete(id, 'img');
+      }
+      if (imgMb) {
+        await this.handleDelete(id, 'imgMobile');
+      }
       await this.ctx.service.admin.gameService.editOne(id, {
         name, des, href, openTime, additionName,
         iconPC: iconPC === 'on' ? 1 : 0,
@@ -113,7 +112,7 @@ class GameController extends BaseController {
       });
       this.successRender(Number.isNaN(+hot) ? '人气添加了非数字， 已经自动变成0' : '编辑成功', '/admin/game');
     } catch (error) {
-      this.failRender(JSON.stringify(error), '/admin/game/add');
+      this.failRender(JSON.stringify(error), `/admin/game/${id}/edit`);
     }
   }
 
@@ -123,6 +122,8 @@ class GameController extends BaseController {
     if (!id) {
       return this.failRender('删除失败', '/admin/game');
     }
+    await this.handleDelete(id, 'imgMobile');
+    await this.handleDelete(id, 'img');
     const result = await this.ctx.service.admin.gameService.deleteOne(id);
     if (result) {
       this.successRender('删除成功', '/admin/game');

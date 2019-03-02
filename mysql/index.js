@@ -144,6 +144,16 @@ const friendship = sequelize.define('friendship', {
   freezeTableName: true, // 也可以手动定义tableName
 });
 
+const pics = sequelize.define('pics', {
+  id: { type: INTEGER, primaryKey: true, autoIncrement: true },
+  title: STRING, // 图片描述
+  img: STRING, // 图片地址
+  type: INTEGER, // 1 游戏截图 2 玩家照片
+  sort: INTEGER,
+}, {
+  freezeTableName: true, // 也可以手动定义tableName
+});
+
 sequelize.sync().then(async () => {
   // console.log('生产环境');
   // await Static.create({ title: 'about' });

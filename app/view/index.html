@@ -156,17 +156,60 @@
       <!-- 关注我们 end -->
     </div>
 
-    <div class="friendship">
-      <div class="common-hd">
-        <span class="common-title">友情链接</span>
+
+
+    <div class="left-content">
+      <div class="pics-box">
+        <div class="common-hd">
+          <span class="common-title">玩家靓照</span>
+        </div>
+        <div class="bd slide-pics J_slidePicsTwo">
+          <div class="prev">上一个</div>
+          <div class="next">下一个</div>
+          <div class="slide-bd">
+          {% for item in picList %}
+            {% if item.type === 2 %}
+              <a href="" class="pic-a sm">
+                <img src="http://pic.fed.tm/175x175" alt="">
+              </a>
+            {% endif %}
+          {% endfor %}
+          </div>
+        </div>
       </div>
-      <div class="bd">
-        {% for item in friendList %}
-        <a href="{{item.href}}" target="_blank" >{{item.title}}</a>
-        {% endfor %}
+    </div>
+    <div class="right-content">
+      <div class="pics-box">
+        <div class="common-hd">
+          <span class="common-title">游戏截图视频</span>
+        </div>
+        <div class="bd slide-pics J_slidePics">
+          <div class="prev">上一个</div>
+          <div class="next">下一个</div>
+          <div class="slide-bd">
+            {% for item in picList %}
+              {% if item.type === 1 %}
+                <a href="" class="pic-a">
+                  <img src="http://pic.fed.tm/175x175" alt="">
+                </a>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
       </div>
     </div>
 
+    <div class="friendship">
+        <div class="common-hd">
+          <span class="common-title">友情链接</span>
+        </div>
+        <div class="bd">
+          {% for item in friendList %}
+          <a href="{{item.href}}" target="_blank" >{{item.title}}</a>
+          {% endfor %}
+        </div>
+      </div>
+  
   </div>
 </main>
 {% endblock %}
@@ -175,6 +218,10 @@
 {% block script %}
 <script>
   $(function () {
+
+    $(".J_slidePicsTwo").slide({ mainCell:".slide-bd",autoPage:true,effect:"left",vis:2,trigger:"click"});
+    $(".J_slidePics").slide({ mainCell:".slide-bd",autoPage:true,effect:"left",vis:4,trigger:"click"});
+
     $('.J_gameTabs').hover(function () {
       var index = $(this).index();
       $(this)

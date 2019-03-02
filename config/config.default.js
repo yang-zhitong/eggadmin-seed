@@ -38,7 +38,7 @@ module.exports = appInfo => {
     defaultExtension: '.njs',
   };
 
-  config.pageSize = 10;
+  config.pageSize = 15;
   config.staticVersion = Math.floor(Date.now() / 1000);
 
   config.sequelize = {
