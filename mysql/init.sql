@@ -122,7 +122,16 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 -- Table structure for table `user_role`
 --
-
+CREATE TABLE IF NOT EXISTS `pics` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL,
+  `img` varchar(255) DEFAULT NULL,
+  `type` int(11) DEFAULT NULL,
+  `sort` int(11) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;

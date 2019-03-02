@@ -163,43 +163,48 @@
     </div>
 
 
-
-    <div class="left-content">
-      <div class="pics-box">
-        <div class="common-hd">
-          <span class="common-title">玩家靓照</span>
-        </div>
-        <div class="bd slide-pics J_slidePicsTwo">
-          <div class="prev">上一个</div>
-          <div class="next">下一个</div>
-          <div class="slide-bd">
-          {% for item in picList %}
-            {% if item.type === 2 %}
-              <a href="{{item.img}}" class="pic-a sm">
-                <img src="{{item.img}}" alt="">
-              </a>
+    <div  style="margin-top:24px;">
+      <div class="left-content">
+        <div class="pics-box">
+          <div class="common-hd">
+            <span class="common-title">玩家靓照</span>
+          </div>
+          <div class="bd slide-pics J_slidePicsTwo">
+            {% if picList.length > 5 %}
+            <div class="prev"></div>
+            <div class="next"></div>
             {% endif %}
-          {% endfor %}
+            <div class="slide-bd">
+            {% for item in picList %}
+              {% if item.type === 2 %}
+                <a href="{{item.img}}" class="pic-a sm">
+                  <img src="{{item.img}}" alt="">
+                </a>
+              {% endif %}
+            {% endfor %}
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="right-content">
-      <div class="pics-box">
-        <div class="common-hd">
-          <span class="common-title">游戏截图视频</span>
-        </div>
-        <div class="bd slide-pics J_slidePics">
-          <div class="prev">上一个</div>
-          <div class="next">下一个</div>
-          <div class="slide-bd">
-            {% for item in picList %}
-              {% if item.type === 1 %}
-              <a href="{{item.img}}" class="pic-a">
-                <img src="{{item.img}}" alt="">
-              </a>
-              {% endif %}
-            {% endfor %}
+      <div class="right-content">
+        <div class="pics-box">
+          <div class="common-hd">
+            <span class="common-title">游戏截图视频</span>
+          </div>
+          <div class="bd slide-pics J_slidePics">
+            {% if picList.length > 5 %}
+            <div class="prev"></div>
+            <div class="next"></div>
+            {% endif %}
+            <div class="slide-bd">
+              {% for item in picList %}
+                {% if item.type === 1 %}
+                <a href="{{item.img}}" class="pic-a">
+                  <img src="{{item.img}}" alt="">
+                </a>
+                {% endif %}
+              {% endfor %}
+            </div>
           </div>
         </div>
       </div>
