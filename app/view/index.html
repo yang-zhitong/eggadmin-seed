@@ -120,7 +120,13 @@
         <div class="common-bd">
           {% for item in newList %}
             <div class="item">
-                <a target="_blank" href="{{item.href}}" class="title">{{item.title}}</a>
+                <a target="_blank" 
+                {% if item.href %}
+                href="{{item.href}}"
+                {% else %}
+                href="/news/{{item.id}}"
+                {% endif %}
+                class="title">{{item.title}}</a>
                 <!-- <a target="_blank" href="/news/{{item.id}}" class="title">{{item.title}}</a> -->
                 <span class="time fr">{{ helper.newsFormateDate(item.createdAt) }}</span>
             </div>
@@ -169,8 +175,8 @@
           <div class="slide-bd">
           {% for item in picList %}
             {% if item.type === 2 %}
-              <a href="" class="pic-a sm">
-                <img src="http://pic.fed.tm/175x175" alt="">
+              <a href="{{item.img}}" class="pic-a sm">
+                <img src="{{item.img}}" alt="">
               </a>
             {% endif %}
           {% endfor %}
@@ -189,9 +195,9 @@
           <div class="slide-bd">
             {% for item in picList %}
               {% if item.type === 1 %}
-                <a href="" class="pic-a">
-                  <img src="http://pic.fed.tm/175x175" alt="">
-                </a>
+              <a href="{{item.img}}" class="pic-a">
+                <img src="{{item.img}}" alt="">
+              </a>
               {% endif %}
             {% endfor %}
           </div>
