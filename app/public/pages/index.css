@@ -631,11 +631,12 @@ footer .copyright {
 
 .quickway .qqkf .qq-num {
   font-size: 14px;
+  line-height: 18px;
   color: #626262;
 }
 
 .common-hd {
-  
+  position: relative;     z-index: 1;
 }
 
 .common-hd .common-title {
