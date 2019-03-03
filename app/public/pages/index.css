@@ -753,6 +753,11 @@ footer .copyright {
   height: 175px;
   overflow: hidden;
   margin-right: 29px;
+  display: inline-block;
+}
+.pics-box .pic-a img {
+  width: 100%;
+  height: 100%;
 }
 
 .pics-box .pic-a.sm {

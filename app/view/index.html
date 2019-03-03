@@ -104,6 +104,7 @@
             <div class="ib">
               <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=4000929777&site=qq&menu=yes" class="contact-kf">联系在线客服</a>
               <p class="qqnum">官方客服QQ：4000929777</p>
+              <p class="qqnum">客服热线:4000929777</p>
             </div>
           </div>
         </div>
@@ -170,17 +171,15 @@
             <span class="common-title">玩家靓照</span>
           </div>
           <div class="bd slide-pics J_slidePicsTwo">
-            {% if picList.length > 5 %}
+            {% if picList.type2.length > 2 %}
             <div class="prev"></div>
             <div class="next"></div>
             {% endif %}
             <div class="slide-bd">
-            {% for item in picList %}
-              {% if item.type === 2 %}
-                <a href="{{item.img}}" class="pic-a sm">
+            {% for item in picList.type2 %}
+                <a target="_blank" href="{{item.img}}" class="pic-a sm">
                   <img src="{{item.img}}" alt="">
                 </a>
-              {% endif %}
             {% endfor %}
             </div>
           </div>
@@ -192,17 +191,15 @@
             <span class="common-title">游戏截图视频</span>
           </div>
           <div class="bd slide-pics J_slidePics">
-            {% if picList.length > 5 %}
+            {% if picList.type1.length > 4 %}
             <div class="prev"></div>
             <div class="next"></div>
             {% endif %}
             <div class="slide-bd">
-              {% for item in picList %}
-                {% if item.type === 1 %}
-                <a href="{{item.img}}" class="pic-a">
+              {% for item in picList.type1 %}
+                <a target="_blank" href="{{item.img}}" class="pic-a">
                   <img src="{{item.img}}" alt="">
                 </a>
-                {% endif %}
               {% endfor %}
             </div>
           </div>

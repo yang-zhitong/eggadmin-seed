@@ -29,7 +29,7 @@ class HomeController extends Controller {
       return this.mobile();
     }
 
-    const [ mbLeft, pcLeft, pcTop, { rows: newList }, friendList, picList ] = await Promise.all([
+    const [ mbLeft, pcLeft, pcTop, { rows: newList }, friendList, rawPics ] = await Promise.all([
       this.ctx.service.admin.gameService.findSorted('sortMBLeft'),
       this.ctx.service.admin.gameService.findSorted('sortPCLeft'),
       this.ctx.service.admin.gameService.findSorted('sortTop'),
@@ -37,6 +37,14 @@ class HomeController extends Controller {
       this.ctx.model.Friendship.findAll(),
       this.ctx.model.Pics.findAll({ raw: true }),
     ]);
+    const picList = { type1: [], type2: [] };
+    rawPics.forEach(pic => {
+      if (pic.type === 1) {
+        picList.type1.push(pic);
+      } else {
+        picList.type2.push(pic);
+      }
+    });
     await this.render('/index.html', {
       mbLeft,
       pcLeft,
@@ -150,22 +158,6 @@ class HomeController extends Controller {
     await this.render('/lyhz.html', {
       result,
     });
-  }
-
-  async test() {
-    const { Static, Role, User, UserRole } = this.ctx.model;
-    await Static.create({ title: 'about' });
-    await Static.create({ title: 'customer' });
-    await Static.create({ title: 'zzsq' });
-    await Static.create({ title: 'lyhz' });
-
-    const role = await Role.create({ title: '管理员' });
-    await Role.create({ title: '普通用户' });
-    const password = await this.ctx.service.tools.md5('123');
-    const user = await User.create({ username: 'admin', password, isSuper: 1 });
-    await User.create({ username: 'user1', password, isSuper: 0 });
-    await UserRole.create({ rid: 1, uid: 1 });
-    await UserRole.create({ rid: 2, uid: 2 });
   }
 }
 
