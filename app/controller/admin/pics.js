@@ -86,7 +86,7 @@ class RoleController extends BaseController {
   async deletePics() {
     const { id } = this.ctx.params;
     await this.handleDelete(id);
-    await this.app.model.Friendship.destroy({ where: { id } });
+    await this.app.model.Pics.destroy({ where: { id } });
     this.successRender('删除成功', '/admin/pics');
   }
 
