@@ -81,14 +81,14 @@
       </div>
     </header>
     <script>
-      $(function() {
+      (function() {
         if (!(self === parent)) {
           var $wrap = document.querySelector('.logo-wrapper');
           $wrap.style.width = '3rem';
           $wrap.style.height = '0.75rem';
           $wrap.innerHTML = '<img src="http://www.sousou.com/images/m_sousou_logo.png" />'
         }
-      });
+      }());
     </script>
     {%- block main %}{% endblock -%}
 
