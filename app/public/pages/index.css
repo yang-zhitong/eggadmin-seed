@@ -747,14 +747,16 @@ footer .copyright {
   padding: 24px 0;
   border-top: 1px solid #d8d8d8;
   position: relative;
+  overflow: hidden;
 }
 
 .pics-box .pic-a {
-  width: 175px;
+  width: 180px;
   height: 175px;
   overflow: hidden;
-  margin-right: 29px;
+  padding-right: 29px;
   display: inline-block;
+  box-sizing: content-box;
 }
 .pics-box .pic-a img {
   width: 100%;
@@ -762,12 +764,12 @@ footer .copyright {
 }
 
 .pics-box .pic-a.sm {
-  width: 175px;
+  width: 180px;
   height: 175px;
-  margin-right: 27px;
+  padding-right: 27px;
 }
 .pics-box .pic-a:last-child {
-  margin-right: 0;
+  padding-right: 0;
 }
 
 .pics-box .prev, .pics-box .next {
