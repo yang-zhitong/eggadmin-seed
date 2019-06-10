@@ -18,7 +18,7 @@ class NewService extends Service {
   // 新加一个, 好像名字重复也没事
   async addOne({ title, content, type, href }) {
     const result = await this.app.model.New.create({
-      title, content, type, href
+      title, content, type, href,
     });
     return result;
   }

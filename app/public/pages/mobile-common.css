@@ -1210,3 +1210,30 @@ img.img-wrapper {
   margin: .2rem auto;
   max-width: 6rem;
 }
+
+.pages {
+  text-align: center;
+  padding: .30rem 0;
+  display: -webkit-box;
+  display: box;
+  display: flex;
+  justify-content: space-between;
+}
+
+.pages .btn_page {
+  width: .9rem;
+  height: .52rem;
+  font-size: .22rem;
+  line-height: .52rem;
+  color: #FFF;
+  margin-left: .1rem;
+  margin-right: .1rem;
+  background: #b1b1b1;
+  border-radius: .03rem;
+  flex: 0 1 15%;
+}
+.pages .current_page {
+  font-size: .24rem;
+  line-height: .52rem;
+  flex:1;
+}

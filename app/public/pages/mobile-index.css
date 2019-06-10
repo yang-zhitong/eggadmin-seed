@@ -270,6 +270,12 @@ footer p {
   margin-right: 0.1rem;
   line-height: 0.8rem;
 }
+.game-news-box .link-more {
+  font-size: 0.25rem;
+  color: #cf1e32;
+  margin: .1rem .1rem 0 0;
+  float: right;
+}
 .friendship {
   width: 7.13rem;
   margin: 0 auto;

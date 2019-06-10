@@ -1,0 +1,43 @@
+{% extends './base.html' %} {% block main %}
+
+<div
+  class="menubar"
+  style="height: 0.89rem;"
+>
+  <a class="back" href="/">首页</a>
+</div>
+
+<div class="main">
+  <div class="game-news-box">
+    <h3>
+      <span class="span-left">新闻</span><span class="span-right">动态</span>
+    </h3>
+    <ul class="game-news-ul">
+      {% for item in newList %}
+      <li>
+          <a
+            title="{{item.title}}"
+            {% if item.href %}
+            href="{{item.href}}"
+            {% else %}
+            href="/news/{{item.id}}"
+            {% endif %}
+            ><p>{{item.title}}</p>
+            <span>{{ helper.newsMobileData(item.createdAt) }}</span></a
+          >
+      </li>
+      {% endfor %}
+    </ul>
+
+    <div class="pages">
+      <a class="btn_page bgColor" href="/news" {% if page == 1 %} style="visibility:hidden" {% endif %} >首页</a>
+      <a href="/news?page={{page-1}}" class="btn_page bgColor" {% if page == 1 %} style="visibility:hidden" {% endif %} >上一页</a>
+      <span class="current_page">{{page}}/{{count}}</span>
+      <a class="btn_page bgColor" href="/news?page={{page+1}}" {% if page == count %} style="visibility:hidden" {% endif %} >下一页</a>
+      <a class="btn_page bgColor" href="/news?page={{count}}" {% if page == count %} style="visibility:hidden" {% endif %}>尾页</a>
+    </div>
+  
+  </div>
+
+</div>
+{% endblock %}

@@ -104,7 +104,22 @@ class HomeController extends Controller {
   }
 
   async news() {
-    await this.render('/news.html', {
+    const { page } = this.ctx.request.query;
+    const offset = page ? +page : 1;
+    const size = 15;
+    const { rows: newList, count } = await this.ctx.service.admin.newService.index(offset, { pageSize: size });
+    const total = Math.ceil(count / size);
+    if (page > total) {
+      return this.ctx.redirect('/');
+    }
+    let view = '/mobile/newsList.html';
+    if (isMobile(this.ctx.request.headers)) {
+      view = '/mobile/newsList.html';
+    }
+    await this.render(view, {
+      newList,
+      count: Math.ceil(count / size),
+      page: offset,
     });
   }
 

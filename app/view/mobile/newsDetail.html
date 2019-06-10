@@ -1,4 +1,10 @@
-{% extends './base.html' %} {% block main %}
+{% extends './base.html' %}
+
+{% block header %}
+<title>{{ queryNew.title }}</title>
+{% endblock %}
+
+{% block main %}
 <div
   class="menubar"
   style="height: 0.89rem;"
