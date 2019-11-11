@@ -495,9 +495,10 @@ footer .copyright {
 
 .server-list .normal-show .open {
   margin-left: 10px;
-  margin-right: 28px;
-  width: 123px;
   vertical-align: middle;
+  width: 160px;
+  vertical-align: middle;
+  display: inline-block;
 }
 
 .server-list .normal-show .open,
