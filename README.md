@@ -4,49 +4,26 @@
 
 按如下步骤配置好自己的项目, 到服务器上用`docker-compose up -d`起来就可以了
 
-### 本地开发前配置mysql
+## 本地开发
 
-1. 下载docker镜像 `docker pull mysql:5.7`
+1. 本地启动数据库, 端口3306, root 密码123456  具体配置信息在config中
 
-2. 启动mysql服务并运行初始化sql(如创建database)
+2. 数据库名默认 shen_tu
 
-`docker run -p 3306:3306 --name mysql -v ${PWD}/mysql:/docker-entrypoint-initdb.d -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.7`
+3. npm 安装依赖, yarn 也可以
 
-当然, 这里需要先有一份初始化的sql如 `mysql/init.sql` 文件
+4. 命令行初始化数据库 `npm run sql:init` 
 
-`CREATE DATABASE IF NOT EXISTS `shen_tu` DEFAULT CHARSET utf8 COLLATE utf8_general_ci;`
+5. 启动开发 `npm run dev`
 
-本地小项目测试, 目前感觉不是很需要把数据暴露到宿主机
 
-3. 进入数据库观察结果是否正确
-
-4. 如果不正确, 请去掉-d观察错误log
-
-### 再次开发
-
-启动之前停止的mysql服务 `docker start mysql`
-
-### 表定义与测试数据添加
-
-开发时数据库定义写在mysql/index.js中
-
-可以方便的添加测试数据
-
-只需要 `node mysql/index.js` 即可
-
-todo: 定义一份模型, 现在在app的model里写一遍, 又在初始化的时候定义(复制)一遍
-
-### 开始开发
-
-`npm run dev`
-
-### 完成开发
+## 完成开发
 
 1. 把开发好的数据库表结构导出给部署用
 
 `docker exec -it mysql mysqldump --opt -d -uroot -p123456 talbe_name >./mysql/init.sql`
 
-2. 创建.env写环境变量
+2. 创建.env写环境变量(已经写好了)
 
 ```js
 PROJECT_NAME=xxxxx
