@@ -156,19 +156,19 @@ const pics = sequelize.define('pics', {
 
 sequelize.sync().then(async () => {
   // console.log('生产环境');
-  // await Static.create({ title: 'about' });
-  // await Static.create({ title: 'customer' });
-  // await Static.create({ title: 'zzsq' });
-  // await Static.create({ title: 'lyhz' });
+  await Static.create({ title: 'about' });
+  await Static.create({ title: 'customer' });
+  await Static.create({ title: 'zzsq' });
+  await Static.create({ title: 'lyhz' });
 
-  // const role = await Role.create({ title: '管理员' });
-  // await Role.create({ title: '普通用户' });
+  const role = await Role.create({ title: '管理员' });
+  await Role.create({ title: '普通用户' });
 
-  // const password = await md5('123');
-  // const user = await User.create({ username: 'admin', password, isSuper: 1 });
-  // await User.create({ username: 'user1', password, isSuper: 0 });
+  const password = await md5('123');
+  const user = await User.create({ username: 'admin', password, isSuper: 1 });
+  await User.create({ username: 'user1', password, isSuper: 0 });
 
-  // await UserRole.create({ rid: 1, uid: 1 });
-  // await UserRole.create({ rid: 2, uid: 2 });
+  await UserRole.create({ rid: 1, uid: 1 });
+  await UserRole.create({ rid: 2, uid: 2 });
   process.exit(0);
 });
