@@ -15,7 +15,7 @@ module.exports = () => {
     // 如果没有session并且是请求登录页面或接口也跳过
     if (ctx.path === '/admin/login') {
       if (user) {
-        console.log(user);
+        // console.log(user);
         // 如果是已登录状态进入登录页直接跳转到首页
         return ctx.redirect('/admin');
       }

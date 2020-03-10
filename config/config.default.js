@@ -11,6 +11,10 @@ module.exports = appInfo => {
     },
   };
 
+  config.logger = {
+    dir: '/root/TianXinShenTu/logs'
+  };
+
   // favicon
   config.siteFile = {
     '/favicon.ico': fs.readFileSync(path.join(__dirname, '../favicon.png')),
