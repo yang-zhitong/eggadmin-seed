@@ -12,7 +12,15 @@ module.exports = appInfo => {
   };
 
   config.logger = {
-    dir: '/root/TianXinShenTu/logs'
+    dir: path.join(appInfo.baseDir, 'logs'),
+  };
+
+  config.onerror = {
+    all(err, ctx) {
+      ctx.logger.error(err);
+      ctx.body = 'error';
+      ctx.status = 500;
+    },
   };
 
   // favicon
