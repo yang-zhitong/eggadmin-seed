@@ -1,158 +1,236 @@
 <!DOCTYPE html>
 <html lang="zh-Hans">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <!-- 用在360中 -->
-    <meta name="renderer" content="webkit" />
-    <!-- 用在其它 -->
-    <meta name="force-rendering" content="webkit" />
-    <!-- 针对 IE 浏览器 -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <!-- 针对百度搜索 -->
-    <meta http-equiv="Cache-Control" content="no-transform" />
-    <meta name="sogou_site_verification" content="ofwxuZ9HjF"/>
-    <meta name="360-site-verification" content="36410307139f44c563e646fafe5fe778" />
-    <meta property="og:type"content="image"/> 
-    <meta property="og:image"content="//www.2tx.com/public/tx360.jpg"/>
-    {% block header %}
-    <title>『神途』神途开服表_神途发布网_天心传奇_天心神途_多种版本,多种玩法,让你想玩什么就玩什么</title>
-    {% endblock %}
-    <meta name="description" content="《神途》是一款2D类多人在线PK性的在线网游,主打经营,单职业神途,特色微变,神途手游,中变等多种版本运营,让每个玩家都能找到自己喜欢的版本！" />
-    <meta name="keywords" content="神途,神途开服表,神途发布网,神途手游,单职业神途,神途sf,神途私服" />
-    <script src="//lib.baomitu.com/jquery/1.12.4/jquery.min.js"></script>
-    <script src="/public/js/slide.js"></script>
-    <!--[if lt IE 9]>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <!-- 用在360中 -->
+  <meta name="renderer" content="webkit" />
+  <!-- 用在其它 -->
+  <meta name="force-rendering" content="webkit" />
+  <!-- 针对 IE 浏览器 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- 针对百度搜索 -->
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta name="sogou_site_verification" content="ofwxuZ9HjF" />
+  <meta name="360-site-verification" content="36410307139f44c563e646fafe5fe778" />
+  <meta property="og:type" content="image" />
+  <meta property="og:image" content="//www.2tx.com/public/tx360.jpg" />
+  {% block header %}
+  <title>『神途』神途开服表_神途发布网_天心传奇_天心神途_多种版本,多种玩法,让你想玩什么就玩什么</title>
+  {% endblock %}
+  <meta name="description" content="《神途》是一款2D类多人在线PK性的在线网游,主打经营,单职业神途,特色微变,神途手游,中变等多种版本运营,让每个玩家都能找到自己喜欢的版本！" />
+  <meta name="keywords" content="神途,神途开服表,神途发布网,神途手游,单职业神途,神途sf,神途私服" />
+  <script src="//lib.baomitu.com/jquery/1.12.4/jquery.min.js"></script>
+  <script src="/public/js/slide.js"></script>
+  <!--[if lt IE 9]>
       <script src="//lib.baomitu.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
-    <link rel="stylesheet" href="/public/pages/index.css" />
-    <script>
-      $(function() {
-        $('.J_scroll').on('click', function() {
-          $( "html, body" ).animate({scrollTop: 3000 });
-        });
-        $(".J_alertTip").on('click', function(e) {
-          e.preventDefault();
-          alert('请进入游戏查询');
-        });
+  <link rel="stylesheet" href="/public/pages/index.css" />
+  <script>
+    $(function () {
+      $('.J_scroll').on('click', function () {
+        $("html, body").animate({ scrollTop: 3000 });
       });
-    </script>
-  </head>
+      $(".J_alertTip").on('click', function (e) {
+        e.preventDefault();
+        alert('请进入游戏查询');
+      });
+    });
+  </script>
+</head>
 
-  <body>
-    <header>
-      <div class="lt-header">
-        <div class="width-1280">
-          <a href="https://www.st123.com" target="_blank" class="header-link">
-            <i class="icon icon1"></i> <span>开服列表</span>
-          </a>
-          <a href="" class="header-link">
-            <i class="icon icon2"></i> <span>放到桌面</span>
-          </a>
-          <div class="fr">
-            <a href="/about" class="header-link">
-              <i class="icon icon3"></i> <span>关于我们</span>
-            </a>
-            <a href="customer" class="header-link">
-            <!-- <a  target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=4000929777&site=qq&menu=yes" class="header-link"> -->
-              <i class="icon icon4"></i> <span>在线客服</span>
-            </a>
-            <a href="javascript:;" class="header-link J_scroll">
-              <i class="icon icon5"></i> <span>关注微信</span>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="nav-header">
-        <div class="width-1280 ib-center">
-          <a href="/"><img src="/public/assets/logo.png" alt="2tx.com www.2tx.com 天心神途" class="logo ib" /></a>
-          <img src="/public/assets/logo_text.png" class="ib logo-text">
-          <nav class="nav fr">
-            <a href="/" class="nav-item">首页</a>
-            <a href="https://www.st123.com" target="_blank" class="nav-item">开服列表</a>
-            <a href="/zzsq" class="nav-item">资质授权</a>
-            <a href="http://3.st716.com"  target="_blank" class="nav-item">联运合作</a>
-            <a href="/about" class="nav-item">关于我们</a>
-            <a href="/customer" class="nav-item">客服中心</a>
-          </nav>
-        </div>
-      </div>
-    </header>
-    <div class="banner-bg">
+<body style="filter: grayscale(1);">
+  <header>
+    <div class="lt-header">
       <div class="width-1280">
-        <div class="qrcode-box wechat">
-          <img src="/public/assets/qrcode_wechat.png" alt="2tx.com www.2tx.com 天心神途官方公众号" class="code-img ">
+        <a href="https://www.st123.com" target="_blank" class="header-link">
+          <i class="icon icon1"></i> <span>开服列表</span>
+        </a>
+        <a href="" class="header-link">
+          <i class="icon icon2"></i> <span>放到桌面</span>
+        </a>
+        <div class="fr">
+          <a href="/about" class="header-link">
+            <i class="icon icon3"></i> <span>关于我们</span>
+          </a>
+          <a href="customer" class="header-link">
+            <!-- <a  target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=4000929777&site=qq&menu=yes" class="header-link"> -->
+            <i class="icon icon4"></i> <span>在线客服</span>
+          </a>
+          <a href="javascript:;" class="header-link J_scroll">
+            <i class="icon icon5"></i> <span>关注微信</span>
+          </a>
         </div>
-        <div class="qrcode-box app">
-          <img src="/public/assets/qrcode_app.png" alt="2tx.com www.2tx.com 天心神途APP下载" class="code-img ">
-        </div>
-        <div class="shadow"></div>
-        <div class="shadow mirror"></div>
       </div>
     </div>
+    <div class="nav-header">
+      <div class="width-1280 ib-center">
+        <a href="/"><img src="/public/assets/logo.png" alt="2tx.com www.2tx.com 天心神途" class="logo ib" /></a>
+        <img src="/public/assets/logo_text.png" class="ib logo-text">
+        <nav class="nav fr">
+          <a href="/" class="nav-item">首页</a>
+          <a href="https://www.st123.com" target="_blank" class="nav-item">开服列表</a>
+          <a href="/zzsq" class="nav-item">资质授权</a>
+          <a href="http://3.st716.com" target="_blank" class="nav-item">联运合作</a>
+          <a href="/about" class="nav-item">关于我们</a>
+          <a href="/customer" class="nav-item">客服中心</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <div class="banner-bg">
+    <div class="width-1280">
+      <div class="qrcode-box wechat">
+        <img src="/public/assets/qrcode_wechat.png" alt="2tx.com www.2tx.com 天心神途官方公众号" class="code-img ">
+      </div>
+      <div class="qrcode-box app">
+        <img src="/public/assets/qrcode_app.png" alt="2tx.com www.2tx.com 天心神途APP下载" class="code-img ">
+      </div>
+      <div class="shadow"></div>
+      <div class="shadow mirror"></div>
+    </div>
+  </div>
 
-    {%- block main %}{% endblock -%}
-    
-    <footer>
-      <div class="width-1280">
-        <p class="footer-line">
-          健康游戏公告：抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防上当受骗
-          适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活
-        </p>
-        <p class="footer-line">
-          文网游备字[2011]C-RPG152号
-          |网络文化经营许可证:赣网文（2019）1855-014号
-          |增值电信业务经营许可证:浙B2-20110064
-        </p>
-        <p class="footer-line">
-          《互联网文化管理暂行规定》|《网络游戏管理暂行办法》|
-          赣ICP备18015084号-2 适龄提示：本游戏适合18岁以上的成年人进入
-          <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1275933496'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/stat.php%3Fid%3D1275933496%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
-        </p>
-        <div class="logo-line">
-          <img src="/public/assets/footer_company.png" alt="2tx.com www.2tx.com 天心神途" class="company-logo" />
-          <a target="cyxyv" href="https://v.yunaq.com/certificate?domain=www.2tx.com&from=label&code=90030"><img src="https://aqyzmedia.yunaq.com/labels/label_sm_90030.png"></a>
-          <a target="_blank" href="https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd=%E6%B1%9F%E8%A5%BF%E6%90%9C%E6%90%9C%E4%BF%A1%E6%81%AF%E7%A7%91%E6%8A%80%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8%40v&oq=%25E5%25AE%2589%25E5%25BE%25BD%25E7%25A5%259E%25E7%258B%2599%25E4%25BF%25A1%25E6%2581%25AF%25E7%25A7%2591%25E6%258A%2580%25E6%259C%2589%25E9%2599%2590%25E5%2585%25AC%25E5%258F%25B8%2540v&rsv_pq=836e3ac100005eff&rsv_t=970abvy9lPBCH%2BMs6BaCcoVxdAL267ciUIBXSV6J5v5YMIFd9kxu8KCnDHc&rqlang=cn&rsv_enter=1&rsv_sug3=44&rsv_sug1=11&rsv_sug7=100&rsv_sug2=0&inputT=4541&rsv_sug4=6571&rsv_sug=1">
-            <img style="margin: 0px 10px;" src="//www.baodaren.net/themes/default/assets/images/f_icon3.png" alt="">
-          </a>
-          <a target="_blank" href="https://v.anquan.org/cert/site/?site=www.2tx.com"><img src="https://static.miandei.com/cloud/images/common/hy_124x47.png" /></a>
-          <a id="_pingansec_bottomimagelarge_shiming" href="//si.trustutn.org/info?sn=969190826038512778264&certType=1"><img src="//v.trustutn.org/images/cert/realname_large_img.png"/></a>
-        </div>
-        <p class="copyright">
-          CopyRight 2018-2019 江西搜搜信息科技有限公司SouSou, All right reserved.
-        </p>
+  {%- block main %}{% endblock -%}
+
+  <footer>
+    <div class="width-1280">
+      <p class="footer-line">
+        健康游戏公告：抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防上当受骗
+        适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活
+      </p>
+      <p class="footer-line">
+        文网游备字[2011]C-RPG152号
+        |网络文化经营许可证:赣网文（2019）1855-014号
+        |增值电信业务经营许可证:浙B2-20110064
+      </p>
+      <p class="footer-line">
+        《互联网文化管理暂行规定》|《网络游戏管理暂行办法》|
+        赣ICP备18015084号-2 适龄提示：本游戏适合18岁以上的成年人进入
+        <script
+          type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://"); document.write(unescape("%3Cspan id='cnzz_stat_icon_1275933496'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/stat.php%3Fid%3D1275933496%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+      </p>
+      <div class="logo-line">
+        <img src="/public/assets/footer_company.png" alt="2tx.com www.2tx.com 天心神途" class="company-logo" />
+        <a target="cyxyv" href="https://v.yunaq.com/certificate?domain=www.2tx.com&from=label&code=90030"><img
+            src="https://aqyzmedia.yunaq.com/labels/label_sm_90030.png"></a>
+        <a target="_blank"
+          href="https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd=%E6%B1%9F%E8%A5%BF%E6%90%9C%E6%90%9C%E4%BF%A1%E6%81%AF%E7%A7%91%E6%8A%80%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8%40v&oq=%25E5%25AE%2589%25E5%25BE%25BD%25E7%25A5%259E%25E7%258B%2599%25E4%25BF%25A1%25E6%2581%25AF%25E7%25A7%2591%25E6%258A%2580%25E6%259C%2589%25E9%2599%2590%25E5%2585%25AC%25E5%258F%25B8%2540v&rsv_pq=836e3ac100005eff&rsv_t=970abvy9lPBCH%2BMs6BaCcoVxdAL267ciUIBXSV6J5v5YMIFd9kxu8KCnDHc&rqlang=cn&rsv_enter=1&rsv_sug3=44&rsv_sug1=11&rsv_sug7=100&rsv_sug2=0&inputT=4541&rsv_sug4=6571&rsv_sug=1">
+          <img style="margin: 0px 10px;" src="//www.baodaren.net/themes/default/assets/images/f_icon3.png" alt="">
+        </a>
+        <a target="_blank" href="https://v.anquan.org/cert/site/?site=www.2tx.com"><img
+            src="https://static.miandei.com/cloud/images/common/hy_124x47.png" /></a>
+        <a id="_pingansec_bottomimagelarge_shiming"
+          href="//si.trustutn.org/info?sn=969190826038512778264&certType=1"><img
+            src="//v.trustutn.org/images/cert/realname_large_img.png" /></a>
       </div>
-    </footer>
-    {%- block script %}{% endblock -%}
-    <!-- <script type="text/javascript" src="//trusted.shuidi.cn/trusted.js?id=3335&jump=0&style=1"></script> -->
-    <style>
-      #Floatingbar{
-        width:190px;height:450px;position:fixed;top:50%;right:0px;margin-top:-200px;padding-top:50px;padding-right:50px;padding-left:45px;background:url(/public/assets/floatingbg.png) no-repeat left top;z-index:2500;}
-      #Floatingbar .erweima{width:119px;line-height:20px;text-align:center;margin:0px auto 20px auto;}
-      #Floatingbar .erweima:hover{}
-      #Floatingbar .erweima:hover img{transform:scale(1.1);}
-      #Floatingbar .erweima img{width:109px;height:109px;margin-bottom:3px;background:#fff;display:block;transition:all 0.3s ease-in;}
-      #Floatingbar .erweima span{font-size:13px;color:#e7dbc0;}
-      #Floatingbar ul{margin-bottom:10px;margin-left:5px}
-      #Floatingbar ul li{line-height:26px;text-align:center;color:#e7dbc0;margin-bottom:8px;list-style:none; }
-      #Floatingbar ul li a{display:block;}
-      #Floatingbar ul li a img{margin:0 auto;display:block;}
-      #Floatingbar .downlist{line-height:2.14;font-size:14px;width:100px;height:40px;}
-      #Floatingbar .downlist li a{color:#fceeff;border: solid #8f959f 1px;background:#230d0a}
-      #Floatingbar .downlist li a:hover{color:#fe8402;text-decoration:none;}
-    </style>
-    <div id="Floatingbar">
-        <div class="erweima">
-          <img src="/public/assets/qrcode_app.png" alt="description ">
-          <span>神途手游总登陆器</span>
-        </div>
-        <ul class="downlist">
-          <li>三端数据互通</li>
-          <li>内容玩法同步</li>
-          <li>回家电脑玩</li><li>外面手机玩</li>
-          <li><a href="http://oss.kazhifu.com/serverlist/tianxinst/tianxinst.exe" target="_blank"><strong>神途万能登陆器</strong></a>
-          </li><li><a href="http://oss.kazhifu.com/serverlist/tianxinst/tianxinst.exe" target="_blank"><strong>&gt;点击下载&lt;</strong></a></li>
-        </ul>
-      </div>
-  </body>
+      <p class="copyright">
+        CopyRight 2018-2019 江西搜搜信息科技有限公司SouSou, All right reserved.
+      </p>
+    </div>
+  </footer>
+  {%- block script %}{% endblock -%}
+  <!-- <script type="text/javascript" src="//trusted.shuidi.cn/trusted.js?id=3335&jump=0&style=1"></script> -->
+  <style>
+    #Floatingbar {
+      width: 190px;
+      height: 450px;
+      position: fixed;
+      top: 50%;
+      right: 0px;
+      margin-top: -200px;
+      padding-top: 50px;
+      padding-right: 50px;
+      padding-left: 45px;
+      background: url(/public/assets/floatingbg.png) no-repeat left top;
+      z-index: 2500;
+    }
+
+    #Floatingbar .erweima {
+      width: 119px;
+      line-height: 20px;
+      text-align: center;
+      margin: 0px auto 20px auto;
+    }
+
+    #Floatingbar .erweima:hover {}
+
+    #Floatingbar .erweima:hover img {
+      transform: scale(1.1);
+    }
+
+    #Floatingbar .erweima img {
+      width: 109px;
+      height: 109px;
+      margin-bottom: 3px;
+      background: #fff;
+      display: block;
+      transition: all 0.3s ease-in;
+    }
+
+    #Floatingbar .erweima span {
+      font-size: 13px;
+      color: #e7dbc0;
+    }
+
+    #Floatingbar ul {
+      margin-bottom: 10px;
+      margin-left: 5px
+    }
+
+    #Floatingbar ul li {
+      line-height: 26px;
+      text-align: center;
+      color: #e7dbc0;
+      margin-bottom: 8px;
+      list-style: none;
+    }
+
+    #Floatingbar ul li a {
+      display: block;
+    }
+
+    #Floatingbar ul li a img {
+      margin: 0 auto;
+      display: block;
+    }
+
+    #Floatingbar .downlist {
+      line-height: 2.14;
+      font-size: 14px;
+      width: 100px;
+      height: 40px;
+    }
+
+    #Floatingbar .downlist li a {
+      color: #fceeff;
+      border: solid #8f959f 1px;
+      background: #230d0a
+    }
+
+    #Floatingbar .downlist li a:hover {
+      color: #fe8402;
+      text-decoration: none;
+    }
+  </style>
+  <div id="Floatingbar">
+    <div class="erweima">
+      <img src="/public/assets/qrcode_app.png" alt="description ">
+      <span>神途手游总登陆器</span>
+    </div>
+    <ul class="downlist">
+      <li>三端数据互通</li>
+      <li>内容玩法同步</li>
+      <li>回家电脑玩</li>
+      <li>外面手机玩</li>
+      <li><a href="http://oss.kazhifu.com/serverlist/tianxinst/tianxinst.exe"
+          target="_blank"><strong>神途万能登陆器</strong></a>
+      </li>
+      <li><a href="http://oss.kazhifu.com/serverlist/tianxinst/tianxinst.exe"
+          target="_blank"><strong>&gt;点击下载&lt;</strong></a></li>
+    </ul>
+  </div>
+</body>
+
 </html>
