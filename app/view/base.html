@@ -36,11 +36,18 @@
         e.preventDefault();
         alert('请进入游戏查询');
       });
+      var d = new Date();
+      var y = d.getFullYear(); // 年
+      var m = d.getMonth() + 1; // 月份从0开始的
+      var d = d.getDate(); //日
+      if (y == 2020 && m == 4 && d == 4) {
+        $('body').attr('style', 'filter: grayscale(1)');
+      }
     });
   </script>
 </head>
 
-<body style="filter: grayscale(1);">
+<body>
   <header>
     <div class="lt-header">
       <div class="width-1280">
